@@ -1,0 +1,20 @@
+:root {
+    --navy: #030712;
+    --navy-soft: #0a1220;
+    --light-navy: #0f1c30;
+    --card: #0d1829;
+    --slate: #94a3b8;
+    --light-slate: #cbd5e1;
+    --white: #f1f5f9;
+    --green: #5eead4;
+    --teal: #38bdf8;
+    --purple: #a78bfa;
+    --accent: linear-gradient(135deg, #5eead4 0%, #38bdf8 45%, #a78bfa 100%);
+    --muted: rgba(255, 255, 255, 0.1);
+
+    --font-sans: Arial, Calibri, 'Segoe UI', sans-serif;
+    --font-mono: Arial, Calibri, sans-serif;
+    
+    --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+}
