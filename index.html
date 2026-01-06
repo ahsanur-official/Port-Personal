@@ -9,6 +9,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+    />
     <link rel="stylesheet" href="styles/variables.css" />
     <link rel="stylesheet" href="styles/main.css" />
   </head>
@@ -20,49 +24,48 @@
       <ul class="nav-links" id="navLinks">
         <li>
           <a href="#about"
-            ><span class="highlight"></span
             ><i class="fa-regular fa-user nav-icon"></i
             ><span class="nav-label">About</span></a
           >
         </li>
         <li>
           <a href="#skills"
-            ><span class="highlight"></span
             ><i class="fa-solid fa-layer-group nav-icon"></i
             ><span class="nav-label">Expertise</span></a
           >
         </li>
         <li>
           <a href="#experience"
-            ><span class="highlight"></span
             ><i class="fa-solid fa-briefcase nav-icon"></i
             ><span class="nav-label">Experience</span></a
           >
         </li>
         <li>
           <a href="#services"
-            ><span class="highlight"></span
             ><i class="fa-solid fa-table-cells-large nav-icon"></i
             ><span class="nav-label">Services</span></a
           >
         </li>
         <li>
           <a href="#projects"
-            ><span class="highlight"></span
             ><i class="fa-regular fa-folder-open nav-icon"></i
             ><span class="nav-label">Projects</span></a
           >
         </li>
         <li>
           <a href="#education"
-            ><span class="highlight"></span
             ><i class="fa-solid fa-graduation-cap nav-icon"></i
             ><span class="nav-label">Education</span></a
           >
         </li>
         <li>
+          <a href="#profile-tabs"
+            ><i class="fa-solid fa-rectangle-list nav-icon"></i
+            ><span class="nav-label">Credentials</span></a
+          >
+        </li>
+        <li>
           <a href="#contact"
-            ><span class="highlight"></span
             ><i class="fa-regular fa-paper-plane nav-icon"></i
             ><span class="nav-label">Contact</span></a
           >
@@ -88,12 +91,16 @@
         </p>
         <p class="hero-body hero-item">
           CSE student at <b>Pundra University</b> blending analytics with
-          product design. I ship <b>frontend</b> experiences, <b>data stories</b>,
-          and <b>systematic design</b> that feel polished and reliable.
+          product design. I ship <b>frontend</b> experiences,
+          <b>data stories</b>, and <b>systematic design</b> that feel polished
+          and reliable.
         </p>
         <div class="hero-ctas hero-item">
           <a href="#projects" class="btn-primary">View Projects</a>
-          <a href="https://forms.gle/YRviyaoG75xPHJZG9" class="btn-ghost" target="_blank"
+          <a
+            href="https://forms.gle/YRviyaoG75xPHJZG9"
+            class="btn-ghost"
+            target="_blank"
             >Hire Me</a
           >
         </div>
@@ -113,12 +120,7 @@
 
       <section id="about">
         <div class="section-head">
-          <h2 class="section-title">
-            <span class="highlight">01.</span> About
-          </h2>
-          <p class="section-kicker">
-            From competitive programming to data-first product builds.
-          </p>
+          <h2 class="section-title">About</h2>
         </div>
         <div class="about-content">
           <div class="about-text">
@@ -139,19 +141,14 @@
             </div>
           </div>
           <div class="profile-pic-wrapper">
-            <img src="images/profile.jpg" alt="Ahsanur Rahaman portrait" />
+            <img src="images/ahsan.jpg" alt="Ahsanur Rahaman portrait" />
           </div>
         </div>
       </section>
 
       <section id="skills">
         <div class="section-head">
-          <h2 class="section-title">
-            <span class="highlight">02.</span> Expertise & Stack
-          </h2>
-          <p class="section-kicker">
-            Hands-on across data, engineering, and design.
-          </p>
+          <h2 class="section-title">Expertise & Stack</h2>
         </div>
         <div class="grid-container expertise">
           <div class="card">
@@ -200,10 +197,7 @@
 
       <section id="experience">
         <div class="section-head">
-          <h2 class="section-title">
-            <span class="highlight">03.</span> Experience
-          </h2>
-          <p class="section-kicker">Selected engagements and impact.</p>
+          <h2 class="section-title">Experience</h2>
         </div>
         <div class="timeline">
           <article class="timeline-item">
@@ -258,12 +252,7 @@
 
       <section id="services">
         <div class="section-head">
-          <h2 class="section-title">
-            <span class="highlight">04.</span> Services
-          </h2>
-          <p class="section-kicker">
-            How I help teams move from insight to shipped product.
-          </p>
+          <h2 class="section-title">Services</h2>
         </div>
         <div class="grid-container services-grid">
           <div class="card service-card">
@@ -335,173 +324,229 @@
 
       <section id="projects">
         <div class="section-head">
-          <h2 class="section-title">
-            <span class="highlight">05.</span> Projects
-          </h2>
-          <p class="section-kicker">
-            A mix of analytics, systems, and interfaces.
-          </p>
+          <h2 class="section-title">Projects</h2>
         </div>
-        <div class="grid-container">
-          <div class="card project-card">
-            <div class="card-header">
-              <i class="fa-regular fa-folder folder-icon"></i>
-              <div class="card-links">
-                <a
-                  href="https://github.com/ahsanur-official/Class-Room-Dashboard"
-                  aria-label="GitHub"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-                <a
-                  href="https://demo-classroom-dashboard.netlify.app/"
-                  aria-label="Live demo"
-                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
-                ></a>
-              </div>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/dashboard.jpg" alt="Classroom Dashboard" />
             </div>
-            <h3>Classroom Dashboard</h3>
-            <p>
-              Analytics-forward dashboard with clean UI for classroom metrics,
-              built to be fast and responsive.
-            </p>
-            <div class="tags">
-              <span>React</span><span>Dashboard</span><span>Charts</span>
-            </div>
-          </div>
-          <div class="card project-card">
-            <div class="card-header">
-              <i class="fa-regular fa-folder folder-icon"></i>
-              <div class="card-links">
-                <a
-                  href="https://github.com/ahsanur-official/Fun-Post"
-                  aria-label="GitHub"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-                <a href="https://funpost.netlify.app/" aria-label="Live demo"
-                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
-                ></a>
-              </div>
-            </div>
-            <h3>Fun Post</h3>
-            <p>
-              Social-style feed with playful UI, built for quick content
-              sharing and responsive layouts.
-            </p>
-            <div class="tags">
-              <span>React</span><span>UI</span><span>Responsive</span>
+            <div class="project-buttons">
+              <a
+                href="https://demo-classroom-dashboard.netlify.app/"
+                class="btn live-link"
+                target="_blank"
+                >Live Link</a
+              >
+              <a
+                href="https://github.com/ahsanur-official/Class-Room-Dashboard"
+                class="btn repo-link"
+                target="_blank"
+                >Repository Link</a
+              >
+              <button
+                class="btn details-btn"
+                data-details="Analytics-forward dashboard with clean UI for classroom metrics, built to be fast and responsive."
+              >
+                Details
+              </button>
             </div>
           </div>
-          <div class="card project-card">
-            <div class="card-header">
-              <i class="fa-regular fa-folder folder-icon"></i>
-              <div class="card-links">
-                <a
-                  href="https://github.com/ahsanur-official/Personal-Finance-Tracker"
-                  aria-label="GitHub"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-                <a
-                  href="https://personalfinancetrackerbd.netlify.app/"
-                  aria-label="Live demo"
-                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
-                ></a>
-              </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/gift.jpg" alt="Fun Post" />
             </div>
-            <h3>Personal Finance Tracker</h3>
-            <p>
-              Web-based expense tracking with categories, summaries, and an
-              intuitive, contrasty dashboard.
-            </p>
-            <div class="tags">
-              <span>JavaScript</span><span>Charts</span><span>FinTech</span>
-            </div>
-          </div>
-          <div class="card project-card">
-            <div class="card-header">
-              <i class="fa-regular fa-folder folder-icon"></i>
-              <div class="card-links">
-                <a
-                  href="https://github.com/ahsanur-official/Eid-Salami-Generator"
-                  aria-label="GitHub"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-                <a
-                  href="https://eid-salami-generator.netlify.app/"
-                  aria-label="Live demo"
-                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
-                ></a>
-              </div>
-            </div>
-            <h3>Eid Salami Generator</h3>
-            <p>
-              Delightful greeting generator with preset palettes and typography
-              for quick sharing.
-            </p>
-            <div class="tags">
-              <span>JavaScript</span><span>HTML/CSS</span><span>UI</span>
+            <div class="project-buttons">
+              <a
+                href="https://funpost.netlify.app/"
+                class="btn live-link"
+                target="_blank"
+                >Live Link</a
+              >
+              <a
+                href="https://github.com/ahsanur-official/Fun-Post"
+                class="btn repo-link"
+                target="_blank"
+                >Repository Link</a
+              >
+              <button
+                class="btn details-btn"
+                data-details="Social-style feed with playful UI, built for quick content sharing and responsive layouts."
+              >
+                Details
+              </button>
             </div>
           </div>
-          <div class="card project-card">
-            <div class="card-header">
-              <i class="fa-regular fa-folder folder-icon"></i>
-              <div class="card-links">
-                <a
-                  href="https://github.com/ahsanur-official/Color-Palette-Generator"
-                  aria-label="GitHub"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-                <a
-                  href="https://color-palette-generator-bd42.netlify.app/"
-                  aria-label="Live demo"
-                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
-                ></a>
-              </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/pubaide.jpg" alt="Campus Aide" />
             </div>
-            <h3>Color Palette Generator</h3>
-            <p>
-              Palette builder with curated swatches for designers and devs,
-              focused on usability.
-            </p>
-            <div class="tags">
-              <span>JavaScript</span><span>UI</span><span>Design</span>
+            <div class="project-buttons">
+              <a
+                href="https://pub-campus-aide.netlify.app/"
+                class="btn live-link"
+                target="_blank"
+                >Live Link</a
+              >
+              <a
+                href="https://github.com/ahsanur-official/Pub-Campus-Aid-main"
+                class="btn repo-link"
+                target="_blank"
+                >Repository Link</a
+              >
+              <button
+                class="btn details-btn"
+                data-details="Campus aide tool with streamlined flows for students and staff."
+              >
+                Details
+              </button>
             </div>
           </div>
-          <div class="card project-card">
-            <div class="card-header">
-              <i class="fa-regular fa-folder folder-icon"></i>
-              <div class="card-links">
-                <a
-                  href="https://github.com/ahsanur-official/Simple-ATM-card-Transactions"
-                  aria-label="GitHub"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-                <a
-                  href="https://ahsanur-official.github.io/Simple-ATM-card-Transactions/"
-                  aria-label="Live demo"
-                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
-                ></a>
-              </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/atmcard.jpg" alt="ATM Card Transactions" />
             </div>
-            <h3>ATM Card Transactions</h3>
-            <p>
-              Simulated ATM experience with secure flows and clear, minimal UI
-              for education.
-            </p>
-            <div class="tags">
-              <span>JavaScript</span><span>UX</span><span>Simulation</span>
+            <div class="project-buttons">
+              <a
+                href="https://ahsanur-official.github.io/Simple-ATM-card-Transactions/"
+                class="btn live-link"
+                target="_blank"
+                >Live Link</a
+              >
+              <a
+                href="https://github.com/ahsanur-official/Simple-ATM-card-Transactions"
+                class="btn repo-link"
+                target="_blank"
+                >Repository Link</a
+              >
+              <button
+                class="btn details-btn"
+                data-details="Simulated ATM experience with secure flows and clear, minimal UI for education."
+              >
+                Details
+              </button>
             </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/finance.png" alt="Personal Finance Tracker" />
+            </div>
+            <div class="project-buttons">
+              <a
+                href="https://personalfinancetrackerbd.netlify.app"
+                class="btn live-link"
+                target="_blank"
+                >Live Link</a
+              >
+              <a
+                href="https://github.com/ahsanur-official/Personal-Finance-Tracker"
+                class="btn repo-link"
+                target="_blank"
+                >Repository Link</a
+              >
+              <button
+                class="btn details-btn"
+                data-details="Expense tracking with categories, summaries, and an intuitive dashboard."
+              >
+                Details
+              </button>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/sidebar.png" alt="Sidebar UI" />
+            </div>
+            <div class="project-buttons">
+              <a
+                href="https://ahsanur-official.github.io/Demo-SideBar/"
+                class="btn live-link"
+                target="_blank"
+                >Live Link</a
+              >
+              <a
+                href="https://github.com/ahsanur-official/Demo-SideBar"
+                class="btn repo-link"
+                target="_blank"
+                >Repository Link</a
+              >
+              <button
+                class="btn details-btn"
+                data-details="Interactive sidebar component with smooth transitions."
+              >
+                Details
+              </button>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/color.png" alt="Color Palette Generator" />
+            </div>
+            <div class="project-buttons">
+              <a
+                href="https://color-palette-generator-bd42.netlify.app/"
+                class="btn live-link"
+                target="_blank"
+                >Live Link</a
+              >
+              <a
+                href="https://github.com/ahsanur-official/Color-Palette-Generator"
+                class="btn repo-link"
+                target="_blank"
+                >Repository Link</a
+              >
+              <button
+                class="btn details-btn"
+                data-details="Palette builder with curated swatches for designers and devs."
+              >
+                Details
+              </button>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">
+              <img src="images/salami.png" alt="Eid Salami Generator" />
+            </div>
+            <div class="project-buttons">
+              <a
+                href="https://eid-salami-generator.netlify.app/"
+                class="btn live-link"
+                target="_blank"
+                >Live Link</a
+              >
+              <a
+                href="https://github.com/ahsanur-official/Eid-Salami-Generator"
+                class="btn repo-link"
+                target="_blank"
+                >Repository Link</a
+              >
+              <button
+                class="btn details-btn"
+                data-details="Delightful greeting generator with preset palettes and typography for quick sharing."
+              >
+                Details
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-popup" id="project-popup">
+          <div class="project-popup-inner">
+            <button class="project-popup-close" aria-label="Close">×</button>
+            <p class="project-popup-text"></p>
           </div>
         </div>
       </section>
 
       <section id="education">
         <div class="section-head">
-          <h2 class="section-title">
-            <span class="highlight">06.</span> Education & Highlights
-          </h2>
-          <p class="section-kicker">
-            Academic track, achievements, and ongoing learning.
-          </p>
+          <h2 class="section-title">Education & Highlights</h2>
         </div>
         <div class="grid-container education-grid">
           <div class="card">
@@ -539,12 +584,692 @@
         </div>
       </section>
 
+      <section id="profile-tabs">
+        <div class="section-head">
+          <h2 class="section-title">Deep Dive</h2>
+        </div>
+        <div class="tab-container">
+          <div class="tabs">
+            <button class="tab-link active" data-tab="Skills">Skills</button>
+            <button class="tab-link" data-tab="Education">Education</button>
+            <button class="tab-link" data-tab="Leadership">Leadership</button>
+            <button class="tab-link" data-tab="Achievement">
+              Certifications
+            </button>
+            <button class="tab-link" data-tab="Experiences">Experiences</button>
+          </div>
+          <div class="tab-content">
+            <div id="Skills" class="tab-panel active">
+              <div class="skills-container">
+                <div class="skills-section">
+                  <div class="skills-category">
+                    <h3>Languages</h3>
+                    <ul class="skills-list">
+                      <li class="skill-item">
+                        <i class="fab fa-cuttlefish skill-icon"></i
+                        ><span class="skill-name">C</span>
+                      </li>
+                      <li class="skill-item">
+                        <i class="fas fa-plus-circle skill-icon"></i
+                        ><span class="skill-name">C++</span>
+                      </li>
+                      <li class="skill-item">
+                        <i class="fab fa-java skill-icon"></i
+                        ><span class="skill-name">Java</span>
+                      </li>
+                      <li class="skill-item">
+                        <i class="fab fa-python skill-icon"></i
+                        ><span class="skill-name">Python</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="skills-category">
+                    <h3>Frontend</h3>
+                    <ul class="skills-list">
+                      <li class="skill-item">
+                        <i class="fab fa-html5 skill-icon"></i
+                        ><span class="skill-name">HTML</span>
+                      </li>
+                      <li class="skill-item">
+                        <i class="fab fa-css3-alt skill-icon"></i
+                        ><span class="skill-name">CSS</span>
+                      </li>
+                      <li class="skill-item">
+                        <i class="fab fa-js skill-icon"></i
+                        ><span class="skill-name">JavaScript</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="skills-category">
+                    <h3>Backend</h3>
+                    <ul class="skills-list">
+                      <li class="skill-item">
+                        <i class="fab fa-node skill-icon"></i
+                        ><span class="skill-name">Node.js</span>
+                      </li>
+                      <li class="skill-item">
+                        <i class="fas fa-database skill-icon"></i
+                        ><span class="skill-name">MongoDB</span>
+                      </li>
+                      <li class="skill-item">
+                        <i class="fas fa-database skill-icon"></i
+                        ><span class="skill-name">MySQL</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="skills-category">
+                    <h3>Tools</h3>
+                    <ul class="skills-list">
+                      <li class="skill-item">
+                        <i class="fab fa-git-alt skill-icon"></i
+                        ><span class="skill-name">Git</span>
+                      </li>
+                      <li class="skill-item">
+                        <i class="fab fa-github skill-icon"></i
+                        ><span class="skill-name">GitHub</span>
+                      </li>
+                      <li class="skill-item">
+                        <i class="fas fa-drafting-compass skill-icon"></i
+                        ><span class="skill-name">Figma</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="skills-category">
+                    <h3>Additionals</h3>
+                    <ul class="skills-list">
+                      <li class="skill-item">
+                        <i class="fas fa-image skill-icon"></i
+                        ><span class="skill-name">Illustrator</span>
+                      </li>
+                      <li class="skill-item">
+                        <i class="fas fa-image skill-icon"></i
+                        ><span class="skill-name">Photoshop</span>
+                      </li>
+                      <li class="skill-item">
+                        <i class="fas fa-file-alt skill-icon"></i
+                        ><span class="skill-name">Microsoft Office</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="Education" class="tab-panel">
+              <div class="education-container">
+                <div class="education-card">
+                  <h3>B.Sc in Computer Science and Engineering (Ongoing)</h3>
+                  <p class="institution">
+                    Pundra University of Science & Technology (PUB), Bogura
+                  </p>
+                  <p class="highlight">Achievements</p>
+                  <ul class="education-points">
+                    <li>
+                      1st Runner-Up · PUPC Beginner Programming Contest 2023
+                    </li>
+                    <li>2nd Runner-Up · Individual Programming Contest 2024</li>
+                    <li>Winner · Logo Contest 2024 (CSE Dept.)</li>
+                  </ul>
+                </div>
+                <div class="education-card">
+                  <h3>HSC in Science</h3>
+                  <p class="institution">Govt. Shah Sultan College, Bogura</p>
+                  <p class="meta"><strong>Year:</strong> 2019 - 2020</p>
+                  <p class="meta"><strong>GPA:</strong> 5.00</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="Leadership" class="tab-panel">
+              <div class="leadership-container">
+                <div class="leadership-card">
+                  <h3>Executive Member (2024 - Ongoing)</h3>
+                  <p class="institution">BASIS Students' Forum PUB Chapter</p>
+                  <p>
+                    Collaborated with students and faculty to promote IT
+                    development and foster career growth.
+                  </p>
+                </div>
+                <div class="leadership-card">
+                  <h3>Vice President - CP Community (2025 - Ongoing)</h3>
+                  <p class="institution">PUB Computer & Programming Club</p>
+                  <p>
+                    Drove competitive programming culture, mentoring peers on
+                    problem solving and tech careers.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div id="Achievement" class="tab-panel">
+              <div class="achievement-container">
+                <div class="achievement-box">
+                  <img
+                    src="certificates/beginner.png"
+                    alt="Beginner PC"
+                    class="box-image"
+                    data-full="certificates/beginner.png"
+                  />
+                  <div class="details">
+                    <p>
+                      1st Runner-Up • PUPC Beginner Programming Contest 2023.
+                    </p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/beginner.png"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/beginner.png"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/Python - Ostad.png"
+                    alt="Python"
+                    class="box-image"
+                    data-full="certificates/Python - Ostad.png"
+                  />
+                  <div class="details">
+                    <p>Run Your First Python Code · OSTAD.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/Python - Ostad.png"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/Python - Ostad.png"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/JS - Ostad.png"
+                    alt="JavaScript"
+                    class="box-image"
+                    data-full="certificates/JS - Ostad.png"
+                  />
+                  <div class="details">
+                    <p>Run Your First Code with JavaScript · OSTAD.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/JS - Ostad.png"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/JS - Ostad.png"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/Digital Literacy-CERTIFICATE.png"
+                    alt="Digital Literacy"
+                    class="box-image"
+                    data-full="certificates/Digital Literacy-CERTIFICATE.png"
+                  />
+                  <div class="details">
+                    <p>Digital Literacy · FutureNation.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/Digital Literacy-CERTIFICATE.png"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/Digital Literacy-CERTIFICATE.png"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/unitednations.jpg"
+                    alt="My Voice Matters"
+                    class="box-image"
+                    data-full="certificates/unitednations.jpg"
+                  />
+                  <div class="details">
+                    <p>Debate Forum: My Voice Matters · European Union.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/unitednations.jpg"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/unitednations.jpg"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/Employability Masterclass 005-CERTIFICATE.png"
+                    alt="Employability Masterclass"
+                    class="box-image"
+                    data-full="certificates/Employability Masterclass 005-CERTIFICATE.png"
+                  />
+                  <div class="details">
+                    <p>Employability Masterclass 005 · FutureNation.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/Employability Masterclass 005-CERTIFICATE.png"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/Employability Masterclass 005-CERTIFICATE.png"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/The SDG Primer-CERTIFICATE.png"
+                    alt="SDG Primer"
+                    class="box-image"
+                    data-full="certificates/The SDG Primer-CERTIFICATE.png"
+                  />
+                  <div class="details">
+                    <p>The SDG Primer · FutureNation.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/The SDG Primer-CERTIFICATE.png"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/The SDG Primer-CERTIFICATE.png"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/basis.jpg"
+                    alt="BASIS"
+                    class="box-image"
+                    data-full="certificates/basis.jpg"
+                  />
+                  <div class="details">
+                    <p>Appreciation · BSF PUB Chapter · BASIS.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/basis.jpg"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/basis.jpg"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/Data Analysis with Excel.jpg"
+                    alt="Data Analysis with Excel"
+                    class="box-image"
+                    data-full="certificates/Data Analysis with Excel.jpg"
+                  />
+                  <div class="details">
+                    <p>Data Analysis with Excel · FutureNation.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/Data Analysis with Excel.jpg"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/Data Analysis with Excel.jpg"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/onlinesafety.jpg"
+                    alt="Online Safety"
+                    class="box-image"
+                    data-full="certificates/onlinesafety.jpg"
+                  />
+                  <div class="details">
+                    <p>Online Safety · GrameenPhone Academy.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/onlinesafety.jpg"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/onlinesafety.jpg"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/css.jpg"
+                    alt="CSS Basic"
+                    class="box-image"
+                    data-full="certificates/css.jpg"
+                  />
+                  <div class="details">
+                    <p>CSS Basic · HackerRank.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/css.jpg"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/css.jpg"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/Seminar.jpg"
+                    alt="Seminar Volunteering"
+                    class="box-image"
+                    data-full="certificates/Seminar.jpg"
+                  />
+                  <div class="details">
+                    <p>
+                      Seminar Volunteering · Software Development & Higher
+                      Studies.
+                    </p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/Seminar.jpg"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/Seminar.jpg"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/hackathon.jpg"
+                    alt="Hackathon"
+                    class="box-image"
+                    data-full="certificates/hackathon.jpg"
+                  />
+                  <div class="details">
+                    <p>Hackathon · PUB CSE Fest 2024.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/hackathon.jpg"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/hackathon.jpg"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/program.jpg"
+                    alt="Programming Contest"
+                    class="box-image"
+                    data-full="certificates/program.jpg"
+                  />
+                  <div class="details">
+                    <p>Programming Contest · PUB CSE Fest 2024.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/program.jpg"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/program.jpg"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="achievement-box">
+                  <img
+                    src="certificates/problem - Hackerrank .jpg"
+                    alt="Problem Solving"
+                    class="box-image"
+                    data-full="certificates/problem - Hackerrank .jpg"
+                  />
+                  <div class="details">
+                    <p>Problem Solving (Basic) · HackerRank.</p>
+                    <div class="btn-row">
+                      <button
+                        class="btn view-btn"
+                        data-src="certificates/problem - Hackerrank .jpg"
+                      >
+                        View
+                      </button>
+                      <a
+                        href="certificates/problem - Hackerrank .jpg"
+                        download
+                        class="btn download-btn"
+                        >Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="Experiences" class="tab-panel">
+              <div class="xp-intro">
+                <p class="xp-lede">
+                  Blending data, design, and systems work. Currently open to
+                  internships and collaborations.
+                </p>
+                <div class="xp-metrics">
+                  <span class="xp-chip">10+ dashboards & decks</span>
+                  <span class="xp-chip">4 design systems</span>
+                  <span class="xp-chip">3 research projects</span>
+                </div>
+              </div>
+              <div class="experience-cards">
+                <div class="experience-card">
+                  <div class="xp-top">
+                    <span class="xp-role">Data & Design Consultant</span>
+                    <span class="xp-time">Freelance · 2024 — Present</span>
+                  </div>
+                  <p>
+                    Partnered with local founders to uncover KPI signals and
+                    ship fast visual dashboards.
+                  </p>
+                  <ul class="xp-list">
+                    <li>
+                      Built classroom and SME dashboards with clear narrative
+                      summaries.
+                    </li>
+                    <li>
+                      Standardized reporting decks for non-technical
+                      stakeholders.
+                    </li>
+                    <li>
+                      Combined analytics with UI polish for handoff-ready
+                      deliverables.
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="experience-card highlight-card">
+                  <div class="xp-top">
+                    <span class="xp-role">Open for Internships</span>
+                    <span class="xp-time">Remote/On-site</span>
+                  </div>
+                  <p>
+                    Looking to join a product or data team to contribute to
+                    frontend polish, analytics, and documentation.
+                  </p>
+                  <ul class="xp-list">
+                    <li>
+                      Can prototype UI flows, dashboards, and animations
+                      quickly.
+                    </li>
+                    <li>
+                      Comfortable presenting insights to non-technical
+                      teammates.
+                    </li>
+                    <li>
+                      Ready to adapt stack: JS/React, Python/ML basics, or
+                      design tools.
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="experience-card">
+                  <div class="xp-top">
+                    <span class="xp-role">Research Assistant</span>
+                    <span class="xp-time">Pundra University · 2023 — 2024</span>
+                  </div>
+                  <p>
+                    Prototyped ML models for student performance and retention
+                    insights.
+                  </p>
+                  <ul class="xp-list">
+                    <li>
+                      Engineered features that lifted model accuracy by 12% over
+                      baseline.
+                    </li>
+                    <li>
+                      Documented experiments with cross-validation and
+                      evaluation notes.
+                    </li>
+                    <li>
+                      Presented findings to faculty with actionable cohort
+                      breakdowns.
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="experience-card">
+                  <div class="xp-top">
+                    <span class="xp-role">Design Lead</span>
+                    <span class="xp-time">Student Club · 2022 — 2023</span>
+                  </div>
+                  <p>
+                    Drove branding and event creative for the programming
+                    community.
+                  </p>
+                  <ul class="xp-list">
+                    <li>
+                      Shipped visual systems for 10+ tech events with consistent
+                      typography.
+                    </li>
+                    <li>
+                      Built social asset kits that increased event turnout.
+                    </li>
+                    <li>
+                      Mentored juniors on Illustrator basics and layout
+                      fundamentals.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="image-popup" class="popup">
+          <div class="popup-backdrop"></div>
+          <div class="popup-inner">
+            <button class="close-btn" aria-label="Close" onclick="closePopup()">
+              ×
+            </button>
+            <img id="popup-img" src="" alt="Certificate preview" />
+          </div>
+        </div>
+      </section>
+
       <section id="contact">
         <div class="section-head">
-          <h2 class="section-title">
-            <span class="highlight">07.</span> Contact
-          </h2>
-          <p class="section-kicker">Let’s build something thoughtful.</p>
+          <h2 class="section-title">Contact</h2>
         </div>
         <div class="contact-card">
           <p class="contact-desc">
@@ -552,9 +1277,9 @@
             Joypurhat/Bogura, Bangladesh. I respond within 24 hours.
           </p>
           <div class="contact-actions">
-            <a href="mailto:mdahsanurrahaman@gmail.com" class="btn-primary"
-              >Say Hello</a
-            >
+            <button type="button" class="btn-primary" id="contactOpen">
+              Say Hello
+            </button>
             <a
               href="https://linkedin.com/in/md-ahsanur-rahaman"
               class="btn-ghost"
@@ -573,7 +1298,7 @@
               ><i class="fa-brands fa-facebook"></i
             ></a>
             <a href="https://x.com/ahsanur_rahaman"
-              ><i class="fa-brands fa-x-twitter"></i
+              ><i class="fa-brands fa-x"></i
             ></a>
             <a href="https://www.instagram.com/ahsanur-official/"
               ><i class="fa-brands fa-instagram"></i
@@ -591,17 +1316,179 @@
           </div>
         </div>
       </section>
-    </main>
 
-    <footer class="footer">
-      <div class="footer-content">
-        <span class="logo">AH.</span>
-        <span>Crafting data-driven products with intention.</span>
-        <a href="documents/resume.pdf" class="footer-link" target="_blank"
-          >Resume</a
-        >
+      <div class="contact-popup" id="contact-popup">
+        <div class="contact-popup-inner">
+          <button class="contact-popup-close" aria-label="Close"></button>
+          <h3>Send a Message</h3>
+          <p class="contact-popup-sub">I usually reply within 24 hours.</p>
+          <form id="contact-form">
+            <label for="contact-name">Name</label>
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              placeholder="Your name"
+              required
+            />
+
+            <label for="contact-email">Email</label>
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              placeholder="you@example.com"
+              required
+            />
+
+            <label for="contact-type">Project Type</label>
+            <select id="contact-type" name="type">
+              <option value="General">General</option>
+              <option value="Web UI/Frontend">Web UI/Frontend</option>
+              <option value="Dashboard/Analytics">Dashboard/Analytics</option>
+              <option value="Brand/Design">Brand/Design</option>
+              <option value="ML/Prototyping">ML/Prototyping</option>
+            </select>
+
+            <label for="contact-timeline">Timeline</label>
+            <select id="contact-timeline" name="timeline">
+              <option value="Flexible">Flexible</option>
+              <option value="1-2 weeks">1-2 weeks</option>
+              <option value="1 month">~1 month</option>
+              <option value="Longer/ongoing">Longer / ongoing</option>
+            </select>
+
+            <label for="contact-message">Message</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows="4"
+              placeholder="What would you like to build together?"
+              required
+            ></textarea>
+
+            <div class="contact-popup-actions">
+              <button type="submit" class="btn-primary">Send</button>
+              <button
+                type="button"
+                class="btn-ghost contact-popup-close"
+                aria-label="Close form"
+              ></button>
+            </div>
+            <div class="contact-popup-fallback">
+              Or email directly:
+              <a href="mailto:mdahsanurrahaman@gmail.com"
+                >mdahsanurrahaman@gmail.com</a
+              >
+            </div>
+          </form>
+        </div>
       </div>
-    </footer>
+
+      <!--Footer Part-->
+      <footer>
+        <div class="footer-container">
+          <!-- About Us Section -->
+          <div class="footer-about">
+            <h3>About Me</h3>
+            <p>
+              Md. Ahsanur Rahaman is a passionate Frontend Web Developer,
+              skilled in creating elegant, responsive websites. With expertise
+              in modern web technologies and design principles, he crafts
+              user-friendly, interactive digital experiences.
+            </p>
+          </div>
+
+          <!-- Quick Links Section -->
+          <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li>
+                <a href="https://ahsanur-official.github.io/Blog-Site/"
+                  >Blogs</a
+                >
+              </li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Social Media Section -->
+          <div class="footer-social">
+            <h3>Follow Me</h3>
+            <ul class="social-icons">
+              <li>
+                <a
+                  href="https://www.facebook.com/mar.ahsan.33/"
+                  target="_blank"
+                  aria-label="Facebook"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/ahsanur-official/"
+                  target="_blank"
+                  aria-label="Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/ahsanur-official"
+                  target="_blank"
+                  aria-label="GitHub"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/md-ahsanur-rahaman/"
+                  target="_blank"
+                  aria-label="LinkedIn"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://x.com/ahsanur_rahaman"
+                  target="_blank"
+                  aria-label="X"
+                  ><i class="fab fa-x"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://medium.com/@md.ahsanur.rahaman"
+                  target="_blank"
+                  aria-label="Medium"
+                  ><i class="fab fa-medium"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.reddit.com/user/ahsanur-official_/"
+                  target="_blank"
+                  aria-label="Reddit"
+                  ><i class="fab fa-reddit-alien"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+          <p>
+            Copyright © 2026 Portfolio - All rights reserved || Designed By: Md.
+            Ahsanur Rahaman.
+          </p>
+        </div>
+      </footer>
+    </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
