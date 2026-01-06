@@ -1,5 +1,6 @@
 // GSAP Plugin Registration
 gsap.registerPlugin(ScrollTrigger);
+const mm = gsap.matchMedia();
 
 // Mobile nav toggle
 const navLinks = document.getElementById("navLinks");
@@ -62,6 +63,32 @@ gsap.from(".hero-item", {
     duration: 1, y: 30, opacity: 0, stagger: 0.12, delay: 0.4, ease: "power3.out"
 });
 
+// Counting effect for stats
+const statNumbers = document.querySelectorAll(".stat strong");
+statNumbers.forEach(el => {
+    const text = el.textContent.trim();
+    const hasPlus = text.endsWith("+");
+    const numericTarget = Number(el.dataset.count || text.replace(/[^0-9.]/g, "")) || 0;
+    el.dataset.count = numericTarget;
+    el.textContent = "0" + (hasPlus ? "+" : "");
+
+    gsap.fromTo(el, { innerText: 0 }, {
+        innerText: numericTarget,
+        duration: 1.6,
+        ease: "power1.out",
+        snap: { innerText: 1 },
+        scrollTrigger: {
+            trigger: el.closest(".stats") || el,
+            start: "top 85%",
+            once: true
+        },
+        onUpdate: function () {
+            const value = Math.round(this.targets()[0].innerText);
+            el.textContent = `${value}${hasPlus ? "+" : ""}`;
+        }
+    });
+});
+
 // About Section
 gsap.from(".about-content", {
     scrollTrigger: { trigger: "#about", start: "top 80%" },
@@ -69,77 +96,101 @@ gsap.from(".about-content", {
     immediateRender: false
 });
 
-// Cards Stagger Animation (Skills, Projects)
-gsap.utils.toArray(".grid-container").forEach(grid => {
-    gsap.from(grid.children, {
-        scrollTrigger: { trigger: grid, start: "top 85%" },
-        y: 50, opacity: 0, duration: 0.8, stagger: 0.08, ease: "power2.out",
-        immediateRender: false
+// Grid and card animations (mobile-first smooth stagger)
+mm.add("(max-width: 768px)", () => {
+    // Section-level fade for smooth paging on scroll
+    gsap.utils.toArray("main section").forEach(sec => {
+        gsap.from(sec, {
+            scrollTrigger: { trigger: sec, start: "top 94%", once: true },
+            y: 45, opacity: 0, duration: 0.7, ease: "power2.out",
+            clearProps: "all"
+        });
+    });
+
+    gsap.utils.toArray(".grid-container").forEach(grid => {
+        gsap.from(grid.children, {
+            scrollTrigger: { trigger: grid, start: "top 92%", once: true },
+            y: 50, opacity: 0, duration: 0.9, stagger: 0.18, ease: "power2.out",
+            clearProps: "all"
+        });
+    });
+
+    gsap.from(["#services .card", "#education .card"], {
+        scrollTrigger: { trigger: "#services", start: "top 90%", once: true },
+        y: 55, opacity: 0, duration: 0.9, stagger: 0.18, ease: "power3.out",
+        clearProps: "all"
+    });
+
+    gsap.from(".projects-grid .project-card", {
+        scrollTrigger: { trigger: "#projects", start: "top 90%", once: true },
+        y: 55, opacity: 0, duration: 0.9, stagger: 0.16, ease: "power3.out",
+        clearProps: "all"
+    });
+});
+
+mm.add("(min-width: 769px)", () => {
+    // Section-level fade on desktop/tablet to reveal with scroll
+    gsap.utils.toArray("main section").forEach(sec => {
+        gsap.from(sec, {
+            scrollTrigger: { trigger: sec, start: "top 88%", once: true },
+            y: 40, opacity: 0, duration: 0.75, ease: "power2.out",
+            clearProps: "all"
+        });
+    });
+
+    gsap.utils.toArray(".grid-container").forEach(grid => {
+        gsap.from(grid.children, {
+            scrollTrigger: { trigger: grid, start: "top 82%" },
+            y: 45, opacity: 0, duration: 0.8, stagger: 0.12, ease: "power2.out",
+            clearProps: "all"
+        });
+    });
+
+    gsap.from("#services .card", {
+        scrollTrigger: { trigger: "#services", start: "top 80%", toggleActions: "play none none none" },
+        y: 55, opacity: 0, duration: 0.85, stagger: 0.14, ease: "power3.out",
+        clearProps: "all"
+    });
+
+    gsap.from("#education .card", {
+        scrollTrigger: { trigger: "#education", start: "top 80%", toggleActions: "play none none none" },
+        y: 55, opacity: 0, duration: 0.85, stagger: 0.14, ease: "power3.out",
+        clearProps: "all"
+    });
+
+    gsap.from(".projects-grid .project-card", {
+        scrollTrigger: { trigger: "#projects", start: "top 82%", toggleActions: "play none none none" },
+        y: 55, opacity: 0, duration: 0.85, stagger: 0.12, ease: "power3.out",
+        clearProps: "all"
     });
 });
 
 // Timeline Animation
 gsap.from(".timeline-item", {
-    scrollTrigger: { trigger: "#experience", start: "top 85%" },
+    scrollTrigger: { trigger: "#experience", start: "top 85%", once: true },
     x: -30, opacity: 0, duration: 0.8, stagger: 0.12, ease: "power2.out",
-    immediateRender: false
-});
-
-// Services and Education animations
-gsap.from("#services .card", {
-    scrollTrigger: { 
-        trigger: "#services", 
-        start: "top 80%",
-        toggleActions: "play none none none"
-    },
-    y: 60, 
-    opacity: 0, 
-    duration: 0.9, 
-    stagger: 0.15, 
-    ease: "power3.out",
     clearProps: "all"
-});
-
-gsap.from("#education .card", {
-    scrollTrigger: { 
-        trigger: "#education", 
-        start: "top 80%",
-        toggleActions: "play none none none"
-    },
-    y: 60, 
-    opacity: 0, 
-    duration: 0.9, 
-    stagger: 0.15, 
-    ease: "power3.out",
-    clearProps: "all"
-});
-
-// Projects Section
-gsap.from(".projects-grid .project-card", {
-    scrollTrigger: { trigger: "#projects", start: "top 80%", toggleActions: "play none none reverse" },
-    y: 60, opacity: 0, duration: 0.9, stagger: 0.12, ease: "power3.out",
-    immediateRender: false
 });
 
 // Deep Dive Tabs Section
 gsap.from("#profile-tabs .tab-container", {
-    scrollTrigger: { trigger: "#profile-tabs", start: "top 80%", toggleActions: "play none none reverse" },
+    scrollTrigger: { trigger: "#profile-tabs", start: "top 82%", toggleActions: "play none none none" },
     y: 50, opacity: 0, duration: 1, ease: "power3.out",
-    immediateRender: false
+    clearProps: "all"
 });
 
 // Footer Animation
 gsap.from("footer .footer-container > *", {
-    scrollTrigger: { trigger: "footer", start: "top 85%", toggleActions: "play none none reverse" },
+    scrollTrigger: { trigger: "footer", start: "top 85%", toggleActions: "play none none none" },
     y: 40, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power2.out",
-    immediateRender: false
+    clearProps: "all"
 });
 
 // Contact Section
 gsap.from("#contact", {
-    scrollTrigger: { trigger: "#contact", start: "top 85%" },
+    scrollTrigger: { trigger: "#contact", start: "top 85%", once: true },
     y: 30, opacity: 0, duration: 1,
-    immediateRender: false
+    clearProps: "all"
 });
 
 // Tabs interaction
