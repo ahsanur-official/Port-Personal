@@ -85,7 +85,55 @@ gsap.from(".timeline-item", {
     immediateRender: false
 });
 
-// Services and Education - removed animations to keep cards always visible
+// Services and Education animations
+gsap.from("#services .card", {
+    scrollTrigger: { 
+        trigger: "#services", 
+        start: "top 80%",
+        toggleActions: "play none none none"
+    },
+    y: 60, 
+    opacity: 0, 
+    duration: 0.9, 
+    stagger: 0.15, 
+    ease: "power3.out",
+    clearProps: "all"
+});
+
+gsap.from("#education .card", {
+    scrollTrigger: { 
+        trigger: "#education", 
+        start: "top 80%",
+        toggleActions: "play none none none"
+    },
+    y: 60, 
+    opacity: 0, 
+    duration: 0.9, 
+    stagger: 0.15, 
+    ease: "power3.out",
+    clearProps: "all"
+});
+
+// Projects Section
+gsap.from(".projects-grid .project-card", {
+    scrollTrigger: { trigger: "#projects", start: "top 80%", toggleActions: "play none none reverse" },
+    y: 60, opacity: 0, duration: 0.9, stagger: 0.12, ease: "power3.out",
+    immediateRender: false
+});
+
+// Deep Dive Tabs Section
+gsap.from("#profile-tabs .tab-container", {
+    scrollTrigger: { trigger: "#profile-tabs", start: "top 80%", toggleActions: "play none none reverse" },
+    y: 50, opacity: 0, duration: 1, ease: "power3.out",
+    immediateRender: false
+});
+
+// Footer Animation
+gsap.from("footer .footer-container > *", {
+    scrollTrigger: { trigger: "footer", start: "top 85%", toggleActions: "play none none reverse" },
+    y: 40, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power2.out",
+    immediateRender: false
+});
 
 // Contact Section
 gsap.from("#contact", {
