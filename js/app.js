@@ -1,3 +1,36 @@
+// Under Construction Popup
+document.addEventListener("DOMContentLoaded", () => {
+  const constructionPopup = document.getElementById("constructionPopup");
+  const timerElement = document.getElementById("timer");
+  let timeLeft = 5;
+
+  // Update timer
+  const timerInterval = setInterval(() => {
+    timeLeft--;
+    timerElement.textContent = timeLeft;
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      // Hide popup with animation
+      constructionPopup.classList.add("hide");
+      setTimeout(() => {
+        constructionPopup.style.display = "none";
+      }, 500);
+    }
+  }, 1000);
+
+  // Allow closing popup by clicking backdrop
+  constructionPopup.addEventListener("click", (e) => {
+    if (e.target === constructionPopup.querySelector(".popup-backdrop")) {
+      clearInterval(timerInterval);
+      constructionPopup.classList.add("hide");
+      setTimeout(() => {
+        constructionPopup.style.display = "none";
+      }, 500);
+    }
+  });
+});
+
 // GSAP Plugin Registration
 gsap.registerPlugin(ScrollTrigger);
 const mm = gsap.matchMedia();

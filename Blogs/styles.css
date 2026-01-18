@@ -279,18 +279,21 @@ body {
   box-shadow: 0 6px 20px rgba(94, 234, 212, 0.4);
 }
 
-.mobile-toggle {
+.hamburger {
   display: none;
   background: none;
   border: none;
-  color: var(--green);
-  font-size: 24px;
+  color: var(--white);
+  font-size: 2rem;
   cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
   transition: all 0.3s ease;
 }
 
-.mobile-toggle:hover {
-  transform: scale(1.1);
+.hamburger:hover {
+  color: var(--green);
+  background: rgba(94, 234, 212, 0.1);
 }
 
 .nav-links {
@@ -833,7 +836,7 @@ body {
     display: none;
   }
 
-  .mobile-toggle {
+  .hamburger {
     display: block;
   }
 

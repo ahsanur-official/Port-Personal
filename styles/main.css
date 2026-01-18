@@ -105,6 +105,159 @@ img {
   border-radius: 4px;
 }
 
+/* Construction Popup */
+.construction-popup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: popupFadeIn 0.5s ease-out;
+}
+
+.construction-popup.hide {
+  animation: popupFadeOut 0.5s ease-out forwards;
+}
+
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popupFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.popup-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.popup-content {
+  position: relative;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(20, 30, 50, 0.95) 100%);
+  border: 1px solid rgba(94, 234, 212, 0.3);
+  border-radius: 24px;
+  padding: 50px 40px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(94, 234, 212, 0.2),
+    0 0 100px rgba(94, 234, 212, 0.1);
+  animation: popupSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes popupSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.popup-icon {
+  font-size: 60px;
+  color: var(--green);
+  margin-bottom: 20px;
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.popup-content h2 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  color: var(--white);
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, var(--green) 0%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.popup-content p {
+  color: var(--light-slate);
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.popup-subtitle {
+  color: var(--green);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.progress-bar {
+  height: 3px;
+  background: rgba(94, 234, 212, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green) 0%, var(--purple) 100%);
+  animation: progressFill 5s linear forwards;
+}
+
+@keyframes progressFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.popup-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--green);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.popup-timer i {
+  animation: timerBounce 1s ease-in-out infinite;
+}
+
+@keyframes timerBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
 /* Layout Utilities */
 .container {
   max-width: 1200px;
@@ -306,12 +459,12 @@ section {
 .hamburger {
   display: none;
   color: var(--white);
-  font-size: 1.6rem;
+  font-size: 2rem;
   cursor: pointer;
   background: none;
   border: none;
   transition: all 0.3s ease;
-  padding: 8px;
+  padding: 10px;
   border-radius: 10px;
 }
 .hamburger:hover {
@@ -1887,8 +2040,8 @@ footer::after {
     font-weight: 400;
   }
   .hamburger {
-    font-size: 1.4rem;
-    padding: 6px;
+    font-size: 1.8rem;
+    padding: 8px;
   }
   .container {
     padding: 0 16px;
@@ -1958,7 +2111,7 @@ footer::after {
   .about-text p {
     font-size: 14px;
     margin-bottom: 10px;
-    text-align: left;
+    text-align: justify;
   }
   .pill-row {
     gap: 8px;
@@ -1986,6 +2139,7 @@ footer::after {
   .card {
     padding: 16px;
     border-radius: 12px;
+    text-align: justify;
   }
   .card h3 {
     font-size: 16px;
@@ -2001,6 +2155,7 @@ footer::after {
     font-size: 13px;
     padding-left: 16px;
     gap: 4px;
+    text-align: justify;
   }
   .stats {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -2246,6 +2401,7 @@ footer::after {
   }
   .hero-body {
     font-size: 13px;
+    text-align: justify;
   }
   .hero-ctas a {
     padding: 10px 14px;
@@ -2272,6 +2428,7 @@ footer::after {
   }
   .contact-desc {
     font-size: 13px;
+    text-align: justify;
   }
   .contact-actions a {
     padding: 10px 12px;

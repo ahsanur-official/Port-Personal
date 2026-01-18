@@ -150,15 +150,15 @@ newsletterForm.addEventListener("submit", (e) => {
 });
 
 // Mobile Menu Toggle
-const mobileToggle = document.querySelector(".mobile-toggle");
+const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
 
-if (mobileToggle) {
-  mobileToggle.addEventListener("click", () => {
+if (hamburger) {
+  hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("active");
 
     // Toggle icon
-    const icon = mobileToggle.querySelector("i");
+    const icon = hamburger.querySelector("i");
     if (icon.classList.contains("fa-bars")) {
       icon.classList.remove("fa-bars");
       icon.classList.add("fa-times");
@@ -172,7 +172,7 @@ if (mobileToggle) {
   document.querySelectorAll(".nav-links a").forEach((link) => {
     link.addEventListener("click", () => {
       navLinks.classList.remove("active");
-      const icon = mobileToggle.querySelector("i");
+      const icon = hamburger.querySelector("i");
       icon.classList.remove("fa-times");
       icon.classList.add("fa-bars");
     });
@@ -184,7 +184,7 @@ if (mobileToggle) {
       !e.target.closest(".navbar")
     ) {
       navLinks.classList.remove("active");
-      const icon = mobileToggle.querySelector("i");
+      const icon = hamburger.querySelector("i");
       icon.classList.remove("fa-times");
       icon.classList.add("fa-bars");
     }
