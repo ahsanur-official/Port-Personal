@@ -114,7 +114,7 @@ img {
   box-sizing: border-box;
 }
 section {
-  padding: 40px 0;
+  padding: 60px 0;
   width: 100%;
 }
 .highlight {
@@ -330,11 +330,12 @@ section {
   border: none;
   display: inline-flex;
   align-items: center;
+  text-align: center;
   gap: 10px;
   box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
-  font-weight: 600;
+  font-weight: 500;
   transition: all 0.3s ease;
 }
 .btn-primary:hover {
@@ -1699,7 +1700,10 @@ footer::after {
     margin-right: auto;
   }
   section {
-    padding: 32px 0;
+    padding: 40px 0;
+  }
+  .section-head {
+    margin-bottom: 28px;
   }
   .section-title {
     font-size: 22px;
@@ -1933,12 +1937,12 @@ footer::after {
     gap: 6px;
   }
   section {
-    padding: 24px 0;
+    padding: 32px 0;
   }
   .section-head {
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: 12px;
+    margin-bottom: 20px;
   }
   .section-title {
     font-size: 18px;
