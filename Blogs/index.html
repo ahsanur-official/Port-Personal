@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ahsanur's Blog - Tech, AI & Development</title>
+    <meta
+      name="description"
+      content="Personal blog about web development, AI, machine learning, and technology insights."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Under Construction Popup -->
+    <div class="construction-popup" id="constructionPopup">
+      <div class="popup-backdrop"></div>
+      <div class="popup-content">
+        <div class="popup-icon">
+          <i class="fas fa-hammer-wrench"></i>
+        </div>
+        <h2>🚀 Under Construction</h2>
+        <p>
+          Welcome to my blog! I'm currently building this space to share my
+          thoughts, tutorials, and insights about web development, AI, and
+          technology.
+        </p>
+        <p class="popup-subtitle">More amazing content coming soon...</p>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <p class="popup-timer">
+          <i class="fas fa-clock"></i> Redirecting in <span id="timer">5</span>s
+        </p>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <nav class="navbar">
+          <div class="logo">
+            <a href="index.html">
+              <i class="fas fa-blog"></i>
+              <span>Ahsanur's Blog</span>
+            </a>
+          </div>
+          <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#about-blog">About</a></li>
+            <li><a href="../index.html" class="portfolio-link">Portfolio</a></li>
+          </ul>
+          <button class="mobile-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Welcome to My Blog</h1>
+          <p class="hero-subtitle">
+            Exploring the intersection of technology, AI, and web development.
+            Join me on this journey of learning and innovation.
+          </p>
+          <div class="hero-search">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search articles..."
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section" id="categories">
+      <div class="container">
+        <div class="categories">
+          <button class="category-btn active" data-category="all">
+            <i class="fas fa-th"></i> All Posts
+          </button>
+          <button class="category-btn" data-category="web-dev">
+            <i class="fas fa-code"></i> Web Development
+          </button>
+          <button class="category-btn" data-category="ai-ml">
+            <i class="fas fa-brain"></i> AI & ML
+          </button>
+          <button class="category-btn" data-category="tutorial">
+            <i class="fas fa-graduation-cap"></i> Tutorials
+          </button>
+          <button class="category-btn" data-category="design">
+            <i class="fas fa-palette"></i> Design
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="blog-section">
+      <div class="container">
+        <div class="blog-grid" id="blog-grid">
+          <!-- Blog Post 1 -->
+          <article class="blog-card" data-category="ai-ml">
+            <div class="blog-image">
+              <img
+                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
+                alt="AI and Machine Learning"
+              />
+              <span class="blog-tag">AI & ML</span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> Jan 15, 2026</span>
+                <span><i class="far fa-clock"></i> 8 min read</span>
+              </div>
+              <h2 class="blog-title">
+                Getting Started with Machine Learning in Python
+              </h2>
+              <p class="blog-excerpt">
+                A comprehensive guide to kickstart your machine learning journey
+                using Python. Learn the fundamentals, essential libraries, and
+                build your first ML model.
+              </p>
+              <div class="blog-footer">
+                <div class="author">
+                  <img
+                    src="../images/ahsan.jpg"
+                    alt="Ahsanur"
+                    class="author-img"
+                  />
+                  <span>Ahsanur Rahaman</span>
+                </div>
+                <a href="post1.html" class="read-more">
+                  Read More <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blog Post 2 -->
+          <article class="blog-card" data-category="web-dev">
+            <div class="blog-image">
+              <img
+                src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80"
+                alt="React Development"
+              />
+              <span class="blog-tag">Web Development</span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> Jan 12, 2026</span>
+                <span><i class="far fa-clock"></i> 6 min read</span>
+              </div>
+              <h2 class="blog-title">
+                Building Modern Web Apps with React and Node.js
+              </h2>
+              <p class="blog-excerpt">
+                Discover the best practices for creating full-stack applications
+                using React for the frontend and Node.js for the backend.
+              </p>
+              <div class="blog-footer">
+                <div class="author">
+                  <img
+                    src="../images/ahsan.jpg"
+                    alt="Ahsanur"
+                    class="author-img"
+                  />
+                  <span>Ahsanur Rahaman</span>
+                </div>
+                <a href="post2.html" class="read-more">
+                  Read More <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blog Post 3 -->
+          <article class="blog-card" data-category="design">
+            <div class="blog-image">
+              <img
+                src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80"
+                alt="UI/UX Design"
+              />
+              <span class="blog-tag">Design</span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> Jan 10, 2026</span>
+                <span><i class="far fa-clock"></i> 5 min read</span>
+              </div>
+              <h2 class="blog-title">
+                10 UI/UX Design Principles Every Developer Should Know
+              </h2>
+              <p class="blog-excerpt">
+                Enhance your web applications by understanding these fundamental
+                design principles that create better user experiences.
+              </p>
+              <div class="blog-footer">
+                <div class="author">
+                  <img
+                    src="../images/ahsan.jpg"
+                    alt="Ahsanur"
+                    class="author-img"
+                  />
+                  <span>Ahsanur Rahaman</span>
+                </div>
+                <a href="post3.html" class="read-more">
+                  Read More <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blog Post 4 -->
+          <article class="blog-card" data-category="tutorial">
+            <div class="blog-image">
+              <img
+                src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&q=80"
+                alt="Git Tutorial"
+              />
+              <span class="blog-tag">Tutorial</span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> Jan 8, 2026</span>
+                <span><i class="far fa-clock"></i> 10 min read</span>
+              </div>
+              <h2 class="blog-title">
+                Mastering Git: A Complete Guide for Beginners
+              </h2>
+              <p class="blog-excerpt">
+                Learn version control with Git from scratch. Understand
+                branching, merging, and collaboration workflows.
+              </p>
+              <div class="blog-footer">
+                <div class="author">
+                  <img
+                    src="../images/ahsan.jpg"
+                    alt="Ahsanur"
+                    class="author-img"
+                  />
+                  <span>Ahsanur Rahaman</span>
+                </div>
+                <a href="post4.html" class="read-more">
+                  Read More <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blog Post 5 -->
+          <article class="blog-card" data-category="web-dev">
+            <div class="blog-image">
+              <img
+                src="https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=800&q=80"
+                alt="Python Programming"
+              />
+              <span class="blog-tag">Web Development</span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> Jan 5, 2026</span>
+                <span><i class="far fa-clock"></i> 7 min read</span>
+              </div>
+              <h2 class="blog-title">
+                Python Best Practices for Clean and Maintainable Code
+              </h2>
+              <p class="blog-excerpt">
+                Write better Python code with these proven best practices and
+                design patterns that professionals use every day.
+              </p>
+              <div class="blog-footer">
+                <div class="author">
+                  <img
+                    src="../images/ahsan.jpg"
+                    alt="Ahsanur"
+                    class="author-img"
+                  />
+                  <span>Ahsanur Rahaman</span>
+                </div>
+                <a href="post5.html" class="read-more">
+                  Read More <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blog Post 6 -->
+          <article class="blog-card" data-category="ai-ml">
+            <div class="blog-image">
+              <img
+                src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80"
+                alt="Data Science"
+              />
+              <span class="blog-tag">AI & ML</span>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> Jan 2, 2026</span>
+                <span><i class="far fa-clock"></i> 9 min read</span>
+              </div>
+              <h2 class="blog-title">
+                Data Science: From Data Collection to Insights
+              </h2>
+              <p class="blog-excerpt">
+                Explore the complete data science pipeline and learn how to
+                extract meaningful insights from raw data.
+              </p>
+              <div class="blog-footer">
+                <div class="author">
+                  <img
+                    src="../images/ahsan.jpg"
+                    alt="Ahsanur"
+                    class="author-img"
+                  />
+                  <span>Ahsanur Rahaman</span>
+                </div>
+                <a href="post6.html" class="read-more">
+                  Read More <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="no-results" id="no-results">
+          <i class="fas fa-search"></i>
+          <h3>No posts found</h3>
+          <p>Try searching for something else or browse all categories.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-card">
+          <div class="newsletter-content">
+            <i class="fas fa-envelope-open-text"></i>
+            <h2>Subscribe to My Newsletter</h2>
+            <p>
+              Get the latest articles and insights delivered directly to your
+              inbox. No spam, unsubscribe anytime.
+            </p>
+          </div>
+          <form class="newsletter-form" id="newsletter-form">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              required
+              id="newsletter-email"
+            />
+            <button type="submit" class="subscribe-btn">
+              Subscribe <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Blog Section -->
+    <section class="about-blog-section" id="about-blog">
+      <div class="container">
+        <div class="about-blog">
+          <div class="about-blog-image">
+            <img src="../images/ahsan.jpg" alt="Ahsanur Rahaman" />
+          </div>
+          <div class="about-blog-content">
+            <h2>About This Blog</h2>
+            <p>
+              Hi! I'm <strong>Ahsanur Rahaman</strong>, a Computer Science
+              student passionate about web development, artificial intelligence,
+              and technology. Through this blog, I share my learning journey,
+              tutorials, and insights about the latest trends in tech.
+            </p>
+            <p>
+              Whether you're a beginner or an experienced developer, I hope
+              you'll find valuable content here that helps you grow in your own
+              journey.
+            </p>
+            <div class="social-links">
+              <a href="https://github.com/ahsanur-official" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://linkedin.com/in/md-ahsanur-rahaman" target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="https://x.com/ahsanur_rahaman" target="_blank">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+              <a href="https://medium.com/@md.ahsanur.rahaman" target="_blank">
+                <i class="fab fa-medium"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>&copy; 2026 Ahsanur Rahaman. All rights reserved.</p>
+          <div class="footer-links">
+            <a href="../index.html">Back to Portfolio</a>
+            <a href="#home">Back to Top</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
