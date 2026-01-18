@@ -17,4 +17,26 @@
 
   --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   --shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+
+  /* Responsive font sizes */
+  --font-size-base: 16px;
+  --font-size-sm: 14px;
+  --font-size-xs: 12px;
+}
+
+/* Mobile responsive font sizes */
+@media (max-width: 768px) {
+  :root {
+    --font-size-base: 15px;
+    --font-size-sm: 13px;
+    --font-size-xs: 11px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --font-size-base: 14px;
+    --font-size-sm: 12px;
+    --font-size-xs: 10px;
+  }
 }
