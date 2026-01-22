@@ -482,6 +482,7 @@ if (contactPopup) {
 if (contactForm) {
     contactForm.addEventListener("submit", async (e) => {
         e.preventDefault();
+<<<<<<< HEAD
         
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
@@ -583,5 +584,16 @@ if (contactForm) {
                 closeContactPopup();
             }, 1500);
         }
+=======
+        const name = (document.getElementById("contact-name")?.value || "").trim();
+        const email = (document.getElementById("contact-email")?.value || "").trim();
+        const message = (document.getElementById("contact-message")?.value || "").trim();
+        if (!name || !email || !message) return;
+
+        const subject = encodeURIComponent(`Portfolio contact from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+        window.location.href = `mailto:mdahsanurrahaman2456@gmail.com?subject=${subject}&body=${body}`;
+        closeContactPopup();
+>>>>>>> 80d23e2ee0b57a988253fe12bc1a580ad536c7e3
     });
 }
