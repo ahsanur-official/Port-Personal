@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const constructionPopup = document.getElementById("constructionPopup");
   const timerElement = document.getElementById("timer");
-  let timeLeft = 5;
+    let timeLeft = 2;
 
   // Update timer
   const timerInterval = setInterval(() => {
@@ -31,6 +31,62 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Custom Notification System
+function showNotification(title, message, type = 'info', duration = 5000) {
+  // Create container if it doesn't exist
+  let container = document.getElementById('notification-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'notification-container';
+    container.className = 'notification-container';
+    document.body.appendChild(container);
+  }
+
+  // Create notification element
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+
+  const icons = {
+    success: '<i class="fas fa-check-circle"></i>',
+    error: '<i class="fas fa-exclamation-circle"></i>',
+    info: '<i class="fas fa-info-circle"></i>'
+  };
+
+  notification.innerHTML = `
+    <div class="notification-icon">
+      ${icons[type] || icons.info}
+    </div>
+    <div class="notification-content">
+      <div class="notification-title">${title}</div>
+      <div class="notification-message">${message}</div>
+    </div>
+    <button class="notification-close" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+  `;
+
+  // Add to container
+  container.appendChild(notification);
+
+  // Close button functionality
+  const closeBtn = notification.querySelector('.notification-close');
+  closeBtn.addEventListener('click', () => {
+    notification.style.animation = 'slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) reverse';
+    setTimeout(() => notification.remove(), 300);
+  });
+
+  // Auto remove after duration
+  if (duration > 0) {
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.style.animation = 'slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) reverse';
+        setTimeout(() => notification.remove(), 300);
+      }
+    }, duration);
+  }
+
+  return notification;
+}
 // GSAP Plugin Registration
 gsap.registerPlugin(ScrollTrigger);
 const mm = gsap.matchMedia();
@@ -38,16 +94,91 @@ const mm = gsap.matchMedia();
 // Mobile nav toggle
 const navLinks = document.getElementById("navLinks");
 const hamburger = document.getElementById("hamburger");
+const navBackdrop = document.getElementById("navBackdrop");
+const logoTypingEl = document.querySelector(".logo-typing");
 
-const toggleNav = () => navLinks.classList.toggle("open");
+// Typewriter for navbar title
+if (logoTypingEl) {
+    const text = (logoTypingEl.dataset.text || logoTypingEl.textContent || "").trim();
+    const speed = 110;
+    const pause = 1200;
+    let index = 0;
+
+    // Keep navbar width stable during loop
+    logoTypingEl.style.width = `${text.length}ch`;
+
+    const typeLoop = () => {
+        logoTypingEl.textContent = text.slice(0, index);
+        index++;
+        if (index <= text.length) {
+            setTimeout(typeLoop, speed);
+        } else {
+            setTimeout(() => {
+                index = 0;
+                typeLoop();
+            }, pause);
+        }
+    };
+
+    logoTypingEl.textContent = "";
+    typeLoop();
+}
+
+const openNav = () => {
+    if (!navLinks) return;
+    navLinks.classList.add("open");
+    document.body.classList.add("nav-open");
+    if (hamburger) hamburger.setAttribute("aria-expanded", "true");
+};
+
+const closeNav = () => {
+    if (!navLinks) return;
+    navLinks.classList.remove("open");
+    document.body.classList.remove("nav-open");
+    if (hamburger) hamburger.setAttribute("aria-expanded", "false");
+};
+
+const toggleNav = () => {
+    if (!navLinks) return;
+    if (navLinks.classList.contains("open")) {
+        closeNav();
+    } else {
+        openNav();
+    }
+};
+
+const setActiveLink = (targetId) => {
+    if (!navLinks) return;
+    navLinks.querySelectorAll("a[href^='#']").forEach(link => {
+        const id = link.getAttribute("href").replace("#", "");
+        link.classList.toggle("active", id === targetId);
+    });
+};
 
 if (hamburger) {
     hamburger.addEventListener("click", toggleNav);
+    hamburger.setAttribute("aria-expanded", "false");
+    hamburger.setAttribute("aria-controls", "navLinks");
+}
+
+if (navBackdrop) {
+    navBackdrop.addEventListener("click", closeNav);
 }
 
 if (navLinks) {
-    navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => navLinks.classList.remove("open")));
+    navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+        closeNav();
+        const href = link.getAttribute("href") || "";
+        if (href.startsWith("#")) {
+            const id = href.replace("#", "");
+            setActiveLink(id);
+        }
+    }));
 }
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeNav();
+});
 
 // Active section highlighting
 const sectionObserverTargets = document.querySelectorAll("main section");
@@ -69,23 +200,32 @@ if (sectionObserverTargets.length && Object.keys(navAnchorMap).length) {
                 navAnchorMap[id].classList.add("active");
             }
         });
-    }, { threshold: 0.3, rootMargin: "-20% 0px -20% 0px" });
+    }, { threshold: 0.35, rootMargin: "-30% 0px -35% 0px" });
 
     sectionObserverTargets.forEach(section => observer.observe(section));
+
+    // set an initial active state when landing at the top
+    setActiveLink("hero");
 }
 
-// Navbar shrink on scroll
+// Navbar shrink on scroll (both up and down)
 const navbar = document.querySelector(".navbar");
 if (navbar) {
+    let lastScroll = 0;
     const toggleNavShadow = () => {
-        if (window.scrollY > 10) {
+        const currentScroll = window.scrollY;
+        
+        // Add scrolled class when scrolled down from top
+        if (currentScroll > 10) {
             navbar.classList.add("scrolled");
         } else {
             navbar.classList.remove("scrolled");
         }
+        
+        lastScroll = currentScroll;
     };
     toggleNavShadow();
-    window.addEventListener("scroll", toggleNavShadow);
+    window.addEventListener("scroll", toggleNavShadow, { passive: true });
 }
 
 // Navbar Animation
@@ -340,16 +480,108 @@ if (contactPopup) {
 }
 
 if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
+    contactForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const name = (document.getElementById("contact-name")?.value || "").trim();
-        const email = (document.getElementById("contact-email")?.value || "").trim();
-        const message = (document.getElementById("contact-message")?.value || "").trim();
-        if (!name || !email || !message) return;
-
-        const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-        window.location.href = `mailto:mdahsanurrahaman@gmail.com?subject=${subject}&body=${body}`;
-        closeContactPopup();
+        
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        
+        // Get form data
+        const formData = {
+            name: (document.getElementById("contact-name")?.value || "").trim(),
+            email: (document.getElementById("contact-email")?.value || "").trim(),
+            type: (document.getElementById("contact-type")?.value || "General"),
+            timeline: (document.getElementById("contact-timeline")?.value || "Flexible"),
+            message: (document.getElementById("contact-message")?.value || "").trim()
+        };
+        
+        // Validate
+        if (!formData.name || !formData.email || !formData.message) {
+            showNotification("Validation Error", "Please fill in all required fields (Name, Email, Message)", 'error', 5000);
+            return;
+        }
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        
+        try {
+            // Try to determine correct API path
+            let apiPath = 'api/submit-contact.php';
+            
+            // If current location is localhost, use it
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                // Use the port from current location
+                if (window.location.port) {
+                    apiPath = `http://${window.location.hostname}:${window.location.port}/api/submit-contact.php`;
+                } else {
+                    apiPath = `/api/submit-contact.php`;
+                }
+            }
+            
+            console.log('Sending to:', apiPath);
+            
+            // Send to backend
+            const response = await fetch(apiPath, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            console.log('Response status:', response.status);
+            const data = await response.json();
+            console.log('Response data:', data);
+            
+            if (data.success) {
+                // Success - show message and close popup
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+                showNotification(
+                    "✅ Message Saved!", 
+                    `Thank you ${formData.name}! Your message has been saved to the database. I'll review it soon.`, 
+                    'success', 
+                    6000
+                );
+                setTimeout(() => {
+                    contactForm.reset();
+                    closeContactPopup();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }, 1500);
+            } else {
+                throw new Error(data.message || 'Failed to send message');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            console.error('Failed to reach PHP backend. Make sure run-server.bat is running.');
+            
+            // Show error message instead of fallback
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            
+            // Check if PHP is available first
+            showNotification(
+                "⚠️ Backend Not Available",
+                "PHP backend is not running. Opening email client as fallback...",
+                'info',
+                5000
+            );
+            
+            // Fallback to mailto after a short delay
+            setTimeout(() => {
+                const subject = encodeURIComponent(`Portfolio Contact: ${formData.name}`);
+                const body = encodeURIComponent(
+                    `Name: ${formData.name}\n` +
+                    `Email: ${formData.email}\n` +
+                    `Project Type: ${formData.type}\n` +
+                    `Timeline: ${formData.timeline}\n\n` +
+                    `Message:\n${formData.message}\n\n` +
+                    `---\nSent from Portfolio Contact Form`
+                );
+                window.location.href = `mailto:mdahsanurrahaman@gmail.com?subject=${subject}&body=${body}`;
+                closeContactPopup();
+            }, 1500);
+        }
     });
 }

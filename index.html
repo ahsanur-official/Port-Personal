@@ -24,7 +24,7 @@
         <div class="popup-icon">
           <i class="fas fa-hammer"></i>
         </div>
-        <h2>🚀 Under Construction</h2>
+        <h2>🚀 Under Development!</h2>
         <p>
           Welcome to my portfolio! I'm currently enhancing this space with new projects, 
           features, and updates. More amazing content coming soon...
@@ -41,9 +41,15 @@
 
     <nav class="navbar">
       <div class="logo">
-        <i class="fa-solid fa-database logo-icon"></i><span><a href="#">AHSANUR RAHAMAN</a></span>
+        <span><a href="#hero">MD. AHSANUR RAHAMAN</a></span>
       </div>
       <ul class="nav-links" id="navLinks">
+        <li>
+          <a href="#hero"
+            ><i class="fa-solid fa-house nav-icon"></i
+            ><span class="nav-label">Home</span></a
+          >
+        </li>
         <li>
           <a href="#about"
             ><i class="fa-regular fa-user nav-icon"></i
@@ -56,7 +62,7 @@
             ><span class="nav-label">Skills</span></a
           >
         </li>
-        <li>
+        <li class="mobile-only">
           <a href="#expertise"
             ><i class="fa-solid fa-layer-group nav-icon"></i
             ><span class="nav-label">Expertise</span></a
@@ -104,26 +110,26 @@
       </button>
     </nav>
 
+    <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
     <main class="container">
       <section id="hero">
         <div class="eyebrow">Data Science • Engineering • Design</div>
-        <h1 class="hero-item">Md. Ahsanur Rahaman</h1>
+        <h1 class="hero-item">Data Scientist & Product-Minded Engineer</h1>
         <p class="hero-sub hero-item">
-          Aspiring data scientist & analytics practitioner crafting human, insight-led experiences.
+          I help founders and student teams turn messy data into dashboards, ML prototypes, and shippable web experiences.
         </p>
         <p class="hero-body hero-item">
-          CSE student at <b>Pundra University of Science and Technology, Gokul, Bogura</b> blending <b>machine
-          learning</b>, <b>data analysis</b>, and <b>product design</b>. I ship
-          <b>predictive models</b>, <b>data stories</b>, and <b>clean UIs</b>
-          that feel polished and reliable.
+          Based in Bangladesh and finishing my CSE degree at <b>Pundra University of Science and Technology</b>, I blend
+          <b>machine learning</b>, <b>analytics storytelling</b>, and <b>front-end craft</b> to ship reliable, insight-led
+          products people can use and trust.
         </p>
         <div class="hero-ctas hero-item">
           <a href="#projects" class="btn-primary">View Projects</a>
           <a
-            href="https://forms.gle/YRviyaoG75xPHJZG9"
+            href="#contact"
             class="btn-ghost"
-            target="_blank"
-            >Hire Me</a
+            >Hire Me!</a
           >
         </div>
       </section>
@@ -417,6 +423,14 @@
             <div class="project-image">
               <img src="images/dashboard.jpg" alt="Classroom Dashboard" />
             </div>
+            <div class="project-copy">
+              <h3>Classroom Analytics Dashboard</h3>
+              <p class="project-blurb"><span class="project-label">Problem:</span> Faculty needed a fast way to scan attendance and scores without spreadsheets.</p>
+              <p class="project-blurb"><span class="project-label">Solution:</span> Built a responsive dashboard with clear KPIs and drilldowns so instructors can spot trends in under 2 minutes.</p>
+              <div class="project-tags">
+                <span>Dashboard UI</span><span>Data Viz</span><span>Responsive</span>
+              </div>
+            </div>
             <div class="project-buttons">
               <a
                 href="https://demo-classroom-dashboard.netlify.app/"
@@ -442,6 +456,14 @@
           <div class="project-card">
             <div class="project-image">
               <img src="images/gift.jpg" alt="Fun Post" />
+            </div>
+            <div class="project-copy">
+              <h3>Fun Post</h3>
+              <p class="project-blurb"><span class="project-label">Problem:</span> Friends needed a quick way to drop updates without heavy logins.</p>
+              <p class="project-blurb"><span class="project-label">Solution:</span> Social-style feed with playful UI, simple posting flow, and responsive cards for mobile-first use.</p>
+              <div class="project-tags">
+                <span>Vanilla JS</span><span>UI Motion</span><span>Responsive</span>
+              </div>
             </div>
             <div class="project-buttons">
               <a
@@ -469,6 +491,14 @@
             <div class="project-image">
               <img src="images/pubaide.jpg" alt="Campus Aide" />
             </div>
+            <div class="project-copy">
+              <h3>PUB Campus Aide</h3>
+              <p class="project-blurb"><span class="project-label">Problem:</span> Students struggled to find resources and notices in one place.</p>
+              <p class="project-blurb"><span class="project-label">Solution:</span> Centralized campus aide with streamlined flows for resources, notices, and quick actions tailored to PUB students.</p>
+              <div class="project-tags">
+                <span>UX Writing</span><span>Accessibility</span><span>SPA</span>
+              </div>
+            </div>
             <div class="project-buttons">
               <a
                 href="https://pub-campus-aide.netlify.app/"
@@ -494,6 +524,14 @@
           <div class="project-card">
             <div class="project-image">
               <img src="images/atmcard.jpg" alt="ATM Card Transactions" />
+            </div>
+            <div class="project-copy">
+              <h3>ATM Card Simulator</h3>
+              <p class="project-blurb"><span class="project-label">Problem:</span> Needed an interactive way to teach transaction flows without real banking access.</p>
+              <p class="project-blurb"><span class="project-label">Solution:</span> Built a secure-feeling simulator with clear error states and confirmations to illustrate withdrawals, deposits, and balance checks.</p>
+              <div class="project-tags">
+                <span>JavaScript</span><span>State Logic</span><span>UX Writing</span>
+              </div>
             </div>
             <div class="project-buttons">
               <a
@@ -521,6 +559,14 @@
             <div class="project-image">
               <img src="images/finance.png" alt="Personal Finance Tracker" />
             </div>
+            <div class="project-copy">
+              <h3>Personal Finance Tracker</h3>
+              <p class="project-blurb"><span class="project-label">Problem:</span> Students wanted a simple, mobile-friendly way to monitor spending.</p>
+              <p class="project-blurb"><span class="project-label">Solution:</span> Categorized expenses, summaries, and weekly trends with a clean dashboard that works offline-first.</p>
+              <div class="project-tags">
+                <span>PWA-lite</span><span>Charts</span><span>LocalStorage</span>
+              </div>
+            </div>
             <div class="project-buttons">
               <a
                 href="https://personalfinancetrackerbd.netlify.app"
@@ -546,6 +592,14 @@
           <div class="project-card">
             <div class="project-image">
               <img src="images/sidebar.png" alt="Sidebar UI" />
+            </div>
+            <div class="project-copy">
+              <h3>Sidebar UI Component</h3>
+              <p class="project-blurb"><span class="project-label">Problem:</span> Needed a reusable navigation shell with smooth transitions for multiple mini-apps.</p>
+              <p class="project-blurb"><span class="project-label">Solution:</span> Crafted an accessible sidebar with keyboard support and animated states that can drop into any layout.</p>
+              <div class="project-tags">
+                <span>Component Design</span><span>ARIA</span><span>Transitions</span>
+              </div>
             </div>
             <div class="project-buttons">
               <a
@@ -573,6 +627,14 @@
             <div class="project-image">
               <img src="images/color.png" alt="Color Palette Generator" />
             </div>
+            <div class="project-copy">
+              <h3>Color Palette Generator</h3>
+              <p class="project-blurb"><span class="project-label">Problem:</span> Designers wanted curated palettes without digging through docs.</p>
+              <p class="project-blurb"><span class="project-label">Solution:</span> Built a generator with ready-to-copy swatches and harmonious combinations for rapid prototyping.</p>
+              <div class="project-tags">
+                <span>UI Tooling</span><span>Clipboard</span><span>Design Systems</span>
+              </div>
+            </div>
             <div class="project-buttons">
               <a
                 href="https://color-palette-generator-bd42.netlify.app/"
@@ -599,6 +661,14 @@
             <div class="project-image">
               <img src="images/salami.png" alt="Eid Salami Generator" />
             </div>
+            <div class="project-copy">
+              <h3>Eid Salami Generator</h3>
+              <p class="project-blurb"><span class="project-label">Problem:</span> Families wanted quick, delightful greetings to share during Eid.</p>
+              <p class="project-blurb"><span class="project-label">Solution:</span> Built a template-based greeting creator with preset palettes and typography ready for instant sharing.</p>
+              <div class="project-tags">
+                <span>Generative UI</span><span>Sharing</span><span>Localization</span>
+              </div>
+            </div>
             <div class="project-buttons">
               <a
                 href="https://eid-salami-generator.netlify.app/"
@@ -624,6 +694,14 @@
           <div class="project-card">
             <div class="project-image">
               <img src="images/khali.png" alt="Eid Salami Generator" />
+            </div>
+            <div class="project-copy">
+              <h3>KhaliError Lang</h3>
+              <p class="project-blurb"><span class="project-label">Problem:</span> Needed a playful way to teach programming concepts to beginners.</p>
+              <p class="project-blurb"><span class="project-label">Solution:</span> Created a language concept site with syntax samples, humor, and quick links so learners stay engaged.</p>
+              <div class="project-tags">
+                <span>Learning Tool</span><span>Copywriting</span><span>Docs UX</span>
+              </div>
             </div>
             <div class="project-buttons">
               <a
@@ -1191,51 +1269,81 @@
 
       <section id="contact">
         <div class="section-head">
-          <h2 class="section-title">Contact</h2>
+          <h2 class="section-title">Get In Touch</h2>
         </div>
-        <div class="contact-card">
-          <p class="contact-desc">
-            I'm always open to <b>data science projects</b>, <b>ML prototypes</b>,
-            <b>research collaborations</b>, and <b>product design work</b>. Based in
-            Joypurhat/Bogura, Bangladesh. I respond within 24 hours.
-          </p>
-          <div class="contact-actions">
-            <button type="button" class="btn-primary" id="contactOpen">
-              Send a Message
-            </button>
-            <a
-              href="https://linkedin.com/in/md-ahsanur-rahaman"
-              class="btn-ghost"
-              target="_blank"
-              >LinkedIn</a
-            >
-          </div>
-          <div class="socials">
-            <a href="https://linkedin.com/in/md-ahsanur-rahaman" aria-label="LinkedIn"
-              ><i class="fa-brands fa-linkedin"></i
-            ></a>
-            <a href="https://github.com/ahsanur-official" aria-label="GitHub"
-              ><i class="fa-brands fa-github"></i
-            ></a>
-            <a href="https://www.facebook.com/mar.ahsan.33/" aria-label="Facebook"
-              ><i class="fa-brands fa-facebook"></i
-            ></a>
-            <a href="https://x.com/ahsanur_rahaman" aria-label="X"
-              ><i class="fa-brands fa-x"></i
-            ></a>
-            <a href="https://www.instagram.com/ahsanur-official/" aria-label="Instagram"
-              ><i class="fa-brands fa-instagram"></i
-            ></a>
-            <a href="https://medium.com/@md.ahsanur.rahaman" aria-label="Medium"
-              ><i class="fa-brands fa-medium"></i
-            ></a>
-          </div>
-          <div class="contact-meta">
-            <span><i class="fa-solid fa-phone"></i> +880 1776 890 648</span>
-            <span
-              ><i class="fa-solid fa-envelope"></i>
-              mdahsanurrahaman2456@gmail.com</span
-            >
+        <div class="contact-wrapper">
+          <div class="contact-card">
+            <div class="contact-header">
+              <h3>Let's Work Together</h3>
+              <p>Open to data science projects, ML prototypes, research collaborations, and product design work. Response time: 24 hours.</p>
+            </div>
+            
+            <div class="contact-info-grid">
+              <div class="contact-info-item">
+                <div class="info-icon">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="info-content">
+                  <span class="info-label">Email</span>
+                  <a href="mailto:mdahsanurrahaman2456@gmail.com" class="info-value">mdahsanurrahaman2456@gmail.com</a>
+                </div>
+              </div>
+              
+              <div class="contact-info-item">
+                <div class="info-icon">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div class="info-content">
+                  <span class="info-label">Phone</span>
+                  <a href="tel:+8801776890648" class="info-value">+880 1776 890 648</a>
+                </div>
+              </div>
+              
+              <div class="contact-info-item">
+                <div class="info-icon">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="info-content">
+                  <span class="info-label">Location</span>
+                  <span class="info-value">Joypurhat/Bogura, Bangladesh (GMT+6)</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="contact-actions">
+              <button type="button" class="btn-primary" id="contactOpen">
+                <i class="fa-regular fa-paper-plane"></i>
+                Send Message
+              </button>
+              <a href="documents/resume.pdf" target="_blank" class="btn-ghost">
+                <i class="fa-solid fa-file-arrow-down"></i>
+                Download CV
+              </a>
+            </div>
+            
+            <div class="contact-divider"></div>
+            
+            <div class="contact-links">
+              <span class="links-label">Connect with me</span>
+              <div class="professional-links">
+                <a href="https://linkedin.com/in/md-ahsanur-rahaman" target="_blank" class="link-item">
+                  <i class="fa-brands fa-linkedin"></i>
+                  <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/ahsanur-official" target="_blank" class="link-item">
+                  <i class="fa-brands fa-github"></i>
+                  <span>GitHub</span>
+                </a>
+                <a href="https://medium.com/@md.ahsanur.rahaman" target="_blank" class="link-item">
+                  <i class="fa-brands fa-medium"></i>
+                  <span>Medium</span>
+                </a>
+                <a href="https://x.com/ahsanur_rahaman" target="_blank" class="link-item">
+                  <i class="fa-brands fa-x-twitter"></i>
+                  <span>Twitter</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1291,12 +1399,12 @@
             ></textarea>
 
             <div class="contact-popup-actions">
-              <button type="submit" class="btn-primary">Send</button>
+              <button type="submit" class="btn-primary"><span>Send Message</span></button>
             </div>
             <div class="contact-popup-fallback">
               Or email directly:
               <a href="mailto:mdahsanurrahaman@gmail.com"
-                >mdahsanurrahaman@gmail.com</a
+                >mdahsanurrahaman2456@gmail.com</a
               >
             </div>
           </form>
