@@ -482,8 +482,6 @@ if (contactPopup) {
 if (contactForm) {
     contactForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-<<<<<<< HEAD
-        
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         
