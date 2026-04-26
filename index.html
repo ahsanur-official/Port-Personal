@@ -13,7 +13,7 @@
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
     />
     <link rel="stylesheet" href="styles/variables.css" />
     <link rel="stylesheet" href="styles/main.css" />
@@ -110,7 +110,20 @@
       <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
         <i class="fa-solid fa-bars"></i>
       </button>
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        title="Toggle theme"
+      >
+        <i class="fa-solid fa-moon"></i>
+      </button>
     </nav>
+
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true">
+      <span class="scroll-progress-fill" id="scrollProgressFill"></span>
+    </div>
 
     <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
@@ -133,6 +146,23 @@
             class="btn-ghost"
             >Hire Me!</a
           >
+        </div>
+        <div class="hero-highlights hero-item" aria-label="Quick highlights">
+          <article class="hero-highlight-card">
+            <span class="highlight-label">Projects Delivered</span>
+            <strong>15+</strong>
+            <p>Data, frontend, and product-focused builds with real users.</p>
+          </article>
+          <article class="hero-highlight-card">
+            <span class="highlight-label">Primary Focus</span>
+            <strong>Data + Product UX</strong>
+            <p>Turning complex data into interfaces that are fast to understand.</p>
+          </article>
+          <article class="hero-highlight-card">
+            <span class="highlight-label">Reply Time</span>
+            <strong>Within 24h</strong>
+            <p>Clear communication and dependable updates through each phase.</p>
+          </article>
         </div>
       </section>
 
@@ -420,8 +450,82 @@
         <div class="section-head">
           <h2 class="section-title">Projects</h2>
         </div>
-        <div class="projects-grid">
-          <div class="project-card">
+        <div class="projects-intro">
+          <div class="projects-intro-copy">
+            <span class="projects-intro-kicker">Selected work</span>
+            <h3>Live demos, design systems, and product experiments</h3>
+            <p>
+              A curated set of projects focused on useful interfaces, clean logic, and polished delivery. Each card shows what I built, why it matters, and how it performs in the real world.
+            </p>
+          </div>
+          <div class="projects-intro-stats">
+            <div class="projects-intro-stat">
+              <strong>8+</strong>
+              <span>Live projects</span>
+            </div>
+            <div class="projects-intro-stat">
+              <strong>3</strong>
+              <span>Featured highlights</span>
+            </div>
+            <div class="projects-intro-stat">
+              <strong>UI + Logic</strong>
+              <span>Balanced execution</span>
+            </div>
+          </div>
+        </div>
+        <div class="featured-projects" id="featuredProjects" aria-label="Featured projects">
+          <div class="featured-head">
+            <h3 id="featuredProjectsTitle">Featured Projects</h3>
+            <div class="featured-controls">
+              <button type="button" id="featuredPrev" aria-label="Previous featured project">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button type="button" id="featuredNext" aria-label="Next featured project">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="featured-spotlight" id="featuredSpotlight" aria-live="polite">
+            <div class="featured-spotlight-media">
+              <img id="featuredSpotlightImage" src="images/dashboard.jpg" alt="Featured project preview" />
+              <span class="featured-spotlight-badge" id="featuredSpotlightMeta">01 / 03</span>
+            </div>
+            <div class="featured-spotlight-copy">
+              <span class="featured-spotlight-kicker" id="featuredSpotlightKicker">Spotlight project</span>
+              <h4 id="featuredSpotlightTitle">Project title</h4>
+              <p id="featuredSpotlightDetails">Project summary goes here.</p>
+              <div class="featured-spotlight-tags" id="featuredSpotlightTags"></div>
+              <div class="featured-spotlight-actions">
+                <a href="#" class="btn live-link" id="featuredSpotlightLive" target="_blank">Live Link</a>
+                <button type="button" class="btn details-btn" id="featuredSpotlightDetailsBtn" data-project-id="">Details</button>
+              </div>
+            </div>
+          </div>
+          <div class="featured-track" id="featuredTrack"></div>
+        </div>
+        <div class="projects-toolbar" aria-label="Project filters">
+          <div class="project-search-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="search"
+              id="projectSearch"
+              placeholder="Search project by name, problem, solution, or tag"
+              aria-label="Search projects"
+            />
+          </div>
+          <div class="project-filter-row" id="projectFilters"></div>
+          <p class="project-count" id="projectCount" aria-live="polite"></p>
+        </div>
+        <div class="projects-carousel-controls" aria-label="Project carousel controls">
+          <button type="button" id="projectsPrev" aria-label="Scroll projects left">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button type="button" id="projectsNext" aria-label="Scroll projects right">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="projects-grid" aria-label="All projects carousel">
+          <div class="project-card" data-category="analytics">
             <div class="project-image">
               <img src="images/dashboard.jpg" alt="Classroom Dashboard" />
             </div>
@@ -455,7 +559,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card" data-category="social">
             <div class="project-image">
               <img src="images/gift.jpg" alt="Fun Post" />
             </div>
@@ -489,7 +593,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card" data-category="productivity">
             <div class="project-image">
               <img src="images/pubaide.jpg" alt="Campus Aide" />
             </div>
@@ -523,7 +627,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card" data-category="education">
             <div class="project-image">
               <img src="images/atmcard.jpg" alt="ATM Card Transactions" />
             </div>
@@ -557,7 +661,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card" data-category="finance">
             <div class="project-image">
               <img src="images/finance.png" alt="Personal Finance Tracker" />
             </div>
@@ -591,7 +695,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card" data-category="components">
             <div class="project-image">
               <img src="images/sidebar.png" alt="Sidebar UI" />
             </div>
@@ -625,7 +729,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card" data-category="design">
             <div class="project-image">
               <img src="images/color.png" alt="Color Palette Generator" />
             </div>
@@ -659,7 +763,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card" data-category="greeting">
             <div class="project-image">
               <img src="images/salami.png" alt="Eid Salami Generator" />
             </div>
@@ -693,7 +797,7 @@
             </div>
           </div>
 
-          <div class="project-card">
+          <div class="project-card" data-category="learning">
             <div class="project-image">
               <img src="images/khali.png" alt="Eid Salami Generator" />
             </div>
@@ -1518,6 +1622,81 @@
         </div>
       </footer>
     </main>
+
+    <button
+      class="quick-actions-fab"
+      id="quickActionsFab"
+      type="button"
+      aria-label="Open quick actions"
+      title="Quick actions"
+    >
+      <i class="fa-solid fa-bolt"></i>
+    </button>
+
+    <aside class="quick-actions-panel" id="quickActionsPanel" aria-hidden="true">
+      <div class="quick-actions-head">
+        <h3>Quick Actions</h3>
+        <button type="button" id="quickActionsClose" aria-label="Close quick actions">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <p class="quick-actions-note">Tip: press Ctrl/Cmd + K to open this panel.</p>
+      <div class="quick-actions-list">
+        <a href="#projects"><i class="fa-regular fa-folder-open"></i><span id="quickJumpProjectsLabel">Jump to Projects</span></a>
+        <a href="#contact"><i class="fa-regular fa-paper-plane"></i><span id="quickJumpContactLabel">Jump to Contact</span></a>
+        <a href="documents/resume.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i><span id="quickOpenResumeLabel">Open Resume</span></a>
+        <button type="button" id="quickToggleTheme"><i class="fa-regular fa-moon"></i><span id="quickToggleThemeLabel">Toggle Theme</span></button>
+        <button type="button" id="quickManageFeatured"><i class="fa-solid fa-sort"></i><span id="quickManageFeaturedLabel">Manage Featured Order</span></button>
+        <a href="mailto:mdahsanurrahaman2456@gmail.com"><i class="fa-regular fa-envelope"></i><span id="quickEmailLabel">Email Me</span></a>
+      </div>
+    </aside>
+
+    <aside class="featured-order-panel" id="featuredOrderPanel" aria-hidden="true">
+      <div class="featured-order-backdrop"></div>
+      <div class="featured-order-content">
+        <div class="featured-order-head">
+          <h3 id="featuredOrderTitle">Reorder Featured Projects</h3>
+          <button type="button" id="featuredOrderClose" aria-label="Close featured order panel">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <p id="featuredOrderHint">Drag items to set display order. Click save to apply.</p>
+        <ul class="featured-order-list" id="featuredOrderList"></ul>
+        <div class="featured-order-actions">
+          <button type="button" class="btn-ghost" id="featuredOrderReset">Reset</button>
+          <button type="button" class="btn-primary" id="featuredOrderSave">Save Order</button>
+        </div>
+      </div>
+    </aside>
+
+    <aside class="project-drawer" id="projectDrawer" aria-hidden="true">
+      <div class="project-drawer-backdrop"></div>
+      <div class="project-drawer-content">
+        <button type="button" class="project-drawer-close" id="projectDrawerClose" aria-label="Close project details">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="projectDrawerImage" src="" alt="Project preview" />
+        <h3 id="projectDrawerTitle"></h3>
+        <p id="projectDrawerProblem"></p>
+        <p id="projectDrawerSolution"></p>
+        <p id="projectDrawerDetails"></p>
+        <div class="project-drawer-tags" id="projectDrawerTags"></div>
+        <div class="project-drawer-actions">
+          <a id="projectDrawerLive" href="#" target="_blank" class="btn live-link">Live Link</a>
+          <a id="projectDrawerRepo" href="#" target="_blank" class="btn repo-link">Repository</a>
+        </div>
+      </div>
+    </aside>
+
+    <button
+      class="back-to-top"
+      id="backToTop"
+      type="button"
+      aria-label="Back to top"
+      title="Back to top"
+    >
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
