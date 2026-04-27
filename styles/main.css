@@ -4239,6 +4239,10 @@ footer {
 }
 
 @media (max-width: 600px) {
+  .floating-theme-toggle {
+    display: none;
+  }
+
   .projects-intro {
     padding: 14px;
     gap: 12px;
