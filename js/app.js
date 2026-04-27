@@ -10,12 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (!shouldShowPopup || sessionStorage.getItem(popupMemoryKey) === "1") {
-        constructionPopup.style.display = "none";
         return;
     }
 
     let timeLeft = 4;
     sessionStorage.setItem(popupMemoryKey, "1");
+    constructionPopup.classList.add("show");
 
   // Update timer
   const timerInterval = setInterval(() => {
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Hide popup with animation
       constructionPopup.classList.add("hide");
       setTimeout(() => {
-        constructionPopup.style.display = "none";
+        constructionPopup.classList.remove("show");
       }, 500);
     }
   }, 1000);
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(timerInterval);
       constructionPopup.classList.add("hide");
       setTimeout(() => {
-        constructionPopup.style.display = "none";
+        constructionPopup.classList.remove("show");
       }, 500);
     }
   });
