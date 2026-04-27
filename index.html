@@ -110,15 +110,6 @@
       <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
         <i class="fa-solid fa-bars"></i>
       </button>
-      <button
-        class="theme-toggle"
-        id="themeToggle"
-        type="button"
-        aria-label="Switch to dark mode"
-        title="Toggle theme"
-      >
-        <i class="fa-solid fa-moon"></i>
-      </button>
     </nav>
 
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true">
@@ -449,59 +440,6 @@
       <section id="projects">
         <div class="section-head">
           <h2 class="section-title">Projects</h2>
-        </div>
-        <div class="projects-intro">
-          <div class="projects-intro-copy">
-            <span class="projects-intro-kicker">Selected work</span>
-            <h3>Live demos, design systems, and product experiments</h3>
-            <p>
-              A curated set of projects focused on useful interfaces, clean logic, and polished delivery. Each card shows what I built, why it matters, and how it performs in the real world.
-            </p>
-          </div>
-          <div class="projects-intro-stats">
-            <div class="projects-intro-stat">
-              <strong>8+</strong>
-              <span>Live projects</span>
-            </div>
-            <div class="projects-intro-stat">
-              <strong>3</strong>
-              <span>Featured highlights</span>
-            </div>
-            <div class="projects-intro-stat">
-              <strong>UI + Logic</strong>
-              <span>Balanced execution</span>
-            </div>
-          </div>
-        </div>
-        <div class="featured-projects" id="featuredProjects" aria-label="Featured projects">
-          <div class="featured-head">
-            <h3 id="featuredProjectsTitle">Featured Projects</h3>
-            <div class="featured-controls">
-              <button type="button" id="featuredPrev" aria-label="Previous featured project">
-                <i class="fa-solid fa-chevron-left"></i>
-              </button>
-              <button type="button" id="featuredNext" aria-label="Next featured project">
-                <i class="fa-solid fa-chevron-right"></i>
-              </button>
-            </div>
-          </div>
-          <div class="featured-spotlight" id="featuredSpotlight" aria-live="polite">
-            <div class="featured-spotlight-media">
-              <img id="featuredSpotlightImage" src="images/dashboard.jpg" alt="Featured project preview" />
-              <span class="featured-spotlight-badge" id="featuredSpotlightMeta">01 / 03</span>
-            </div>
-            <div class="featured-spotlight-copy">
-              <span class="featured-spotlight-kicker" id="featuredSpotlightKicker">Spotlight project</span>
-              <h4 id="featuredSpotlightTitle">Project title</h4>
-              <p id="featuredSpotlightDetails">Project summary goes here.</p>
-              <div class="featured-spotlight-tags" id="featuredSpotlightTags"></div>
-              <div class="featured-spotlight-actions">
-                <a href="#" class="btn live-link" id="featuredSpotlightLive" target="_blank">Live Link</a>
-                <button type="button" class="btn details-btn" id="featuredSpotlightDetailsBtn" data-project-id="">Details</button>
-              </div>
-            </div>
-          </div>
-          <div class="featured-track" id="featuredTrack"></div>
         </div>
         <div class="projects-toolbar" aria-label="Project filters">
           <div class="project-search-wrap">
@@ -1631,6 +1569,16 @@
       title="Quick actions"
     >
       <i class="fa-solid fa-bolt"></i>
+    </button>
+
+    <button
+      class="theme-toggle floating-theme-toggle"
+      id="themeToggle"
+      type="button"
+      aria-label="Switch to dark mode"
+      title="Toggle theme"
+    >
+      <i class="fa-solid fa-moon"></i>
     </button>
 
     <aside class="quick-actions-panel" id="quickActionsPanel" aria-hidden="true">

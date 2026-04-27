@@ -80,6 +80,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Deep Dive tabs (Leadership / Certifications / Experiences)
+document.addEventListener("DOMContentLoaded", () => {
+    const tabContainer = document.querySelector("#profile-tabs .tab-container");
+    if (!tabContainer) return;
+
+    const tabLinks = Array.from(tabContainer.querySelectorAll(".tab-link"));
+    const tabPanels = Array.from(tabContainer.querySelectorAll(".tab-panel"));
+
+    const activateTab = (tabId) => {
+        tabLinks.forEach((btn) => {
+            const isActive = btn.dataset.tab === tabId;
+            btn.classList.toggle("active", isActive);
+            btn.setAttribute("aria-selected", String(isActive));
+        });
+
+        tabPanels.forEach((panel) => {
+            const isActive = panel.id === tabId;
+            panel.classList.toggle("active", isActive);
+            panel.setAttribute("aria-hidden", String(!isActive));
+        });
+    };
+
+    // Normalize accessibility state on first load.
+    const initialActive = tabLinks.find((btn) => btn.classList.contains("active"))?.dataset.tab || tabLinks[0]?.dataset.tab;
+    if (initialActive) activateTab(initialActive);
+
+    tabLinks.forEach((btn) => {
+        btn.setAttribute("role", "tab");
+        btn.addEventListener("click", () => {
+            const targetId = btn.dataset.tab;
+            if (!targetId || !tabContainer.querySelector(`#${targetId}`)) return;
+            activateTab(targetId);
+        });
+    });
+});
+
 // Custom Notification System
 function showNotification(title, message, type = 'info', duration = 5000) {
   // Create container if it doesn't exist
@@ -297,6 +333,7 @@ mm.add("(min-width: 769px)", () => {
 });
 
 const popupImg = document.getElementById("popup-img");
+const popup = document.getElementById("image-popup");
 
 const showImage = (src, alt = "Certificate preview") => {
     if (!popup || !popupImg) return;
