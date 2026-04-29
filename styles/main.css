@@ -2675,8 +2675,8 @@ footer::after {
     border-radius: 8px;
   }
   .tab-content {
-    padding: 14px;
-    border-radius: 10px;
+    padding: 0;
+    border-radius: 0;
   }
   .experience-card {
     padding: 12px;
@@ -3310,7 +3310,6 @@ body::after {
 .achievement-box,
 .experience-card,
 .tab-container,
-.tab-content,
 .project-popup-inner,
 .contact-popup-inner,
 .popup-inner {
@@ -3645,7 +3644,6 @@ body::after {
 .achievement-box,
 .experience-card,
 .tab-container,
-.tab-content,
 .project-popup-inner,
 .contact-popup-inner,
 .popup-inner,
