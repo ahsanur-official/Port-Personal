@@ -1736,10 +1736,10 @@ body.nav-open .nav-backdrop {
   border-color: rgba(94, 234, 212, 0.35);
 }
 .tab-content {
-  background: var(--card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  padding: 18px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
 }
 .tab-panel {
   display: none;
@@ -3317,6 +3317,7 @@ body::after {
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(242, 248, 253, 0.95) 100%);
   border: 1px solid rgba(13, 27, 42, 0.1);
   box-shadow: 0 14px 38px rgba(17, 51, 80, 0.1);
+  border-radius: 14px;
 }
 
 .card h3,
