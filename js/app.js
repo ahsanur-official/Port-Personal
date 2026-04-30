@@ -1398,10 +1398,21 @@ if (contactForm) {
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
 
+    // Ensure Firebase is initialized
+    if (typeof window.initializeFirebaseApp === "function") {
+      window.initializeFirebaseApp();
+    }
+
+    const firebaseReady =
+      typeof window.firebase !== "undefined" &&
+      typeof window.firebase.database === "function" &&
+      !!window.firebase?.apps?.length;
+
     // Get form data
     const formData = {
       name: (document.getElementById("contact-name")?.value || "").trim(),
       email: (document.getElementById("contact-email")?.value || "").trim(),
+      userPhone: (document.getElementById("contact-phone")?.value || "").trim(),
       type: document.getElementById("contact-type")?.value || "General",
       timeline:
         document.getElementById("contact-timeline")?.value || "Flexible",
@@ -1424,105 +1435,48 @@ if (contactForm) {
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
     try {
-      // Try to determine correct API path
-      let apiPath = "api/submit-contact.php";
-
-      // If current location is localhost, use it
-      if (
-        window.location.hostname === "localhost" ||
-        window.location.hostname === "127.0.0.1"
-      ) {
-        // Use the port from current location
-        if (window.location.port) {
-          apiPath = `http://${window.location.hostname}:${window.location.port}/api/submit-contact.php`;
-        } else {
-          apiPath = `/api/submit-contact.php`;
-        }
+      if (!firebaseReady) {
+        throw new Error("Firebase is not initialized. Add your Firebase config before sending messages.");
       }
 
-      console.log("Sending to:", apiPath);
-
-      // Send to backend
-      const response = await fetch(apiPath, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+      const db = window.firebase.database();
+      const messageRef = db.ref("messages").push();
+      await messageRef.set({
+        ...formData,
+        id: messageRef.key,
+        timestamp: window.firebase.database.ServerValue.TIMESTAMP,
+        status: "unread",
+        source: "portfolio",
       });
 
-      console.log("Response status:", response.status);
-      const data = await response.json();
-      console.log("Response data:", data);
-
-      if (data.success) {
-        // Success - show message and close popup
-        submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
-        showNotification(
-          "✅ Message Saved!",
-          `Thank you ${formData.name}! Your message has been saved to the database. I'll review it soon.`,
-          "success",
-          6000,
-        );
-        setTimeout(() => {
-          contactForm.reset();
-          closeContactPopup();
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalText;
-        }, 1500);
-      } else {
-        throw new Error(data.message || "Failed to send message");
-      }
+      submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+      showNotification(
+        "Message Saved",
+        `Thank you ${formData.name}! Your message has been saved and sent to the admin inbox.`,
+        "success",
+        6000,
+      );
+      setTimeout(() => {
+        contactForm.reset();
+        closeContactPopup();
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }, 1500);
     } catch (error) {
       console.error("Error:", error);
-      console.error(
-        "Failed to reach PHP backend. Make sure run-server.bat is running.",
-      );
+      console.error("Failed to send message to Firebase.");
 
       // Show error message instead of fallback
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
 
-      // Check if PHP is available first
       showNotification(
-        "⚠️ Backend Not Available",
-        "PHP backend is not running. Opening email client as fallback...",
+        "Message Not Sent",
+        error.message || "Firebase database is not configured.",
         "info",
         5000,
       );
-
-      // Fallback to mailto after a short delay
-      setTimeout(() => {
-        const subject = encodeURIComponent(
-          `Portfolio Contact: ${formData.name}`,
-        );
-        const body = encodeURIComponent(
-          `Name: ${formData.name}\n` +
-            `Email: ${formData.email}\n` +
-            `Project Type: ${formData.type}\n` +
-            `Timeline: ${formData.timeline}\n\n` +
-            `Message:\n${formData.message}\n\n` +
-            `---\nSent from Portfolio Contact Form`,
-        );
-        window.location.href = `mailto:mdahsanurrahaman@gmail.com?subject=${subject}&body=${body}`;
-        closeContactPopup();
-      }, 1500);
     }
-    const name = (document.getElementById("contact-name")?.value || "").trim();
-    const email = (
-      document.getElementById("contact-email")?.value || ""
-    ).trim();
-    const message = (
-      document.getElementById("contact-message")?.value || ""
-    ).trim();
-    if (!name || !email || !message) return;
-
-    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\n${message}`,
-    );
-    window.location.href = `mailto:mdahsanurrahaman2456@gmail.com?subject=${subject}&body=${body}`;
-    closeContactPopup();
   });
 }
 
