@@ -2335,10 +2335,9 @@ footer::after {
     font-size: 22px;
   }
   .contact-card {
-    padding: 28px 22px;
+    padding-top: 128px;
   }
 }
-
 /* Mobile Responsive - Tablets (768px and below) */
 @media (max-width: 768px) {
   .navbar {
@@ -2416,6 +2415,29 @@ footer::after {
   }
   .stat span {
     font-size: 12px;
+  }
+  .hero-highlights {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .hero-highlight-card {
+    padding: 12px;
+  }
+  .hero-highlight-card strong {
+    font-size: 16px;
+  }
+  .projects-intro {
+    padding: 14px;
+    gap: 12px;
+  }
+  .projects-intro-copy h3 {
+    font-size: 20px;
+  }
+  .projects-intro-stats {
+    grid-template-columns: 1fr;
+  }
+  .projects-intro-stat {
+    padding: 12px;
   }
   .contact-card {
     padding: 24px 18px;
@@ -2678,6 +2700,21 @@ footer::after {
     padding: 0;
     border-radius: 0;
   }
+  .leadership-container {
+    gap: 12px;
+  }
+  .leadership-card {
+    padding: 14px;
+    border-radius: 12px;
+  }
+  .leadership-card h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .leadership-card .institution,
+  .leadership-card p {
+    font-size: 13px;
+  }
   .experience-card {
     padding: 12px;
     border-radius: 10px;
@@ -2772,6 +2809,18 @@ footer::after {
     align-items: center;
     margin-top: 16px;
   }
+  .projects-intro {
+    padding: 12px;
+  }
+  .projects-intro-copy h3 {
+    font-size: 18px;
+  }
+  .projects-intro-stats {
+    grid-template-columns: 1fr;
+  }
+  .projects-intro-stat {
+    padding: 10px;
+  }
   .contact-popup-inner {
     width: min(92%, 280px);
     padding: 16px 14px 14px;
@@ -2857,8 +2906,11 @@ footer::after {
   .container {
     padding: 0 12px;
   }
+  #hero {
+    padding-top: 92px;
+  }
   #hero h1 {
-    font-size: 28px;
+    font-size: 26px;
   }
   .hero-sub {
     font-size: 14px;
@@ -2900,6 +2952,25 @@ footer::after {
   }
   .socials {
     gap: 10px;
+    font-size: 18px;
+  }
+  .hero-highlights {
+    gap: 8px;
+  }
+  .hero-highlight-card {
+    padding: 10px;
+    border-radius: 12px;
+  }
+  .hero-highlight-card strong {
+    font-size: 15px;
+  }
+  .projects-intro {
+    padding: 10px;
+  }
+  .projects-intro-copy h3 {
+    font-size: 17px;
+  }
+  .projects-intro-stat strong {
     font-size: 18px;
   }
   .socials a {
