@@ -180,6 +180,7 @@ const mm = gsap.matchMedia();
 const navLinks = document.getElementById("navLinks");
 const hamburger = document.getElementById("hamburger");
 const navBackdrop = document.getElementById("navBackdrop");
+const hamburgerIcon = hamburger?.querySelector("i");
 const logoTypingEl = document.querySelector(".logo-typing");
 
 // Typewriter for navbar title
@@ -213,14 +214,20 @@ const openNav = () => {
     if (!navLinks) return;
     navLinks.classList.add("open");
     document.body.classList.add("nav-open");
+    if (hamburger) hamburger.classList.add("is-open");
+    if (hamburgerIcon) hamburgerIcon.className = "fa-solid fa-xmark";
     if (hamburger) hamburger.setAttribute("aria-expanded", "true");
+    if (hamburger) hamburger.setAttribute("aria-label", "Close navigation");
 };
 
 const closeNav = () => {
     if (!navLinks) return;
     navLinks.classList.remove("open");
     document.body.classList.remove("nav-open");
+    if (hamburger) hamburger.classList.remove("is-open");
+    if (hamburgerIcon) hamburgerIcon.className = "fa-solid fa-bars";
     if (hamburger) hamburger.setAttribute("aria-expanded", "false");
+    if (hamburger) hamburger.setAttribute("aria-label", "Toggle navigation");
 };
 
 const toggleNav = () => {
@@ -244,6 +251,7 @@ if (hamburger) {
     hamburger.addEventListener("click", toggleNav);
     hamburger.setAttribute("aria-expanded", "false");
     hamburger.setAttribute("aria-controls", "navLinks");
+    hamburger.setAttribute("aria-label", "Toggle navigation");
 }
 
 if (navBackdrop) {
