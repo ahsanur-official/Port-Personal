@@ -1,0 +1,38 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "messages": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": ["timestamp", "status"],
+      "$messageId": {
+        ".validate": "newData.hasChildren(['name', 'email', 'type', 'timeline', 'message', 'status', 'source', 'timestamp'])",
+        "name": {
+          ".validate": "newData.isString() && newData.val().length <= 120"
+        },
+        "email": {
+          ".validate": "newData.isString() && newData.val().length <= 120"
+        },
+        "type": {
+          ".validate": "newData.isString() && newData.val().length <= 80"
+        },
+        "timeline": {
+          ".validate": "newData.isString() && newData.val().length <= 80"
+        },
+        "message": {
+          ".validate": "newData.isString() && newData.val().length <= 5000"
+        },
+        "status": {
+          ".validate": "newData.isString() && (newData.val() === 'unread' || newData.val() === 'read' || newData.val() === 'replied')"
+        },
+        "source": {
+          ".validate": "newData.isString() && newData.val() === 'portfolio'"
+        },
+        "timestamp": {
+          ".validate": "newData.isNumber()"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default: deny all access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Messages collection from portfolio contact form
+    match /messages/{messageId} {
+      // Allow anyone to read all messages
+      allow read: if true;
+      
+      // Allow anyone to create new messages (portfolio form submission)
+      allow create: if request.auth == null 
+        && request.resource.data.keys().hasAll(['name', 'email', 'type', 'timeline', 'message', 'status', 'source', 'timestamp'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 120
+        && request.resource.data.email is string
+        && request.resource.data.email.size() <= 120
+        && request.resource.data.type is string
+        && request.resource.data.type.size() <= 80
+        && request.resource.data.timeline is string
+        && request.resource.data.timeline.size() <= 80
+        && request.resource.data.message is string
+        && request.resource.data.message.size() <= 5000
+        && request.resource.data.status in ['unread', 'read', 'replied']
+        && request.resource.data.source == 'portfolio'
+        && request.resource.data.timestamp is number;
+
+      // Allow anyone to update message status (admin inbox)
+      allow update: if request.auth == null
+        && request.resource.data.keys().hasAll(['name', 'email', 'type', 'timeline', 'message', 'status', 'source', 'timestamp'])
+        && request.resource.data.name == resource.data.name
+        && request.resource.data.email == resource.data.email
+        && request.resource.data.type == resource.data.type
+        && request.resource.data.timeline == resource.data.timeline
+        && request.resource.data.message == resource.data.message
+        && request.resource.data.source == resource.data.source
+        && request.resource.data.timestamp == resource.data.timestamp
+        && request.resource.data.status in ['unread', 'read', 'replied'];
+
+      // Allow anyone to delete messages (admin inbox delete)
+      allow delete: if request.auth == null;
+    }
+  }
+}
