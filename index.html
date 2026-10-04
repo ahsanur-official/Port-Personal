@@ -1,9 +1,55 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // Ensure window.fetch can be assigned by preview proxy and sandboxed environments
+      (function () {
+        try {
+          var _rawFetch = typeof window !== "undefined" && window.fetch ? window.fetch.bind(window) : null;
+          var _customFetch = _rawFetch;
+          Object.defineProperty(window, "fetch", {
+            get: function () {
+              return _customFetch;
+            },
+            set: function (fn) {
+              _customFetch = fn;
+            },
+            configurable: true,
+            enumerable: true,
+          });
+        } catch (e1) {
+          try {
+            if (typeof Window !== "undefined" && Window.prototype) {
+              var _protoFetch = Window.prototype.fetch;
+              var _fn = _protoFetch;
+              Object.defineProperty(Window.prototype, "fetch", {
+                get: function () {
+                  return _fn;
+                },
+                set: function (v) {
+                  _fn = v;
+                },
+                configurable: true,
+                enumerable: true,
+              });
+            }
+          } catch (e2) {}
+        }
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Md. Ahsanur Rahaman | Data Science & Engineering Portfolio</title>
+    <title>Md. Ahsanur Rahaman | AI Researcher & Data Scientist Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Md. Ahsanur Rahaman - AI Researcher & Data Scientist specializing in BCI, Generative EEG Reconstruction (CycleGAN, Diffusion Models), and machine learning systems."
+    />
+    <meta property="og:title" content="Md. Ahsanur Rahaman | AI Researcher & Data Scientist Portfolio" />
+    <meta
+      property="og:description"
+      content="Portfolio of Md. Ahsanur Rahaman - AI Researcher & Data Scientist specializing in BCI, Generative EEG Reconstruction (CycleGAN, Diffusion Models), and machine learning systems."
+    />
+    <meta property="og:type" content="website" />
 
     <link rel="icon" type="image/jpeg" href="images/ahsan.jpg" />
 
@@ -19,98 +65,141 @@
     <link rel="stylesheet" href="styles/main.css" />
   </head>
   <body>
-    <!-- Under Construction Popup -->
-    <div class="construction-popup" id="constructionPopup">
-      <div class="popup-backdrop"></div>
-      <div class="popup-content">
-        <div class="popup-icon">
-          <i class="fas fa-hammer"></i>
-        </div>
-        <h2>🚀 Under Development!</h2>
-        <p>
-          Welcome to my portfolio! I'm currently enhancing this space with new projects, 
-          features, and updates. More amazing content coming soon...
-        </p>
-        <p class="popup-subtitle">⚠️ Note: Some data might have errors - will be fixed soon!</p>
-        <div class="progress-bar">
-          <div class="progress-fill"></div>
-        </div>
-        <p class="popup-timer">
-          <i class="fas fa-clock"></i> Closing in <span id="timer">5</span>
-        </p>
-      </div>
-    </div>
-
-    <nav class="navbar">
+    <!-- Top Navigation Bar -->
+    <nav class="navbar" id="navbar">
       <div class="logo">
-        <span><a href="#hero">MD. AHSANUR RAHAMAN</a></span>
+        <a href="#hero" class="logo-link">
+          <span class="logo-name">MD. AHSANUR RAHAMAN</span>
+          <span class="logo-badge">AI & BCI RESEARCH</span>
+        </a>
       </div>
-      <ul class="nav-links" id="navLinks">
-        <li>
-          <a href="#hero"
-            ><i class="fa-solid fa-house nav-icon"></i
-            ><span class="nav-label">Home</span></a
-          >
-        </li>
-        <li>
-          <a href="#about"
-            ><i class="fa-regular fa-user nav-icon"></i
-            ><span class="nav-label">About</span></a
-          >
-        </li>
-        <li>
-          <a href="#skills"
-            ><i class="fa-solid fa-code nav-icon"></i
-            ><span class="nav-label">Skills</span></a
-          >
-        </li>
-        <li class="mobile-only">
-          <a href="#expertise"
-            ><i class="fa-solid fa-layer-group nav-icon"></i
-            ><span class="nav-label">Expertise</span></a
-          >
-        </li>
-        <li>
-          <a href="#services"
-            ><i class="fa-solid fa-table-cells-large nav-icon"></i
-            ><span class="nav-label">Services</span></a
-          >
-        </li>
-        <li>
-          <a href="#projects"
-            ><i class="fa-regular fa-folder-open nav-icon"></i
-            ><span class="nav-label">Projects</span></a
-          >
-        </li>
-        <li>
-          <a href="#education"
-            ><i class="fa-solid fa-graduation-cap nav-icon"></i
-            ><span class="nav-label">Education</span></a
-          >
-        </li>
-        <li>
-          <a href="#contact"
-            ><i class="fa-regular fa-paper-plane nav-icon"></i
-            ><span class="nav-label">Contact</span></a
-          >
-        </li>
-        <li class="mobile-only">
-          <a href="Blogs/index.html"
-            ><i class="fa-solid fa-blog nav-icon"></i
-            ><span class="nav-label">Blogs</span></a
-          >
-        </li>
-        <li>
-          <a href="documents/resume.pdf" target="_blank" class="btn-resume"
-            ><i class="fa-solid fa-file-arrow-down nav-icon"></i
-            ><span class="nav-label">Resume</span></a
-          >
-        </li>
-      </ul>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+
+      <div class="navbar-actions">
+        <a href="documents/resume.pdf" target="_blank" class="nav-btn-resume" title="Download Academic CV">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span class="btn-text">CV / Resume</span>
+        </a>
+        <button
+          class="theme-toggle nav-theme-toggle"
+          id="themeToggleNav"
+          type="button"
+          aria-label="Switch to light mode"
+          title="Toggle theme"
+        >
+          <i class="fa-solid fa-sun"></i>
+        </button>
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <i class="fa-solid fa-bars"></i>
+          <span class="hamburger-label">Menu</span>
+        </button>
+      </div>
     </nav>
+
+    <!-- Universal Off-Canvas Navigation Drawer (Both Desktop & Mobile) -->
+    <aside class="nav-drawer" id="navLinks" aria-label="Main navigation menu" aria-hidden="true">
+      <div class="drawer-header">
+        <div class="drawer-user">
+          <img src="images/ahsan.jpg" alt="Md. Ahsanur Rahaman" class="drawer-avatar" />
+          <div class="drawer-user-info">
+            <span class="drawer-name">Md. Ahsanur Rahaman</span>
+            <span class="drawer-role">AI & Biomedical Researcher</span>
+          </div>
+        </div>
+        <button type="button" class="drawer-close-btn" id="drawerClose" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="drawer-body">
+        <span class="drawer-section-heading">EXPLORE & ACADEMICS</span>
+        <ul class="drawer-links-list">
+          <li>
+            <a href="#hero" class="drawer-link active">
+              <i class="fa-solid fa-house"></i>
+              <span class="drawer-link-text">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about" class="drawer-link">
+              <i class="fa-regular fa-user"></i>
+              <span class="drawer-link-text">About Me & Research</span>
+            </a>
+          </li>
+          <li>
+            <a href="#research" class="drawer-link drawer-highlight">
+              <i class="fa-solid fa-book-bookmark"></i>
+              <span class="drawer-link-text">Publications & Conferences</span>
+              <span class="drawer-pill-badge">3 Papers</span>
+            </a>
+          </li>
+          <li>
+            <a href="#projects" class="drawer-link">
+              <i class="fa-regular fa-folder-open"></i>
+              <span class="drawer-link-text">Projects & Systems</span>
+              <span class="drawer-pill-badge">15+</span>
+            </a>
+          </li>
+          <li>
+            <a href="#skills" class="drawer-link">
+              <i class="fa-solid fa-code"></i>
+              <span class="drawer-link-text">Technical Skills</span>
+            </a>
+          </li>
+          <li>
+            <a href="#education" class="drawer-link">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span class="drawer-link-text">Education & Highlights</span>
+            </a>
+          </li>
+          <li>
+            <a href="#profile-tabs" class="drawer-link">
+              <i class="fa-solid fa-award"></i>
+              <span class="drawer-link-text">Leadership & Activities</span>
+            </a>
+          </li>
+          <li>
+            <a href="Blogs/index.html" class="drawer-link">
+              <i class="fa-solid fa-blog"></i>
+              <span class="drawer-link-text">Technical Blogs</span>
+            </a>
+          </li>
+          <li>
+            <a href="#contact" class="drawer-link">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span class="drawer-link-text">Contact & Inquiries</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="drawer-callout-card">
+          <div class="callout-pill"><i class="fa-solid fa-graduation-cap"></i> Masters / PhD Aspirant</div>
+          <p>Seeking graduate research in BCI, Generative EEG Reconstruction & Deep Learning.</p>
+          <a href="mailto:mdahsanurrahaman2456@gmail.com" class="callout-email">
+            <i class="fa-regular fa-envelope"></i> mdahsanurrahaman2456@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <div class="drawer-footer">
+        <a href="documents/resume.pdf" target="_blank" class="drawer-resume-action">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span>Download Academic CV</span>
+        </a>
+        <div class="drawer-social-icons">
+          <a href="https://github.com/ahsanur-official" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/md-ahsanur-rahaman/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://x.com/ahsanur_rahaman" target="_blank" aria-label="X / Twitter"><i class="fab fa-x"></i></a>
+          <a href="https://medium.com/@md.ahsanur.rahaman" target="_blank" aria-label="Medium"><i class="fab fa-medium"></i></a>
+          <a href="https://www.facebook.com/mar.ahsan.33/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </aside>
 
     <div class="scroll-progress" id="scrollProgress" aria-hidden="true">
       <span class="scroll-progress-fill" id="scrollProgressFill"></span>
@@ -120,78 +209,268 @@
 
     <main class="container">
       <section id="hero">
-        <div class="eyebrow">Data Science • Engineering • Design</div>
-        <h1 class="hero-item">Data Scientist & Product-Minded Engineer</h1>
+        <div class="eyebrow"><i class="fa-solid fa-flask"></i> AI & Biomedical Research • Deep Learning • Data Science</div>
+        <h1 class="hero-item">AI Researcher & Data Scientist</h1>
         <p class="hero-sub hero-item">
-          I help founders and student teams turn messy data into dashboards, ML prototypes, and shippable web experiences.
+          Advancing Brain-Computer Interfaces (BCI), Reference-Conditioned EEG Signal Reconstruction (Movement-Aware CycleGAN & Diffusion Models), and Clinical Diagnostics alongside shippable web systems.
         </p>
         <p class="hero-body hero-item">
-          Based in Bangladesh and finishing my CSE degree at <b>Pundra University of Science and Technology</b>, I blend
-          <b>machine learning</b>, <b>analytics storytelling</b>, and <b>front-end craft</b> to ship reliable, insight-led
-          products people can use and trust.
+          Undergraduate CSE researcher at <b>Pundra University of Science and Technology</b>. 
+          My research specializes in <b>reference-conditioned generative reconstruction</b> (CycleGAN and Diffusion Models) to overcome signal corruption in motor imagery BCI and discover EEG biomarkers for early Parkinson's disease detection.
         </p>
         <div class="hero-ctas hero-item">
-          <a href="#projects" class="btn-primary">View Projects</a>
-          <a
-            href="#contact"
-            class="btn-ghost"
-            >Hire Me!</a
-          >
+          <a href="#research" class="btn-primary"><i class="fa-solid fa-book-bookmark"></i> Explore Publications</a>
+          <a href="#projects" class="btn-ghost"><i class="fa-regular fa-folder-open"></i> View Projects</a>
+          <a href="#contact" class="btn-ghost"><i class="fa-regular fa-paper-plane"></i> Get in Touch</a>
         </div>
         <div class="hero-highlights hero-item" aria-label="Quick highlights">
           <article class="hero-highlight-card">
-            <span class="highlight-label">Projects Delivered</span>
-            <strong>15+</strong>
-            <p>Data, frontend, and product-focused builds with real users.</p>
+            <span class="highlight-label">Peer-Reviewed Papers</span>
+            <strong>3 Papers</strong>
+            <p>2 Accepted (IEEE CSDE 2026, RICRF 2026) & 1 Submitted (ICEEICT 2027).</p>
           </article>
           <article class="hero-highlight-card">
-            <span class="highlight-label">Primary Focus</span>
-            <strong>Data + Product UX</strong>
-            <p>Turning complex data into interfaces that are fast to understand.</p>
+            <span class="highlight-label">Core Research</span>
+            <strong>BCI & Generative AI</strong>
+            <p>CycleGAN & Diffusion Models for EEG signal reconstruction & neurological diagnostics.</p>
           </article>
           <article class="hero-highlight-card">
-            <span class="highlight-label">Reply Time</span>
-            <strong>Within 24h</strong>
-            <p>Clear communication and dependable updates through each phase.</p>
+            <span class="highlight-label">Applied Systems</span>
+            <strong>15+ Builds</strong>
+            <p>End-to-end data apps, machine learning prototypes, and interactive tools.</p>
           </article>
         </div>
       </section>
 
       <section id="about">
         <div class="section-head">
-          <h2 class="section-title">About</h2>
+          <h2 class="section-title">About Me & Research</h2>
         </div>
         <div class="about-content">
           <div class="about-text">
             <p>
-              I'm an aspiring <b>data scientist</b> who turns messy data into
-              models and dashboards. I started with <b>algorithms and C/C++</b>,
-              leveled up with Python analytics, and now build ML prototypes
-              alongside polished web experiences.
+              I'm an aspiring <b>AI researcher and data scientist</b> dedicated to solving complex challenges at the nexus of 
+              <b>computational neuroscience</b>, <b>biomedical signal processing</b>, and <b>generative deep learning</b>.
             </p>
             <p>
-              My focus is <b>supervised learning</b>, <b>feature engineering</b>,
-              and <b>experiment design</b> with a bias for explainability and
-              clean handoff. I ship data stories, lightweight APIs, and UIs
-              that make insights actionable.
+              My primary research investigates <b>reference-conditioned EEG reconstruction</b> using <b>movement-aware CycleGANs</b> and 
+              <b>conditional diffusion models (DDPM)</b>. These models reconstruct high-fidelity, healthy-like neural signals to alleviate 
+              signal degradation in Motor Imagery Brain-Computer Interfaces (BCI) and enable non-invasive screening for neurodegenerative diseases like Parkinson's.
             </p>
             <p>
-              Comfortable with <b>Pandas</b>, <b>NumPy</b>,
-              <b>scikit-learn</b>, <b>SQL</b>, and visualization; currently
-              exploring <b>MLOps basics</b> and <b>deep learning</b> for
-              next-step projects.
+              Experienced in formulating rigorous empirical methodologies, training architectures in <b>PyTorch/TensorFlow</b>, 
+              benchmarking against Vision/Temporal Transformers and Self-Supervised Learning (SSL) baselines, and deploying analytical dashboards for actionable insights.
             </p>
             <div class="pill-row">
-              <span class="pill">ML prototyping</span>
-              <span class="pill">Feature engineering</span>
-              <span class="pill">A/B testing</span>
-              <span class="pill">Dashboarding</span>
-              <span class="pill">MLOps basics</span>
-              <span class="pill">Data storytelling</span>
+              <span class="pill">EEG Reconstruction</span>
+              <span class="pill">Movement-Aware CycleGAN</span>
+              <span class="pill">Conditional Diffusion (DDPM)</span>
+              <span class="pill">Motor Imagery BCI</span>
+              <span class="pill">Parkinson's Disease Detection</span>
+              <span class="pill">Transformers & SSL</span>
+              <span class="pill">PyTorch & Scikit-Learn</span>
+              <span class="pill">Biomedical Signal Processing</span>
             </div>
           </div>
           <div class="profile-pic-wrapper">
             <img src="images/ahsan.jpg" alt="Ahsanur Rahaman portrait" />
+          </div>
+        </div>
+
+        <!-- Interactive BCI Research Roadmap (Horizontal Scrollable Timeline) -->
+        <div class="roadmap-container" id="bciRoadmap">
+          <div class="roadmap-topbar">
+            <div class="roadmap-heading-group">
+              <div class="section-badge roadmap-badge">
+                <i class="fa-solid fa-timeline"></i> Research Trajectory
+              </div>
+              <h3 class="roadmap-title">BCI & Neural Engineering Roadmap</h3>
+              <p class="roadmap-desc">
+                An interactive chronologically structured timeline of my research journey—from physiological signal processing to movement-aware CycleGAN domain translation, reference-conditioned diffusion modeling, and clinical diagnostics.
+              </p>
+            </div>
+            <div class="roadmap-controls">
+              <div class="roadmap-indicator" id="roadmapIndicator" aria-live="polite">
+                <span class="roadmap-step-pill" id="roadmapStepPill">Phase 1 / 5</span>
+                <span class="roadmap-step-name" id="roadmapStepName">Signal Processing Foundations</span>
+              </div>
+              <div class="roadmap-btn-group" aria-label="Roadmap scroll controls">
+                <button type="button" class="roadmap-nav-btn" id="roadmapPrevBtn" aria-label="Scroll to previous phase" title="Previous Phase">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button type="button" class="roadmap-nav-btn" id="roadmapNextBtn" aria-label="Scroll to next phase" title="Next Phase">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Glowing Progress Track -->
+          <div class="roadmap-progress-bar-wrap" aria-hidden="true">
+            <div class="roadmap-progress-bar" id="roadmapProgressBar"></div>
+          </div>
+
+          <!-- Horizontal Scrollable Track -->
+          <div class="roadmap-track-container" id="roadmapTrack" role="region" aria-label="Horizontal research timeline" tabindex="0">
+            <div class="roadmap-track">
+              <!-- Phase 1 -->
+              <article class="roadmap-card active" data-phase="1" data-title="Signal Processing Foundations" data-year="2024" tabindex="0">
+                <div class="roadmap-card-header">
+                  <span class="roadmap-phase-num">01</span>
+                  <span class="roadmap-year-badge">2024</span>
+                  <span class="roadmap-type-tag">Foundation</span>
+                </div>
+                <h4 class="roadmap-card-title">Biomedical Signal Processing & Motor Kinematics</h4>
+                <p class="roadmap-card-desc">
+                  Rigorous characterization of non-stationary EEG, baseline drift correction, and mu/beta rhythm spectral dynamics during motor execution and imagery tasks.
+                </p>
+                <div class="roadmap-milestone-box">
+                  <i class="fa-solid fa-brain"></i>
+                  <span><b>Milestone:</b> Formulated channel-level statistics and derivative energy metrics for stroke BCI feature alignment.</span>
+                </div>
+                <div class="roadmap-card-tags">
+                  <span>MNE-Python</span>
+                  <span>Bandpass Filtering</span>
+                  <span>HEFMI-ICH Data</span>
+                  <span>$\mu/\beta$ Power</span>
+                </div>
+                <div class="roadmap-card-status">
+                  <span class="status-indicator-dot"></span> Active Selection
+                </div>
+              </article>
+
+              <!-- Phase 2 -->
+              <article class="roadmap-card" data-phase="2" data-title="Movement-Aware CycleGAN Architecture" data-year="2025" tabindex="0">
+                <div class="roadmap-card-header">
+                  <span class="roadmap-phase-num">02</span>
+                  <span class="roadmap-year-badge">2025</span>
+                  <span class="roadmap-type-tag highlight-accent">Architecture</span>
+                </div>
+                <h4 class="roadmap-card-title">Movement-Aware CycleGAN Formulation</h4>
+                <p class="roadmap-card-desc">
+                  Overcame the lack of paired before-and-after patient recordings using unpaired adversarial domain translation with healthy reference conditioning.
+                </p>
+                <div class="roadmap-milestone-box">
+                  <i class="fa-solid fa-network-wired"></i>
+                  <span><b>Breakthrough:</b> Designed 8-term composite objective (adversarial, cycle, identity, spectral, band-power, transient, anti-copy & movement preservation).</span>
+                </div>
+                <div class="roadmap-card-tags">
+                  <span>CycleGAN</span>
+                  <span>PyTorch</span>
+                  <span>Unpaired Translation</span>
+                  <span>Anti-Copy Loss</span>
+                </div>
+                <div class="roadmap-card-status">
+                  <span class="status-indicator-dot"></span> Click to inspect
+                </div>
+              </article>
+
+              <!-- Phase 3 -->
+              <article class="roadmap-card" data-phase="3" data-title="Validation & Dual Conference Acceptances" data-year="2025–2026" tabindex="0">
+                <div class="roadmap-card-header">
+                  <span class="roadmap-phase-num">03</span>
+                  <span class="roadmap-year-badge">2025–2026</span>
+                  <span class="roadmap-type-tag highlight-accepted">Dual Accepted</span>
+                </div>
+                <h4 class="roadmap-card-title">Subject-Level Holdout & Dual Acceptances</h4>
+                <p class="roadmap-card-desc">
+                  Benchmarked 180 held-out patient pairs. Proved movement loss prevents trivial copying (collapses composite validation $V$ from 70.95% to 0.34% if omitted).
+                </p>
+                <div class="roadmap-milestone-box">
+                  <i class="fa-solid fa-award"></i>
+                  <span><b>Accepted at:</b> <b>RICRF 2026</b> & <b>IEEE CSDE 2026</b> with 89.01% healthy similarity and 91.29% peak recovery.</span>
+                </div>
+                <div class="roadmap-card-tags">
+                  <span>180 Holdout Pairs</span>
+                  <span>Ablation Suite</span>
+                  <span>IEEE CSDE 2026</span>
+                  <span>RICRF 2026</span>
+                </div>
+                <div class="roadmap-card-status">
+                  <span class="status-indicator-dot"></span> Click to inspect
+                </div>
+              </article>
+
+              <!-- Phase 4 -->
+              <article class="roadmap-card" data-phase="4" data-title="Diffusion & Parkinson's Disease Screening" data-year="2026" tabindex="0">
+                <div class="roadmap-card-header">
+                  <span class="roadmap-phase-num">04</span>
+                  <span class="roadmap-year-badge">2026</span>
+                  <span class="roadmap-type-tag highlight-submitted">Under Review</span>
+                </div>
+                <h4 class="roadmap-card-title">Conditional Diffusion for Neurodegenerative Screening</h4>
+                <p class="roadmap-card-desc">
+                  Formulated reference-conditioned diffusion probabilistic models on 282 clinical recordings (OpenNeuro ds008768) for Parkinson's disease detection.
+                </p>
+                <div class="roadmap-milestone-box">
+                  <i class="fa-solid fa-microscope"></i>
+                  <span><b>Submitted to:</b> <b>ICEEICT 2027</b>. Corrected group-asymmetric artifact; Transformer achieved 0.751 AUROC with combined features.</span>
+                </div>
+                <div class="roadmap-card-tags">
+                  <span>Conditional DDPM</span>
+                  <span>Parkinson's Biomarkers</span>
+                  <span>Transformers</span>
+                  <span>ICEEICT 2027</span>
+                </div>
+                <div class="roadmap-card-status">
+                  <span class="status-indicator-dot"></span> Click to inspect
+                </div>
+              </article>
+
+              <!-- Phase 5 -->
+              <article class="roadmap-card" data-phase="5" data-title="Real-Time Closed-Loop BCI & Clinical Horizon" data-year="2026+ Horizon" tabindex="0">
+                <div class="roadmap-card-header">
+                  <span class="roadmap-phase-num">05</span>
+                  <span class="roadmap-year-badge">2026+ Horizon</span>
+                  <span class="roadmap-type-tag highlight-horizon">Masters / PhD Goal</span>
+                </div>
+                <h4 class="roadmap-card-title">Real-Time Closed-Loop BCI & Clinical Translation</h4>
+                <p class="roadmap-card-desc">
+                  Next-generation research direction: sub-50ms generative diffusion sampling for real-time neurofeedback and multi-center clinical trials.
+                </p>
+                <div class="roadmap-milestone-box">
+                  <i class="fa-solid fa-compass"></i>
+                  <span><b>Aspiration:</b> Closed-loop neural rehabilitation interfaces for real-time stroke and motor impairment therapy.</span>
+                </div>
+                <div class="roadmap-card-tags">
+                  <span>Sub-50ms Latency</span>
+                  <span>Closed-Loop BCI</span>
+                  <span>Multi-Center Trials</span>
+                  <span>Graduate Research</span>
+                </div>
+                <div class="roadmap-card-status">
+                  <span class="status-indicator-dot"></span> Click to inspect
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Deep-Dive Interactive Focus Spotlight Panel -->
+          <div class="roadmap-details-panel" id="roadmapDetailsPanel">
+            <div class="details-panel-icon"><i class="fa-solid fa-atom"></i></div>
+            <div class="details-panel-content">
+              <div class="details-panel-head">
+                <span class="details-panel-phase" id="detailPanelPhase">Phase 01 Spotlight</span>
+                <h4 class="details-panel-title" id="detailPanelTitle">Biomedical Signal Processing & Motor Kinematics (2024)</h4>
+              </div>
+              <p class="details-panel-text" id="detailPanelText">
+                Explored foundational time-series feature engineering on stroke and intracerebral-hemorrhage multi-channel EEG. Implemented adaptive bandpass filtering (0.5–45 Hz), independent component analysis (ICA) for ocular and muscular artifact rejection, and empirical mode decomposition to establish stable motor rhythm baselines.
+              </p>
+              <div class="details-panel-metrics" id="detailPanelMetrics">
+                <div class="panel-metric">
+                  <span class="metric-label">Dataset Benchmarked</span>
+                  <span class="metric-value">HEFMI-ICH Multi-Channel</span>
+                </div>
+                <div class="panel-metric">
+                  <span class="metric-label">Frequency Bands</span>
+                  <span class="metric-value">$\mu$ (8–12 Hz) & $\beta$ (13–30 Hz)</span>
+                </div>
+                <div class="panel-metric">
+                  <span class="metric-label">Core Technique</span>
+                  <span class="metric-value">Derivative Energy & Topography Matching</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -434,6 +713,359 @@
               <li>Usability reviews</li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section id="research" class="research-section">
+        <div class="section-head">
+          <div class="section-badge"><i class="fa-solid fa-microscope"></i> Scholarly Work</div>
+          <h2 class="section-title">Publications & Conferences</h2>
+          <p class="section-kicker">
+            Peer-reviewed conference proceedings and research explorations focusing on Generative Deep Learning,
+            Reference-Conditioned EEG Signal Reconstruction, Brain-Computer Interfaces (BCI), and Neurological Disease Detection.
+          </p>
+        </div>
+
+        <!-- Research Stats Bar -->
+        <div class="research-stats-grid" aria-label="Research highlights and metrics">
+          <div class="research-stat-card">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Total Papers</span>
+            <p class="stat-desc">Accepted & submitted peer-reviewed conference studies</p>
+          </div>
+          <div class="research-stat-card highlight-accepted">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Accepted</span>
+            <p class="stat-desc">RICRF 2026 & IEEE CSDE 2026</p>
+          </div>
+          <div class="research-stat-card highlight-submitted">
+            <span class="stat-number">1</span>
+            <span class="stat-label">Under Review</span>
+            <p class="stat-desc">ICEEICT 2027 (Diffusion-based diagnostic study)</p>
+          </div>
+          <div class="research-stat-card">
+            <span class="stat-number">6-Page</span>
+            <span class="stat-label">Full Length</span>
+            <p class="stat-desc">Rigorous empirical evaluations & ablations</p>
+          </div>
+        </div>
+
+        <!-- Research Filter & Search Toolbar -->
+        <div class="research-toolbar" aria-label="Research paper filters">
+          <div class="research-search-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="search"
+              id="researchSearch"
+              placeholder="Search by title, author, venue (IEEE, RICRF), or topic (BCI, Diffusion, CycleGAN)..."
+              aria-label="Search research papers"
+            />
+          </div>
+          <div class="research-filters" id="researchFilters">
+            <button type="button" class="research-filter-btn active" data-filter="all">
+              <i class="fa-solid fa-layer-group"></i> All Papers (3)
+            </button>
+            <button type="button" class="research-filter-btn" data-filter="accepted">
+              <i class="fa-solid fa-circle-check"></i> Accepted (2)
+            </button>
+            <button type="button" class="research-filter-btn" data-filter="submitted">
+              <i class="fa-solid fa-clock-rotate-left"></i> Submitted (1)
+            </button>
+            <button type="button" class="research-filter-btn" data-filter="bci">
+              <i class="fa-solid fa-brain"></i> BCI & Motor Imagery
+            </button>
+            <button type="button" class="research-filter-btn" data-filter="diffusion">
+              <i class="fa-solid fa-wave-square"></i> Diffusion & Parkinson's
+            </button>
+          </div>
+          <p class="research-count" id="researchCount" aria-live="polite">Showing 3 publications</p>
+        </div>
+
+        <!-- Research Papers List -->
+        <div class="research-list" id="researchList">
+          <!-- Paper 1 -->
+          <article class="research-card" data-category="accepted bci" data-id="paper-ricrf-2026">
+            <div class="research-card-header">
+              <div class="research-meta-tags">
+                <span class="badge-year"><i class="fa-regular fa-calendar"></i> 2026</span>
+                <span class="badge-type"><i class="fa-solid fa-users-rectangle"></i> Conference</span>
+                <span class="badge-venue">RICRF 2026</span>
+                <span class="badge-pages"><i class="fa-regular fa-file-lines"></i> 6 Pages</span>
+              </div>
+              <div class="research-status-pill status-accepted">
+                <span class="pulse-dot"></span>
+                <strong>Accepted</strong>
+              </div>
+            </div>
+
+            <h3 class="research-title">
+              "Reference-Conditioned Healthy-Like EEG Reconstruction Using Movement-Aware CycleGAN for Motor Imagery BCI."
+            </h3>
+
+            <div class="research-authors">
+              <i class="fa-solid fa-user-pen author-icon"></i>
+              <span>Md. Masjidul Islam, <strong class="author-highlight">Md. Ahsanur Rahaman</strong>, Mrittika Mahbub</span>
+            </div>
+
+            <div class="research-venue-line">
+              <i class="fa-solid fa-landmark"></i>
+              <span>International Conference on Robotics, Intelligent Computing and Pattern Recognition (RICRF 2026)</span>
+            </div>
+
+            <p class="research-summary">
+              Proposes a movement-aware CycleGAN converting stroke and intracerebral-hemorrhage motor-imagery recordings into healthy-like reconstructions while preserving movement intent. Across a 180-pair withheld patient pool, the model achieved <strong>70.95% ± 6.71%</strong> on the combined evaluation objective and <strong>89.01% ± 3.14%</strong> similarity to genuine healthy activity (peaking at 91.29%), substantially outperforming trivial reference-copying baselines (66.83% ± 2.89%).
+            </p>
+
+            <div class="research-details-collapse" id="details-ricrf-2026">
+              <div class="research-details-inner">
+                <div class="detail-block">
+                  <h4><i class="fa-solid fa-file-lines"></i> Official Conference Abstract</h4>
+                  <p class="abstract-text">
+                    Stroke often leaves survivors with lasting upper-limb impairment, and motor-imagery brain-computer interfaces, which decode intended movement from brain activity, are studied as a rehabilitation aid. A major obstacle is that patients differ widely in how their brain activity reorganizes after injury, so no single recording exists showing the same patient both impaired and fully recovered, which prevents directly learning a stroke-to-healthy mapping. This study proposes a movement-aware CycleGAN, a generative adversarial network trained to translate between two unmatched signal domains, that converts stroke and intracerebral-hemorrhage motor-imagery recordings into healthy-like reconstructions while preserving the intended movement. For every stroke recording, a matching healthy reference sharing the same movement intent is retrieved using channel-level statistics and characteristic brain-wave frequency energy. A conditional generator then transforms the stroke recording toward the healthy pattern under a combined training objective that includes adversarial, cycle-consistency, identity, frequency-matching, transient-shape, anti-copying, and movement preservation components, preventing the network from simply reproducing the reference instead of genuinely transforming the input. Using an evaluation protocol in which entire patients, rather than individual recordings, were withheld for testing, the model reached its best validation similarity of 70.03% at epoch 48, settling to 67.24% by the final epoch. Averaged across the full 180-pair withheld patient pool, the model achieved 70.95% ± 6.71% on the combined evaluation objective and 89.01% ± 3.14% similarity to genuine healthy activity, clearly outperforming a baseline that trivially copies the reference signal, which reached only 66.83% ± 2.89% healthy-domain similarity despite scoring 78.81% ± 2.71% on the combined objective. The strongest individual example reached 91.29% similarity to healthy activity while retaining 80.09% of the original movement pattern. These findings demonstrate that healthy-like brain-activity reconstruction is feasible without patient-matched before-and-after recordings, though outputs remain computational approximations rather than verified indicators of clinical recovery, motivating further validation before any clinical use.
+                  </p>
+                  <p class="index-terms">
+                    <strong>Keywords:</strong> EEG, Motor Imagery, Brain-Computer Interface, CycleGAN, Stroke Rehabilitation.
+                  </p>
+                </div>
+                <div class="detail-block">
+                  <h4><i class="fa-solid fa-bullseye"></i> Key Contributions & Methodological Highlights</h4>
+                  <ul>
+                    <li>Formulates an 8-term training objective: adversarial, cycle-consistency, identity, frequency-matching, transient-shape, anti-copying, and movement-preservation losses.</li>
+                    <li>Strict patient-level holdout protocol: entire stroke patients (180 trial pairs) withheld for rigorous generalization testing without data leakage.</li>
+                    <li>Achieved 89.01% ± 3.14% healthy-domain similarity and demonstrated 91.29% peak recovery similarity with 80.09% movement pattern retention.</li>
+                  </ul>
+                </div>
+                <div class="detail-block bibtex-block">
+                  <div class="bibtex-header">
+                    <h4><i class="fa-solid fa-code"></i> BibTeX</h4>
+                    <button type="button" class="btn-copy-code" data-target="bib-ricrf-2026" title="Copy BibTeX">
+                      <i class="fa-regular fa-copy"></i> Copy
+                    </button>
+                  </div>
+                  <pre><code id="bib-ricrf-2026">@inproceedings{islam2026ricrf,
+  title={Reference-Conditioned Healthy-Like EEG Reconstruction Using Movement-Aware CycleGAN for Motor Imagery BCI},
+  author={Islam, Md. Masjidul and Rahaman, Md. Ahsanur and Mahbub, Mrittika},
+  booktitle={Proceedings of the International Conference on Robotics, Intelligent Computing and Pattern Recognition (RICRF)},
+  year={2026},
+  pages={1--6},
+  status={Accepted}
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="research-card-footer">
+              <div class="research-tags">
+                <span>EEG</span>
+                <span>Motor Imagery</span>
+                <span>Brain-Computer Interface</span>
+                <span>CycleGAN</span>
+                <span>Stroke Rehabilitation</span>
+              </div>
+              <div class="research-actions">
+                <button type="button" class="btn-research-action btn-toggle-details" data-target="details-ricrf-2026">
+                  <i class="fa-solid fa-circle-info"></i> <span class="toggle-text">Details & Abstract</span>
+                </button>
+                <button type="button" class="btn-research-action btn-copy-cite" data-cite="Islam, M. M., Rahaman, M. A., & Mahbub, M. (2026). Reference-Conditioned Healthy-Like EEG Reconstruction Using Movement-Aware CycleGAN for Motor Imagery BCI. International Conference on Robotics, Intelligent Computing and Pattern Recognition (RICRF 2026), 6 Pages. Accepted.">
+                  <i class="fa-regular fa-copy"></i> Copy Citation
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Paper 2 -->
+          <article class="research-card" data-category="accepted bci" data-id="paper-ieee-csde-2026">
+            <div class="research-card-header">
+              <div class="research-meta-tags">
+                <span class="badge-year"><i class="fa-regular fa-calendar"></i> 2026</span>
+                <span class="badge-type"><i class="fa-solid fa-users-rectangle"></i> Conference</span>
+                <span class="badge-venue badge-ieee"><i class="fa-solid fa-certificate"></i> IEEE CSDE 2026</span>
+                <span class="badge-pages"><i class="fa-regular fa-file-lines"></i> 6 Pages</span>
+              </div>
+              <div class="research-status-pill status-accepted">
+                <span class="pulse-dot"></span>
+                <strong>Accepted</strong>
+              </div>
+            </div>
+
+            <h3 class="research-title">
+              "Reference-Conditioned Healthy-Like EEG Reconstruction Using Movement-Aware CycleGAN for Motor Imagery BCI."
+            </h3>
+
+            <div class="research-authors">
+              <i class="fa-solid fa-user-pen author-icon"></i>
+              <span>Md. Masjidul Islam, <strong class="author-highlight">Md. Ahsanur Rahaman</strong>, Mrittika Mahbub</span>
+            </div>
+
+            <div class="research-venue-line">
+              <i class="fa-solid fa-landmark"></i>
+              <span>IEEE Asia-Pacific Conference on Computer Science and Data Engineering (IEEE CSDE 2026)</span>
+            </div>
+
+            <p class="research-summary">
+              Presents a movement-aware CycleGAN reconstructing healthy-like EEG from stroke and intracerebral-hemorrhage motor-imagery trials for stroke rehabilitation BCI. Comparing 32-channel Run A, 23-channel Run B, and 23-channel cross-dataset Run C across 180 held-out trial pairs, Run A reached <strong>89.01% ± 3.14%</strong> healthy-domain similarity (S<sub>H</sub>) and <strong>70.95% ± 6.71%</strong> composite validation score (V). Critically proves that removing movement consistency collapses V to 0.34% despite S<sub>H</sub> rising to 91.84%.
+            </p>
+
+            <div class="research-details-collapse" id="details-ieee-csde-2026">
+              <div class="research-details-inner">
+                <div class="detail-block">
+                  <h4><i class="fa-solid fa-file-lines"></i> Official Conference Abstract</h4>
+                  <p class="abstract-text">
+                    This paper presents a movement-aware CycleGAN that reconstructs healthy-like EEG from stroke and intracerebral-hemorrhage motor-imagery trials for stroke-rehabilitation BCI. Given a stroke epoch, the model retrieves a same-label healthy reference via nearest-neighbor matching over channel statistics, derivative energy, and mu/beta band power, then a conditional generator maps the stroke signal toward the healthy domain under eight objectives (adversarial, cycle-consistency, identity, spectral, band-power, transient, anti-copy, and movement-consistency). Under an identical subject-level holdout protocol, three configurations are compared (32-channel HEFMI-ICH-only Run A, 23-channel Run B, and 23-channel cross-dataset-augmented Run C, the primary configuration), together with five single-term loss ablations, two alternative-conditioning baselines, subject-level 5-fold cross-validation, trial-level bootstrap and Wilcoxon significance testing, a downstream motor-imagery classification benchmark, and a corrected, fully-measured 20-channel out-of-distribution check on an independent lower-limb dataset. Run A reached 89.01% ± 3.14% healthy-domain similarity (SH) and a 70.95% ± 6.71% composite validation objective (V) over 180 held-out trial pairs, versus 78.81% ± 2.71% V for a trivial identity-mapping baseline. Removing the movement-consistency loss collapses V from 70.95% to 0.34% despite SH increasing to 91.84%, directly confirming that healthy-similarity alone is an unreliable indicator of genuine reconstruction. These results support the feasibility of subject-level held-out healthy-like reconstruction, though the output should be read as a computational estimate rather than a medically verified recovery signal.
+                  </p>
+                  <p class="index-terms">
+                    <strong>Index Terms:</strong> EEG, motor imagery, stroke rehabilitation, brain-computer interface, CycleGAN, domain adaptation, signal reconstruction, ablation study, cross-validation.
+                  </p>
+                </div>
+                <div class="detail-block">
+                  <h4><i class="fa-solid fa-bullseye"></i> Key Contributions & Validation Suite</h4>
+                  <ul>
+                    <li>Evaluated three configurations: 32-channel HEFMI-ICH Run A, 23-channel Run B, and 23-channel cross-dataset Run C.</li>
+                    <li>Comprehensive validation: 5 single-term loss ablations, 2 alternative conditioning baselines, subject-level 5-fold CV, and Wilcoxon significance testing.</li>
+                    <li>Downstream motor-imagery classification benchmark + corrected 20-channel out-of-distribution lower-limb evaluation.</li>
+                    <li>Accepted in IEEE Xplore Scopus-indexed conference track.</li>
+                  </ul>
+                </div>
+                <div class="detail-block bibtex-block">
+                  <div class="bibtex-header">
+                    <h4><i class="fa-solid fa-code"></i> BibTeX</h4>
+                    <button type="button" class="btn-copy-code" data-target="bib-csde-2026" title="Copy BibTeX">
+                      <i class="fa-regular fa-copy"></i> Copy
+                    </button>
+                  </div>
+                  <pre><code id="bib-csde-2026">@inproceedings{islam2026ieeecsde,
+  title={Reference-Conditioned Healthy-Like EEG Reconstruction Using Movement-Aware CycleGAN for Motor Imagery BCI},
+  author={Islam, Md. Masjidul and Rahaman, Md. Ahsanur and Mahbub, Mrittika},
+  booktitle={IEEE Asia-Pacific Conference on Computer Science and Data Engineering (CSDE)},
+  year={2026},
+  pages={1--6},
+  publisher={IEEE},
+  status={Accepted}
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="research-card-footer">
+              <div class="research-tags">
+                <span>EEG</span>
+                <span>Motor Imagery</span>
+                <span>Stroke Rehabilitation</span>
+                <span>BCI</span>
+                <span>CycleGAN</span>
+                <span>Domain Adaptation</span>
+                <span>Ablation Study</span>
+                <span>Cross-Validation</span>
+              </div>
+              <div class="research-actions">
+                <button type="button" class="btn-research-action btn-toggle-details" data-target="details-ieee-csde-2026">
+                  <i class="fa-solid fa-circle-info"></i> <span class="toggle-text">Details & Abstract</span>
+                </button>
+                <button type="button" class="btn-research-action btn-copy-cite" data-cite="Islam, M. M., Rahaman, M. A., & Mahbub, M. (2026). Reference-Conditioned Healthy-Like EEG Reconstruction Using Movement-Aware CycleGAN for Motor Imagery BCI. IEEE Asia-Pacific Conference on Computer Science and Data Engineering (IEEE CSDE 2026), 6 Pages. Accepted.">
+                  <i class="fa-regular fa-copy"></i> Copy Citation
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Paper 3 -->
+          <article class="research-card" data-category="submitted diffusion" data-id="paper-iceeict-2027">
+            <div class="research-card-header">
+              <div class="research-meta-tags">
+                <span class="badge-year"><i class="fa-regular fa-calendar"></i> 2026</span>
+                <span class="badge-type"><i class="fa-solid fa-users-rectangle"></i> Conference</span>
+                <span class="badge-venue">ICEEICT 2027</span>
+                <span class="badge-pages"><i class="fa-regular fa-file-lines"></i> 6 Pages</span>
+              </div>
+              <div class="research-status-pill status-submitted">
+                <span class="pulse-dot"></span>
+                <strong>Submitted / Under Review</strong>
+              </div>
+            </div>
+
+            <h3 class="research-title">
+              "Reference-Conditioned Diffusion-Based EEG Reconstruction for Parkinson's Disease Detection: A Comparative Evaluation with Transformer and Self-Supervised Baselines."
+            </h3>
+
+            <div class="research-authors">
+              <i class="fa-solid fa-user-pen author-icon"></i>
+              <span>Md. Masjidul Islam, <strong class="author-highlight">Md. Ahsanur Rahaman</strong>, Mrittika Mahbub, Suraiya Jahan</span>
+            </div>
+
+            <div class="research-venue-line">
+              <i class="fa-solid fa-landmark"></i>
+              <span>International Conference on Electrical, Computer and Communication Engineering (ICEEICT 2027)</span>
+            </div>
+
+            <p class="research-summary">
+              Investigates a reference-conditioned EEG framework transforming Parkinson's disease (PD) patient signals toward a healthy representation across 282 recordings (175 PD, 107 controls, ds008768) with 3-fold subject-level CV. Following discovery and correction of a group-asymmetric artifact, the Transformer achieved the highest mean AUROC of <strong>0.751</strong> (69.2% accuracy, 0.729 F1-score) using combined raw/reconstructed features, while conditional diffusion achieved <strong>0.633</strong> AUROC and MAE achieved <strong>0.695–0.725</strong>.
+            </p>
+
+            <div class="research-details-collapse" id="details-iceeict-2027">
+              <div class="research-details-inner">
+                <div class="detail-block">
+                  <h4><i class="fa-solid fa-file-lines"></i> Official Conference Abstract</h4>
+                  <p class="abstract-text">
+                    We present a reference-conditioned EEG framework for Parkinson’s disease (PD) that transforms patient EEG toward a healthy-reference representation to assess disease discrimination. A conditional diffusion model is compared with a Transformer and masked autoencoder (MAE) under a unified protocol. We used 3-fold subject-level CV on 282 recordings (175 PD, 107 controls) from ds008768 resting EEG. References were selected from fold-training data using task, sex, age, and band-power matching. The framework combines reference reconstruction, spectral and band-power constraints, anti-copy regularization, and disease-consistency objectives, followed by subject classification. Development identified a group-asymmetric artifact: healthy controls bypassed reconstruction while PD samples were transformed, causing spuriously near-perfect separability. We corrected this by applying an identical pathway to both groups. Under the corrected protocol, the Transformer achieved the highest mean AUROC of 0.751 using combined raw/reconstructed features, with 69.2% accuracy and 0.729 F1-score. Its reconstructed features alone achieved 0.705 AUROC. Diffusion reconstruction achieved 0.633 AUROC versus 0.699 for its raw baseline, while MAE achieved 0.695–0.725 depending on the classifier. These results indicate that diffusion reconstruction alone does not yet provide a consistent disease-discriminative advantage. Confusion matrices, ablations, computational cost, and reconstruction diagnostics provide a reproducible baseline for clinical EEG evaluation. Fold variation and limited reconstruction benefit support cautious interpretation and broader subject-level validation with severity labels, independent cohorts, prospective testing, larger clinical populations, diverse patients, and external validation.
+                  </p>
+                  <p class="index-terms">
+                    <strong>Index Terms:</strong> EEG; Parkinson’s disease; diffusion models; reference-conditioned reconstruction; Transformer; masked autoencoder; brain-computer interface; subject-level cross-validation.
+                  </p>
+                </div>
+                <div class="detail-block">
+                  <h4><i class="fa-solid fa-bullseye"></i> Key Contributions & Methodological Highlights</h4>
+                  <ul>
+                    <li>Benchmark on 282 clinical recordings (175 PD, 107 controls) from OpenNeuro ds008768 under 3-fold subject-level cross-validation.</li>
+                    <li>Uncovered and corrected a critical group-asymmetric pipeline artifact ensuring unbiased evaluation across disease classes.</li>
+                    <li>Comparative evaluation between Conditional Diffusion (DDPM), Transformer architectures, and Masked Autoencoder (MAE) baselines.</li>
+                    <li>Established reproducibility benchmarks with full confusion matrices, ablation profiles, and computational cost profiling.</li>
+                  </ul>
+                </div>
+                <div class="detail-block bibtex-block">
+                  <div class="bibtex-header">
+                    <h4><i class="fa-solid fa-code"></i> BibTeX</h4>
+                    <button type="button" class="btn-copy-code" data-target="bib-iceeict-2027" title="Copy BibTeX">
+                      <i class="fa-regular fa-copy"></i> Copy
+                    </button>
+                  </div>
+                  <pre><code id="bib-iceeict-2027">@inproceedings{islam2027iceeict,
+  title={Reference-Conditioned Diffusion-Based EEG Reconstruction for Parkinson's Disease Detection: A Comparative Evaluation with Transformer and Self-Supervised Baselines},
+  author={Islam, Md. Masjidul and Rahaman, Md. Ahsanur and Mahbub, Mrittika and Jahan, Suraiya},
+  booktitle={International Conference on Electrical, Computer and Communication Engineering (ICEEICT)},
+  year={2027},
+  pages={1--6},
+  status={Submitted}
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="research-card-footer">
+              <div class="research-tags">
+                <span>EEG</span>
+                <span>Parkinson’s Disease</span>
+                <span>Diffusion Models</span>
+                <span>Reference-Conditioned Reconstruction</span>
+                <span>Transformer</span>
+                <span>Masked Autoencoder</span>
+                <span>BCI</span>
+                <span>Subject-Level Cross-Validation</span>
+              </div>
+              <div class="research-actions">
+                <button type="button" class="btn-research-action btn-toggle-details" data-target="details-iceeict-2027">
+                  <i class="fa-solid fa-circle-info"></i> <span class="toggle-text">Details & Abstract</span>
+                </button>
+                <button type="button" class="btn-research-action btn-copy-cite" data-cite="Islam, M. M., Rahaman, M. A., Mahbub, M., & Jahan, S. (2026). Reference-Conditioned Diffusion-Based EEG Reconstruction for Parkinson's Disease Detection: A Comparative Evaluation with Transformer and Self-Supervised Baselines. International Conference on Electrical, Computer and Communication Engineering (ICEEICT 2027), 6 Pages. Submitted.">
+                  <i class="fa-regular fa-copy"></i> Copy Citation
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="research-no-results" id="researchNoResults" style="display: none;">
+          <i class="fa-solid fa-flask-vial"></i>
+          <p>No matching publications found for this search or filter.</p>
         </div>
       </section>
 
@@ -780,112 +1412,200 @@
 
       <section id="education">
         <div class="section-head">
+          <div class="section-badge"><i class="fa-solid fa-graduation-cap"></i> Academic Trajectory</div>
           <h2 class="section-title">Education & Highlights</h2>
+          <p class="section-kicker">
+            Academic qualifications, coursework foundation in computer science and artificial intelligence, and competitive achievements.
+          </p>
         </div>
         <div class="grid-container education-grid">
-          <div class="card">
-            <div class="card-top">
-              <i class="fa-solid fa-graduation-cap icon"></i>
-              <span class="tag">B.Sc. CSE</span>
+          <!-- Card 1: Degree & Academic Institutions -->
+          <div class="card edu-card">
+            <div class="edu-card-top">
+              <div class="edu-icon-wrap">
+                <i class="fa-solid fa-graduation-cap icon"></i>
+              </div>
+              <span class="tag tag-primary">B.Sc. in CSE</span>
             </div>
-            <h3>Pundra University of Science & Technology</h3>
-            <p>
-              2023 — Present · Bogura, BD.
-            </p>
-            <br>
-            <div class="card-top">
-              <i class="fa-solid fa-graduation-cap icon"></i>
-              <span class="tag">HSC</span>
+
+            <div class="edu-institution-block">
+              <h3 class="edu-institution-title">Pundra University of Science & Technology</h3>
+              <p class="edu-meta">
+                <span class="edu-degree">Bachelor of Science in Computer Science & Engineering</span>
+                <span class="edu-date"><i class="fa-regular fa-calendar"></i> 2023 — Present · Bogura, Bangladesh</span>
+              </p>
+              
+              <div class="edu-details-box">
+                <div class="edu-detail-row">
+                  <span class="edu-detail-label"><i class="fa-solid fa-brain"></i> Major Focus:</span>
+                  <span class="edu-detail-val">Artificial Intelligence, Biomedical Signal Processing & Generative Deep Learning</span>
+                </div>
+                <div class="edu-detail-row">
+                  <span class="edu-detail-label"><i class="fa-solid fa-book-open"></i> Coursework:</span>
+                  <span class="edu-detail-val">Machine Learning, Neural Networks, Biomedical Signals, Data Structures, Algorithms, Discrete Mathematics, Probability & Statistics</span>
+                </div>
+                <div class="edu-detail-row">
+                  <span class="edu-detail-label"><i class="fa-solid fa-user-tie"></i> Leadership:</span>
+                  <span class="edu-detail-val">Convener, BASIS Students' Forum PUB Chapter · General Secretary, PUB Computer & Programming Club</span>
+                </div>
+              </div>
             </div>
-            <h3>Govt. Shah Sultan College</h3>
-            <p>
-              2021 · Bogura, BD.
+
+            <div class="edu-divider"></div>
+
+            <div class="edu-institution-block secondary">
+              <div class="edu-card-top mini-top">
+                <div class="edu-icon-wrap mini">
+                  <i class="fa-solid fa-school icon"></i>
+                </div>
+                <span class="tag tag-secondary">HSC · Science</span>
+              </div>
+              <h3 class="edu-institution-title">Govt. Shah Sultan College</h3>
+              <p class="edu-meta">
+                <span class="edu-degree">Higher Secondary Certificate (HSC) — Science</span>
+                <span class="edu-date"><i class="fa-regular fa-calendar"></i> 2019 — 2021 · Bogura, Bangladesh</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: Honors & Competitive Achievements -->
+          <div class="card edu-card">
+            <div class="edu-card-top">
+              <div class="edu-icon-wrap accent-wrap">
+                <i class="fa-solid fa-trophy icon"></i>
+              </div>
+              <span class="tag tag-accent">Honors & Awards</span>
+            </div>
+            <h3 class="edu-institution-title">Selected Achievements & Competitions</h3>
+            <p class="edu-section-intro">
+              Competitive programming recognitions, hackathon podium placements, and research contributions during undergraduate studies.
             </p>
 
-          </div>
-          <div class="card">
-            <div class="card-top">
-              <i class="fa-solid fa-trophy icon"></i>
-              <span class="tag">Highlights</span>
+            <div class="achievement-list">
+              <div class="achievement-tile">
+                <div class="achievement-tile-icon"><i class="fa-solid fa-medal"></i></div>
+                <div class="achievement-tile-content">
+                  <div class="achievement-tile-header">
+                    <strong class="achievement-name">1st Runner-up</strong>
+                    <span class="achievement-year">2023</span>
+                  </div>
+                  <span class="achievement-event">Beginner's Programming Contest (PUPC)</span>
+                  <p class="achievement-desc">Demonstrated algorithmic problem solving and rapid debugging under competitive constraints.</p>
+                </div>
+              </div>
+
+              <div class="achievement-tile">
+                <div class="achievement-tile-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="achievement-tile-content">
+                  <div class="achievement-tile-header">
+                    <strong class="achievement-name">Hackathon Winner</strong>
+                    <span class="achievement-year">2025</span>
+                  </div>
+                  <span class="achievement-event">Special Category Winner · CSE FEST 2025</span>
+                  <p class="achievement-desc">Recognized for rapid prototyping and innovative software engineering under hackathon timeframes.</p>
+                </div>
+              </div>
+
+              <div class="achievement-tile">
+                <div class="achievement-tile-icon"><i class="fa-solid fa-palette"></i></div>
+                <div class="achievement-tile-content">
+                  <div class="achievement-tile-header">
+                    <strong class="achievement-name">Design Winner</strong>
+                    <span class="achievement-year">2024</span>
+                  </div>
+                  <span class="achievement-event">CSE Department Official Logo Contest</span>
+                  <p class="achievement-desc">Selected as the official department branding symbol organized by the Dept. of CSE, PUB.</p>
+                </div>
+              </div>
+
+              <div class="achievement-tile highlight">
+                <div class="achievement-tile-icon"><i class="fa-solid fa-file-signature"></i></div>
+                <div class="achievement-tile-content">
+                  <div class="achievement-tile-header">
+                    <strong class="achievement-name">Research Contributor & Presenter</strong>
+                    <span class="achievement-year">2026</span>
+                  </div>
+                  <span class="achievement-event">IEEE CSDE 2026 & RICRF 2026</span>
+                  <p class="achievement-desc">Author of two accepted 6-page research papers in EEG signal reconstruction and BCI motor imagery.</p>
+                </div>
+              </div>
             </div>
-            <h3>Selected Achievements</h3>
-            <ul class="list">
-              <li>
-                <strong>1st Runner-up</strong> - Beginner's Programming Contest 2023
-                <br>
-                <span style="font-size: 0.9em; opacity: 0.8;">Organized by Pundra University Programming Club (PUPC)</span>
-              </li>
-              <li>
-                <strong>Winner</strong> - CSE Department Logo Contest 2024
-                <br>
-                <span style="font-size: 0.9em; opacity: 0.8;">Organized by Department of CSE, PUB</span>
-              </li>
-              <li>
-                <strong>Hackathon Winner</strong> - Special Category 2025
-                <br>
-                <span style="font-size: 0.9em; opacity: 0.8;">Organized in CSE FEST - 2025</span>
-              </li>
-            </ul>
           </div>
         </div>
       </section>
 
       <section id="profile-tabs">
         <div class="section-head">
+          <div class="section-badge"><i class="fa-solid fa-layer-group"></i> Portfolio Deep Dive</div>
           <h2 class="section-title">Deep Dive</h2>
+          <p class="section-kicker">
+            Student leadership milestones, verified credentials & certifications, and academic research experiences.
+          </p>
         </div>
-        <div class="tab-container">
-          <div class="tabs">
-            <button class="tab-link active" data-tab="Leadership">Leadership</button>
-            <button class="tab-link" data-tab="Achievement">
-              Certifications
-            </button>
-            <button class="tab-link" data-tab="Experiences">Experiences</button>
+        <div class="tab-container modern-tab-container">
+          <div class="tab-header-wrap">
+            <div class="tabs modern-tabs" role="tablist">
+              <button class="tab-link active" data-tab="Leadership" role="tab" aria-selected="true">
+                <i class="fa-solid fa-users"></i> <span>Leadership</span>
+              </button>
+              <button class="tab-link" data-tab="Achievement" role="tab" aria-selected="false">
+                <i class="fa-solid fa-certificate"></i> <span>Certifications</span>
+              </button>
+              <button class="tab-link" data-tab="Experiences" role="tab" aria-selected="false">
+                <i class="fa-solid fa-briefcase"></i> <span>Experiences</span>
+              </button>
+            </div>
           </div>
           <div class="tab-content">
-            <div id="Leadership" class="tab-panel active">
-              <div class="leadership-container">
-                <div class="leadership-card">
-                  <h3>Convener (Sept, 2025 - Sept, 2026)</h3>
-                  <p class="institution">BASIS Students' Forum PUB Chapter</p>
-                  <p>
-                    Collaborated with students and faculty to promote IT
-                    development and foster career growth.
+            <div id="Leadership" class="tab-panel active" role="tabpanel">
+              <div class="leadership-container modern-leadership-grid">
+                <div class="leadership-card modern-glass-card">
+                  <div class="leadership-card-top">
+                    <span class="leadership-role-badge"><i class="fa-solid fa-shield-halved"></i> Convener</span>
+                    <span class="leadership-date">Sept 2025 — Sept 2026</span>
+                  </div>
+                  <h3 class="leadership-title">BASIS Students' Forum PUB Chapter</h3>
+                  <p class="institution">Pundra University of Science & Technology</p>
+                  <p class="leadership-desc">
+                    Spearheading student-industry partnerships, organizing tech seminars, and connecting computer science undergraduates with national IT development opportunities through BASIS.
                   </p>
                 </div>
-                <div class="leadership-card">
-                  <h3>Executive Member (Sept, 2024 - Sept, 2025)</h3>
-                  <p class="institution">BASIS Students' Forum PUB Chapter</p>
-                  <p>
-                    Collaborated with students and faculty to promote IT
-                    development and foster career growth.
+
+                <div class="leadership-card modern-glass-card">
+                  <div class="leadership-card-top">
+                    <span class="leadership-role-badge"><i class="fa-solid fa-terminal"></i> General Secretary</span>
+                    <span class="leadership-date">2026</span>
+                  </div>
+                  <h3 class="leadership-title">PUB Computer & Programming Club (PUPC)</h3>
+                  <p class="institution">Department of CSE, PUB</p>
+                  <p class="leadership-desc">
+                    Managing executive operations, structuring weekly competitive programming practice rounds, coordinating beginner onboarding, and organizing inter-university contests.
                   </p>
                 </div>
-                <div class="leadership-card">
-                  <h3>General Secretary (2026)</h3>
-                  <p class="institution">PUB Computer & Programming Club</p>
-                  <p>
-                    Drove competitive programming culture, mentoring peers on
-                    problem solving and tech careers.
+
+                <div class="leadership-card modern-glass-card">
+                  <div class="leadership-card-top">
+                    <span class="leadership-role-badge"><i class="fa-solid fa-code"></i> Vice President (CP Community)</span>
+                    <span class="leadership-date">2025</span>
+                  </div>
+                  <h3 class="leadership-title">PUB Computer & Programming Club</h3>
+                  <p class="institution">Competitive Programming Wing</p>
+                  <p class="leadership-desc">
+                    Mentored junior students on data structures and algorithms, organized mock programming contests on online judges, and fostered an active problem-solving culture.
                   </p>
                 </div>
-                <div class="leadership-card">
-                  <h3>Vice President - CP Community (2025)</h3>
-                  <p class="institution">PUB Computer & Programming Club</p>
-                  <p>
-                    Drove competitive programming culture, mentoring peers on
-                    problem solving and tech careers.
+
+                <div class="leadership-card modern-glass-card">
+                  <div class="leadership-card-top">
+                    <span class="leadership-role-badge"><i class="fa-solid fa-id-badge"></i> Executive Member</span>
+                    <span class="leadership-date">Sept 2024 — Sept 2025</span>
+                  </div>
+                  <h3 class="leadership-title">BASIS Students' Forum PUB Chapter</h3>
+                  <p class="institution">Pundra University of Science & Technology</p>
+                  <p class="leadership-desc">
+                    Collaborated with faculty mentors and student peers to coordinate tech festivals, hackathons, and software showcase workshops.
                   </p>
                 </div>
-              
-              <div class="leadership-card">
-                <h3>Vice-Chairperson (Technical) (2025 - 2026)</h3>
-                <p class="institution">IEEE PUB Student Branch</p>
-                <p>
-                  Leading technical initiatives and fostering innovation within
-                  the IEEE student community.
-                </p>
-              </div>
               </div>
             </div>
 
@@ -1288,12 +2008,69 @@
               </div>
             </div>
 
-            <div id="Experiences" class="tab-panel">
-
-                <div class="experience-card">
-                  <p>
-                    Undergraduate CSE Student @PUB
+            <div id="Experiences" class="tab-panel" role="tabpanel">
+              <div class="experiences-grid modern-experiences-grid">
+                <div class="experience-card modern-glass-card">
+                  <div class="experience-card-top">
+                    <div class="exp-role-group">
+                      <span class="exp-tag tag-primary"><i class="fa-solid fa-microscope"></i> Research</span>
+                      <h3 class="exp-title">Undergraduate AI & BCI Researcher</h3>
+                      <p class="institution">Biomedical Signal Processing & Generative Deep Learning · PUB</p>
+                    </div>
+                    <span class="exp-date">2024 — Present</span>
+                  </div>
+                  <p class="exp-desc">
+                    Formulating reference-conditioned generative EEG reconstruction frameworks (CycleGAN & DDPM) for stroke rehabilitation motor-imagery BCI and Parkinson's disease diagnostic biomarker discovery. Author of 2 accepted conference papers (RICRF 2026, IEEE CSDE 2026) and 1 under review (ICEEICT 2027).
                   </p>
+                  <div class="exp-tech-row">
+                    <span>PyTorch</span>
+                    <span>MNE-Python</span>
+                    <span>CycleGAN</span>
+                    <span>DDPM Diffusion</span>
+                    <span>Scikit-Learn</span>
+                  </div>
+                </div>
+
+                <div class="experience-card modern-glass-card">
+                  <div class="experience-card-top">
+                    <div class="exp-role-group">
+                      <span class="exp-tag tag-secondary"><i class="fa-solid fa-chalkboard-user"></i> Leadership & Mentorship</span>
+                      <h3 class="exp-title">Competitive Programming Lead & Mentor</h3>
+                      <p class="institution">PUB Computer & Programming Club (PUPC)</p>
+                    </div>
+                    <span class="exp-date">2025 — Present</span>
+                  </div>
+                  <p class="exp-desc">
+                    Designing curated problemsets and conducting hands-on algorithm training sessions on graph theory, dynamic programming, and greedy heuristics. Mentoring teams participating in inter-university programming contests.
+                  </p>
+                  <div class="exp-tech-row">
+                    <span>C++</span>
+                    <span>Algorithms</span>
+                    <span>Data Structures</span>
+                    <span>Codeforces</span>
+                    <span>Problem Solving</span>
+                  </div>
+                </div>
+
+                <div class="experience-card modern-glass-card">
+                  <div class="experience-card-top">
+                    <div class="exp-role-group">
+                      <span class="exp-tag tag-accent"><i class="fa-solid fa-layer-group"></i> Systems & Development</span>
+                      <h3 class="exp-title">Full-Stack & Data Prototype Developer</h3>
+                      <p class="institution">Academic & Independent Systems</p>
+                    </div>
+                    <span class="exp-date">2023 — Present</span>
+                  </div>
+                  <p class="exp-desc">
+                    Architected and deployed 15+ interactive applications, including real-time web prototypes, interactive data dashboards, and algorithmic utilities deployed on live cloud infrastructure.
+                  </p>
+                  <div class="exp-tech-row">
+                    <span>JavaScript</span>
+                    <span>Python</span>
+                    <span>Tailwind CSS</span>
+                    <span>Node.js</span>
+                    <span>Firebase</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1598,6 +2375,7 @@
       </div>
       <p class="quick-actions-note">Tip: press Ctrl/Cmd + K to open this panel.</p>
       <div class="quick-actions-list">
+        <a href="#research"><i class="fa-solid fa-book-bookmark"></i><span id="quickJumpResearchLabel">Jump to Research & Papers</span></a>
         <a href="#projects"><i class="fa-regular fa-folder-open"></i><span id="quickJumpProjectsLabel">Jump to Projects</span></a>
         <a href="#contact"><i class="fa-regular fa-paper-plane"></i><span id="quickJumpContactLabel">Jump to Contact</span></a>
         <a href="documents/resume.pdf" target="_blank"><i class="fa-solid fa-file-arrow-down"></i><span id="quickOpenResumeLabel">Open Resume</span></a>

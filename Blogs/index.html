@@ -1,7 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // Ensure window.fetch can be assigned by preview proxy and sandboxed environments
+      (function () {
+        try {
+          var _rawFetch = typeof window !== "undefined" && window.fetch ? window.fetch.bind(window) : null;
+          var _customFetch = _rawFetch;
+          Object.defineProperty(window, "fetch", {
+            get: function () {
+              return _customFetch;
+            },
+            set: function (fn) {
+              _customFetch = fn;
+            },
+            configurable: true,
+            enumerable: true,
+          });
+        } catch (e1) {
+          try {
+            if (typeof Window !== "undefined" && Window.prototype) {
+              var _protoFetch = Window.prototype.fetch;
+              var _fn = _protoFetch;
+              Object.defineProperty(Window.prototype, "fetch", {
+                get: function () {
+                  return _fn;
+                },
+                set: function (v) {
+                  _fn = v;
+                },
+                configurable: true,
+                enumerable: true,
+              });
+            }
+          } catch (e2) {}
+        }
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ahsanur's Blog - Tech, AI & Development</title>
     <meta

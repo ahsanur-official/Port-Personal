@@ -1,0 +1,8 @@
+{
+  "name": "Md. Ahsanur Rahaman Portfolio",
+  "description": "Portfolio of Md. Ahsanur Rahaman - AI Researcher & Data Scientist specializing in BCI, Generative EEG Reconstruction (CycleGAN, Diffusion Models), and machine learning systems.",
+  "requestFramePermissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

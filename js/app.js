@@ -1,84 +1,42 @@
-// Under Construction Popup
+// Portfolio Application Initializer
+
+// Theme toggle (light/dark) with primary dark mode default
 document.addEventListener("DOMContentLoaded", () => {
-  const constructionPopup = document.getElementById("constructionPopup");
-  const timerElement = document.getElementById("timer");
-  const shouldShowPopup = false;
-  const popupMemoryKey = "constructionPopupSeen";
-
-  if (!constructionPopup || !timerElement) {
-    return;
-  }
-
-  if (!shouldShowPopup || sessionStorage.getItem(popupMemoryKey) === "1") {
-    return;
-  }
-
-  let timeLeft = 4;
-  sessionStorage.setItem(popupMemoryKey, "1");
-  constructionPopup.classList.add("show");
-
-  // Update timer
-  const timerInterval = setInterval(() => {
-    timeLeft--;
-    timerElement.textContent = timeLeft;
-
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      // Hide popup with animation
-      constructionPopup.classList.add("hide");
-      setTimeout(() => {
-        constructionPopup.classList.remove("show");
-      }, 500);
-    }
-  }, 1000);
-
-  // Allow closing popup by clicking backdrop
-  constructionPopup.addEventListener("click", (e) => {
-    if (e.target === constructionPopup.querySelector(".popup-backdrop")) {
-      clearInterval(timerInterval);
-      constructionPopup.classList.add("hide");
-      setTimeout(() => {
-        constructionPopup.classList.remove("show");
-      }, 500);
-    }
-  });
-});
-
-// Theme toggle (light/dark) with persisted preference
-document.addEventListener("DOMContentLoaded", () => {
-  const themeToggle = document.getElementById("themeToggle");
+  const themeToggles = document.querySelectorAll(".theme-toggle");
   const storageKey = "portfolioTheme";
-
-  if (!themeToggle) {
-    return;
-  }
-
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const storedTheme = localStorage.getItem(storageKey);
-  const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
+  const initialTheme = storedTheme || "dark"; // Primary default is dark mode
 
   const setTheme = (theme) => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem(storageKey, theme);
 
-    const icon = themeToggle.querySelector("i");
-    if (icon) {
-      icon.className =
-        theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
-    }
+    themeToggles.forEach((btn) => {
+      const icon = btn.querySelector("i");
+      if (icon) {
+        icon.className =
+          theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+      }
 
-    themeToggle.setAttribute(
-      "aria-label",
-      theme === "dark" ? "Switch to light mode" : "Switch to dark mode",
-    );
+      btn.setAttribute(
+        "aria-label",
+        theme === "dark" ? "Switch to light mode" : "Switch to dark mode",
+      );
+      btn.setAttribute(
+        "title",
+        theme === "dark" ? "Switch to light mode" : "Switch to dark mode",
+      );
+    });
   };
 
   setTheme(initialTheme);
 
-  themeToggle.addEventListener("click", () => {
-    const current =
-      document.documentElement.getAttribute("data-theme") || "light";
-    setTheme(current === "dark" ? "light" : "dark");
+  themeToggles.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const current =
+        document.documentElement.getAttribute("data-theme") || "dark";
+      setTheme(current === "dark" ? "light" : "dark");
+    });
   });
 });
 
@@ -220,9 +178,12 @@ if (logoTypingEl) {
   typeLoop();
 }
 
+const drawerCloseBtn = document.getElementById("drawerClose");
+
 const openNav = () => {
   if (!navLinks) return;
   navLinks.classList.add("open");
+  navLinks.setAttribute("aria-hidden", "false");
   document.body.classList.add("nav-open");
   if (hamburger) hamburger.classList.add("is-open");
   if (hamburgerIcon) hamburgerIcon.className = "fa-solid fa-xmark";
@@ -233,11 +194,12 @@ const openNav = () => {
 const closeNav = () => {
   if (!navLinks) return;
   navLinks.classList.remove("open");
+  navLinks.setAttribute("aria-hidden", "true");
   document.body.classList.remove("nav-open");
   if (hamburger) hamburger.classList.remove("is-open");
   if (hamburgerIcon) hamburgerIcon.className = "fa-solid fa-bars";
   if (hamburger) hamburger.setAttribute("aria-expanded", "false");
-  if (hamburger) hamburger.setAttribute("aria-label", "Toggle navigation");
+  if (hamburger) hamburger.setAttribute("aria-label", "Open navigation menu");
 };
 
 const toggleNav = () => {
@@ -261,7 +223,11 @@ if (hamburger) {
   hamburger.addEventListener("click", toggleNav);
   hamburger.setAttribute("aria-expanded", "false");
   hamburger.setAttribute("aria-controls", "navLinks");
-  hamburger.setAttribute("aria-label", "Toggle navigation");
+  hamburger.setAttribute("aria-label", "Open navigation menu");
+}
+
+if (drawerCloseBtn) {
+  drawerCloseBtn.addEventListener("click", closeNav);
 }
 
 if (navBackdrop) {
@@ -379,6 +345,12 @@ const closePopup = () => {
   popup.classList.remove("open");
   if (popupImg) popupImg.src = "";
 };
+window.closePopup = closePopup;
+
+const popupCloseBtn = popup?.querySelector(".close-btn");
+if (popupCloseBtn) {
+  popupCloseBtn.addEventListener("click", closePopup);
+}
 
 document.querySelectorAll(".achievement-box .box-image").forEach((img) => {
   img.addEventListener("click", () =>
@@ -1780,4 +1752,342 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+
+  // Research & Publications Interactive Filtering and Citation Helpers
+  const researchSearch = document.getElementById("researchSearch");
+  const researchFilters = document.querySelectorAll(".research-filter-btn");
+  const researchCards = Array.from(document.querySelectorAll(".research-card"));
+  const researchCount = document.getElementById("researchCount");
+  const researchNoResults = document.getElementById("researchNoResults");
+  let activeResearchFilter = "all";
+
+  const applyResearchFilters = () => {
+    if (!researchCards.length) return;
+    const query = (researchSearch?.value || "").toLowerCase().trim();
+    let visibleCount = 0;
+
+    researchCards.forEach((card) => {
+      const categoryStr = (card.dataset.category || "").toLowerCase();
+      const textContent = (card.innerText || "").toLowerCase();
+
+      const matchesCategory =
+        activeResearchFilter === "all" ||
+        categoryStr.includes(activeResearchFilter);
+      const matchesQuery = !query || textContent.includes(query);
+
+      const isVisible = matchesCategory && matchesQuery;
+      card.style.display = isVisible ? "block" : "none";
+      if (isVisible) visibleCount++;
+    });
+
+    if (researchCount) {
+      researchCount.textContent = `Showing ${visibleCount} publication${visibleCount === 1 ? "" : "s"}`;
+    }
+
+    if (researchNoResults) {
+      researchNoResults.style.display = visibleCount === 0 ? "block" : "none";
+    }
+  };
+
+  researchFilters.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      researchFilters.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeResearchFilter = btn.dataset.filter || "all";
+      applyResearchFilters();
+    });
+  });
+
+  if (researchSearch) {
+    researchSearch.addEventListener("input", applyResearchFilters);
+  }
+
+  // Toggle Abstract / Details
+  document.querySelectorAll(".btn-toggle-details").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.dataset.target;
+      const targetEl = document.getElementById(targetId);
+      if (!targetEl) return;
+
+      const isExpanded = targetEl.classList.toggle("is-open");
+      const toggleText = btn.querySelector(".toggle-text");
+      const icon = btn.querySelector("i");
+
+      if (toggleText) {
+        toggleText.textContent = isExpanded ? "Hide Details" : "Details & Abstract";
+      }
+      if (icon) {
+        icon.className = isExpanded ? "fa-solid fa-chevron-up" : "fa-solid fa-circle-info";
+      }
+    });
+  });
+
+  // Copy Citation (APA)
+  document.querySelectorAll(".btn-copy-cite").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const citeText = btn.dataset.cite;
+      if (!citeText) return;
+
+      try {
+        await navigator.clipboard.writeText(citeText);
+        showNotification(
+          "Citation Copied",
+          "Reference copied to clipboard in APA format.",
+          "success",
+          3500,
+        );
+      } catch (err) {
+        const fallbackTextArea = document.createElement("textarea");
+        fallbackTextArea.value = citeText;
+        document.body.appendChild(fallbackTextArea);
+        fallbackTextArea.select();
+        document.execCommand("copy");
+        fallbackTextArea.remove();
+        showNotification(
+          "Citation Copied",
+          "Reference copied to clipboard.",
+          "success",
+          3500,
+        );
+      }
+    });
+  });
+
+  // Copy BibTeX
+  document.querySelectorAll(".btn-copy-code").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const targetId = btn.dataset.target;
+      const codeEl = document.getElementById(targetId);
+      if (!codeEl) return;
+
+      const bibText = codeEl.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(bibText);
+        showNotification(
+          "BibTeX Copied",
+          "BibTeX entry copied to clipboard!",
+          "success",
+          3500,
+        );
+      } catch (err) {
+        const fallbackTextArea = document.createElement("textarea");
+        fallbackTextArea.value = bibText;
+        document.body.appendChild(fallbackTextArea);
+        fallbackTextArea.select();
+        document.execCommand("copy");
+        fallbackTextArea.remove();
+        showNotification(
+          "BibTeX Copied",
+          "BibTeX entry copied to clipboard!",
+          "success",
+          3500,
+        );
+      }
+    });
+  });
+
+  // ==========================================================================
+  // INTERACTIVE BCI RESEARCH ROADMAP CONTROLLER
+  // ==========================================================================
+  const roadmapTrack = document.getElementById("roadmapTrack");
+  const roadmapCards = Array.from(document.querySelectorAll(".roadmap-card"));
+  const roadmapPrevBtn = document.getElementById("roadmapPrevBtn");
+  const roadmapNextBtn = document.getElementById("roadmapNextBtn");
+  const roadmapStepPill = document.getElementById("roadmapStepPill");
+  const roadmapStepName = document.getElementById("roadmapStepName");
+  const roadmapProgressBar = document.getElementById("roadmapProgressBar");
+  const detailPanelPhase = document.getElementById("detailPanelPhase");
+  const detailPanelTitle = document.getElementById("detailPanelTitle");
+  const detailPanelText = document.getElementById("detailPanelText");
+  const detailPanelMetrics = document.getElementById("detailPanelMetrics");
+
+  const phaseData = {
+    1: {
+      phaseLabel: "Phase 01 Spotlight",
+      title: "Biomedical Signal Processing & Motor Kinematics (2024)",
+      text: "Explored foundational time-series feature engineering on stroke and intracerebral-hemorrhage multi-channel EEG. Implemented adaptive bandpass filtering (0.5–45 Hz), independent component analysis (ICA) for ocular and muscular artifact rejection, and empirical mode decomposition to establish stable motor rhythm baselines.",
+      metrics: [
+        { label: "Dataset Tested", value: "HEFMI-ICH Multi-Channel" },
+        { label: "Frequency Bands", value: "μ (8–12 Hz) & β (13–30 Hz)" },
+        { label: "Signal Verification", value: "Artifact-Free Kinematic Trials" }
+      ]
+    },
+    2: {
+      phaseLabel: "Phase 02 Spotlight",
+      title: "Movement-Aware CycleGAN Architecture (2025)",
+      text: "Engineered an unpaired generative adversarial domain translation model mapping stroke EEG trials into high-fidelity healthy-like reconstructions. Overcame the absence of paired before-and-after recordings by retrieving same-label healthy reference signals via nearest-neighbor matching across derivative energy and channel statistics, optimized under an 8-term composite loss.",
+      metrics: [
+        { label: "Training Loss", value: "8-Term Composite Objective" },
+        { label: "Conditioning Mode", value: "Nearest-Neighbor Reference" },
+        { label: "Anti-Copying", value: "Strict Identity & Shape Regularization" }
+      ]
+    },
+    3: {
+      phaseLabel: "Phase 03 Spotlight",
+      title: "Subject-Level Holdout & Dual Acceptances (2025–2026)",
+      text: "Enforced strict subject-level holdout protocol across 180 patient pairs to guarantee zero data leakage. Evaluated Run A (32-ch), Run B (23-ch), and Run C (23-ch cross-dataset) with 5-fold CV. Proved that removing movement consistency collapses composite score V from 70.95% to 0.34% despite raw similarity rising to 91.84%. Accepted at RICRF 2026 and IEEE CSDE 2026.",
+      metrics: [
+        { label: "Healthy Similarity (SH)", value: "89.01% ± 3.14%" },
+        { label: "Composite Validation (V)", value: "70.95% ± 6.71%" },
+        { label: "Peak Single-Case", value: "91.29% Healthy / 80.09% Movement" }
+      ]
+    },
+    4: {
+      phaseLabel: "Phase 04 Spotlight",
+      title: "Conditional Diffusion for Parkinson's Disease (2026)",
+      text: "Extended generative paradigms to neurodegenerative screening using reference-conditioned Denoising Diffusion Probabilistic Models (DDPM) on OpenNeuro ds008768 (282 clinical recordings). Discovered and corrected a subtle group-asymmetric pipeline artifact. Benchmarked against Vision/Temporal Transformers and Self-Supervised MAE baselines; submitted to ICEEICT 2027.",
+      metrics: [
+        { label: "Cohort Evaluated", value: "282 Subjects (175 PD, 107 HC)" },
+        { label: "Top Model AUC", value: "0.751 AUROC (Transformer)" },
+        { label: "Benchmark Venue", value: "ICEEICT 2027 (Under Review)" }
+      ]
+    },
+    5: {
+      phaseLabel: "Phase 05 Spotlight",
+      title: "Real-Time Closed-Loop BCI & Clinical Horizon (2026+ Horizon)",
+      text: "Targeting real-time generative neural interfaces for neurorehabilitation. Next-stage milestones include sub-50ms conditional diffusion samplers, cross-hospital cohort generalization across international clinical sites, and closed-loop motor imagery neurofeedback systems enabling active motor recovery in stroke survivors.",
+      metrics: [
+        { label: "Inference Latency Goal", value: "< 50 ms Edge Pipeline" },
+        { label: "Clinical Target", value: "Active Neurorehabilitation" },
+        { label: "Research Degree", value: "Masters / PhD Aspirant Focus" }
+      ]
+    }
+  };
+
+  let currentActivePhase = 1;
+
+  const updateActivePhaseUI = (phaseNum, smoothScroll = true) => {
+    currentActivePhase = phaseNum;
+
+    // Update active class on cards
+    roadmapCards.forEach((card) => {
+      const p = parseInt(card.dataset.phase, 10);
+      const isActive = p === phaseNum;
+      card.classList.toggle("active", isActive);
+
+      const statusEl = card.querySelector(".roadmap-card-status");
+      if (statusEl) {
+        statusEl.innerHTML = isActive
+          ? `<span class="status-indicator-dot"></span> Active Selection`
+          : `<span class="status-indicator-dot"></span> Click to inspect`;
+      }
+
+      if (isActive && smoothScroll && roadmapTrack) {
+        // Scroll card comfortably into view
+        const containerLeft = roadmapTrack.getBoundingClientRect().left;
+        const cardLeft = card.getBoundingClientRect().left;
+        const offset = cardLeft - containerLeft - 20;
+        roadmapTrack.scrollBy({ left: offset, behavior: "smooth" });
+      }
+    });
+
+    // Update top indicator
+    if (roadmapStepPill) {
+      roadmapStepPill.textContent = `Phase ${phaseNum} / 5`;
+    }
+    const currentCard = roadmapCards.find(
+      (c) => parseInt(c.dataset.phase, 10) === phaseNum
+    );
+    if (roadmapStepName && currentCard) {
+      roadmapStepName.textContent = currentCard.dataset.title || "";
+    }
+
+    // Update Progress bar
+    if (roadmapProgressBar) {
+      const pct = (phaseNum / 5) * 100;
+      roadmapProgressBar.style.width = `${pct}%`;
+    }
+
+    // Update Spotlight Details Panel with smooth animation
+    const data = phaseData[phaseNum];
+    if (data) {
+      if (detailPanelPhase) detailPanelPhase.textContent = data.phaseLabel;
+      if (detailPanelTitle) detailPanelTitle.textContent = data.title;
+      if (detailPanelText) detailPanelText.textContent = data.text;
+      if (detailPanelMetrics) {
+        detailPanelMetrics.innerHTML = data.metrics
+          .map(
+            (m) => `
+            <div class="panel-metric">
+              <span class="metric-label">${m.label}</span>
+              <span class="metric-value">${m.value}</span>
+            </div>`
+          )
+          .join("");
+      }
+    }
+  };
+
+  // Card click event listeners
+  roadmapCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const phaseNum = parseInt(card.dataset.phase, 10);
+      if (phaseNum && phaseNum !== currentActivePhase) {
+        updateActivePhaseUI(phaseNum, true);
+      }
+    });
+
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        const phaseNum = parseInt(card.dataset.phase, 10);
+        if (phaseNum) updateActivePhaseUI(phaseNum, true);
+      }
+    });
+  });
+
+  // Previous & Next navigation buttons
+  if (roadmapPrevBtn) {
+    roadmapPrevBtn.addEventListener("click", () => {
+      const prevPhase = currentActivePhase > 1 ? currentActivePhase - 1 : 5;
+      updateActivePhaseUI(prevPhase, true);
+    });
+  }
+
+  if (roadmapNextBtn) {
+    roadmapNextBtn.addEventListener("click", () => {
+      const nextPhase = currentActivePhase < 5 ? currentActivePhase + 1 : 1;
+      updateActivePhaseUI(nextPhase, true);
+    });
+  }
+
+  // Update progress bar on manual track scroll
+  if (roadmapTrack) {
+    let scrollTimeout;
+    roadmapTrack.addEventListener("scroll", () => {
+      const maxScroll = roadmapTrack.scrollWidth - roadmapTrack.clientWidth;
+      if (maxScroll > 0 && roadmapProgressBar) {
+        const scrollRatio = roadmapTrack.scrollLeft / maxScroll;
+        const pct = 20 + scrollRatio * 80;
+        roadmapProgressBar.style.width = `${Math.min(100, Math.max(20, pct))}%`;
+      }
+
+      // Debounce nearest card detector during free scroll
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const containerCenter =
+          roadmapTrack.getBoundingClientRect().left +
+          roadmapTrack.clientWidth / 2;
+        let closestCard = null;
+        let minDistance = Infinity;
+
+        roadmapCards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const dist = Math.abs(cardCenter - containerCenter);
+          if (dist < minDistance) {
+            minDistance = dist;
+            closestCard = card;
+          }
+        });
+
+        if (closestCard) {
+          const p = parseInt(closestCard.dataset.phase, 10);
+          if (p && p !== currentActivePhase) {
+            updateActivePhaseUI(p, false);
+          }
+        }
+      }, 120);
+    });
+  }
 });
