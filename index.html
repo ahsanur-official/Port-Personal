@@ -70,8 +70,20 @@
       <div class="logo">
         <a href="#hero" class="logo-link">
           <span class="logo-name">MD. AHSANUR RAHAMAN</span>
-          <span class="logo-badge">AI & BCI RESEARCH</span>
+          <span class="logo-badge"><span class="pulse-dot"></span> AI & BCI RESEARCH</span>
         </a>
+      </div>
+
+      <!-- Desktop Navigation Links (Zone 2) -->
+      <div class="nav-links-desktop" id="navLinksDesktop" role="navigation" aria-label="Desktop primary navigation">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#bciRoadmap" class="nav-link">Roadmap</a>
+        <a href="#research" class="nav-link">Publications</a>
+        <a href="#skills" class="nav-link">Toolkit</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#profile-tabs" class="nav-link">Deep Dive</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </div>
 
       <div class="navbar-actions">
@@ -83,7 +95,7 @@
           class="theme-toggle nav-theme-toggle"
           id="themeToggleNav"
           type="button"
-          aria-label="Switch to light mode"
+          aria-label="Switch theme mode"
           title="Toggle theme"
         >
           <i class="fa-solid fa-sun"></i>
@@ -208,72 +220,162 @@
     <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
     <main class="container">
-      <section id="hero">
-        <div class="eyebrow"><i class="fa-solid fa-flask"></i> AI & Biomedical Research • Deep Learning • Data Science</div>
-        <h1 class="hero-item">AI Researcher & Data Scientist</h1>
-        <p class="hero-sub hero-item">
-          Advancing Brain-Computer Interfaces (BCI), Reference-Conditioned EEG Signal Reconstruction (Movement-Aware CycleGAN & Diffusion Models), and Clinical Diagnostics alongside shippable web systems.
-        </p>
-        <p class="hero-body hero-item">
-          Undergraduate CSE researcher at <b>Pundra University of Science and Technology</b>. 
-          My research specializes in <b>reference-conditioned generative reconstruction</b> (CycleGAN and Diffusion Models) to overcome signal corruption in motor imagery BCI and discover EEG biomarkers for early Parkinson's disease detection.
-        </p>
-        <div class="hero-ctas hero-item">
-          <a href="#research" class="btn-primary"><i class="fa-solid fa-book-bookmark"></i> Explore Publications</a>
-          <a href="#projects" class="btn-ghost"><i class="fa-regular fa-folder-open"></i> View Projects</a>
-          <a href="#contact" class="btn-ghost"><i class="fa-regular fa-paper-plane"></i> Get in Touch</a>
+      <!-- Modern Academic Split Hero Section -->
+      <section id="hero" class="hero-split-section">
+        <div class="hero-content-col">
+          <div class="hero-eyebrow-badge">
+            <span class="pulse-dot"></span>
+            <span>AI & Biomedical Researcher · Pundra University of Science & Technology</span>
+          </div>
+
+          <h1 class="hero-headline">
+            Decoding Neural Dynamics with Generative AI
+          </h1>
+
+          <p class="hero-lead">
+            Undergraduate CSE researcher specializing in <b>reference-conditioned generative modeling</b>. 
+            Formulating <b>movement-aware CycleGANs</b> and <b>conditional diffusion models (DDPM)</b> to reconstruct 
+            high-fidelity, healthy-like EEG signals for motor-imagery BCI rehabilitation and non-invasive Parkinson's disease diagnosis.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#research" class="btn-hero-primary">
+              <i class="fa-solid fa-book-bookmark"></i>
+              <span>Explore Publications</span>
+            </a>
+            <a href="#bciRoadmap" class="btn-hero-secondary">
+              <i class="fa-solid fa-timeline"></i>
+              <span>Research Roadmap</span>
+            </a>
+            <a href="#contact" class="btn-hero-ghost">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span>Get in Touch</span>
+            </a>
+          </div>
+
+          <!-- Academic Rigor Metrics -->
+          <div class="hero-metrics-bar" aria-label="Academic highlights">
+            <div class="hero-metric-item">
+              <span class="hero-metric-val">3</span>
+              <span class="hero-metric-label">Peer-Reviewed Papers</span>
+              <span class="hero-metric-sub">2 Accepted · 1 In Review</span>
+            </div>
+            <div class="hero-metric-item">
+              <span class="hero-metric-val">89.01%</span>
+              <span class="hero-metric-label">Healthy EEG Similarity</span>
+              <span class="hero-metric-sub">CycleGAN Run A (180 Pairs)</span>
+            </div>
+            <div class="hero-metric-item">
+              <span class="hero-metric-val">0.751</span>
+              <span class="hero-metric-label">Parkinson's AUROC</span>
+              <span class="hero-metric-sub">Transformer / OpenNeuro</span>
+            </div>
+            <div class="hero-metric-item">
+              <span class="hero-metric-val">15+</span>
+              <span class="hero-metric-label">Shippable Builds</span>
+              <span class="hero-metric-sub">Full-Stack & ML Systems</span>
+            </div>
+          </div>
         </div>
-        <div class="hero-highlights hero-item" aria-label="Quick highlights">
-          <article class="hero-highlight-card">
-            <span class="highlight-label">Peer-Reviewed Papers</span>
-            <strong>3 Papers</strong>
-            <p>2 Accepted (IEEE CSDE 2026, RICRF 2026) & 1 Submitted (ICEEICT 2027).</p>
-          </article>
-          <article class="hero-highlight-card">
-            <span class="highlight-label">Core Research</span>
-            <strong>BCI & Generative AI</strong>
-            <p>CycleGAN & Diffusion Models for EEG signal reconstruction & neurological diagnostics.</p>
-          </article>
-          <article class="hero-highlight-card">
-            <span class="highlight-label">Applied Systems</span>
-            <strong>15+ Builds</strong>
-            <p>End-to-end data apps, machine learning prototypes, and interactive tools.</p>
-          </article>
+
+        <div class="hero-card-col">
+          <div class="hero-profile-card">
+            <div class="profile-image-frame">
+              <img src="images/ahsan.jpg" alt="Md. Ahsanur Rahaman" class="profile-hero-img" />
+              <div class="profile-status-chip">
+                <i class="fa-solid fa-brain"></i>
+                <span>Focus: Conditional Diffusion & BCI</span>
+              </div>
+            </div>
+            <div class="profile-meta-block">
+              <h2 class="profile-hero-name">Md. Ahsanur Rahaman</h2>
+              <p class="profile-hero-role">AI Researcher & Data Scientist</p>
+              <p class="profile-hero-inst">
+                <i class="fa-solid fa-building-columns"></i> Dept. of Computer Science & Engineering<br />
+                Pundra University of Science & Technology
+              </p>
+              <div class="profile-quick-links">
+                <a href="https://github.com/ahsanur-official" target="_blank" class="profile-link-btn" title="GitHub" aria-label="GitHub Profile">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/md-ahsanur-rahaman/" target="_blank" class="profile-link-btn" title="LinkedIn" aria-label="LinkedIn Profile">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:mdahsanurrahaman2456@gmail.com" class="profile-link-btn" title="Email" aria-label="Send Email">
+                  <i class="fa-regular fa-envelope"></i>
+                </a>
+                <a href="documents/resume.pdf" target="_blank" class="profile-link-btn" title="Download CV" aria-label="Download Academic CV">
+                  <i class="fa-solid fa-file-arrow-down"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="about">
+      <!-- About Me & Research Philosophy -->
+      <section id="about" class="about-modern-section">
         <div class="section-head">
-          <h2 class="section-title">About Me & Research</h2>
+          <div class="section-badge"><i class="fa-solid fa-user-astronaut"></i> Researcher Profile</div>
+          <h2 class="section-title">About Me & Research Philosophy</h2>
+          <p class="section-kicker">
+            Investigating computational neuroscience, biomedical signal translation, and generative deep learning under rigorous subject-level holdout validation.
+          </p>
         </div>
-        <div class="about-content">
-          <div class="about-text">
-            <p>
-              I'm an aspiring <b>AI researcher and data scientist</b> dedicated to solving complex challenges at the nexus of 
-              <b>computational neuroscience</b>, <b>biomedical signal processing</b>, and <b>generative deep learning</b>.
-            </p>
-            <p>
-              My primary research investigates <b>reference-conditioned EEG reconstruction</b> using <b>movement-aware CycleGANs</b> and 
-              <b>conditional diffusion models (DDPM)</b>. These models reconstruct high-fidelity, healthy-like neural signals to alleviate 
-              signal degradation in Motor Imagery Brain-Computer Interfaces (BCI) and enable non-invasive screening for neurodegenerative diseases like Parkinson's.
-            </p>
-            <p>
-              Experienced in formulating rigorous empirical methodologies, training architectures in <b>PyTorch/TensorFlow</b>, 
-              benchmarking against Vision/Temporal Transformers and Self-Supervised Learning (SSL) baselines, and deploying analytical dashboards for actionable insights.
-            </p>
-            <div class="pill-row">
-              <span class="pill">EEG Reconstruction</span>
-              <span class="pill">Movement-Aware CycleGAN</span>
-              <span class="pill">Conditional Diffusion (DDPM)</span>
-              <span class="pill">Motor Imagery BCI</span>
-              <span class="pill">Parkinson's Disease Detection</span>
-              <span class="pill">Transformers & SSL</span>
-              <span class="pill">PyTorch & Scikit-Learn</span>
-              <span class="pill">Biomedical Signal Processing</span>
+
+        <div class="about-overview-block">
+          <p class="about-lead-text">
+            I am an undergraduate researcher in Computer Science & Engineering at <b>Pundra University of Science and Technology</b>. 
+            My research operates at the nexus of <b>generative adversarial networks</b>, <b>diffusion probabilistic models</b>, and 
+            <b>neural rehabilitation interfaces</b>. By formulating reference-conditioned translation architectures, my work bridges the gap 
+            between unaligned clinical recordings and healthy neural representations without requiring unattainable before-and-after patient pairs.
+          </p>
+        </div>
+
+        <!-- Research Pillars Bento Grid -->
+        <div class="about-pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon-wrap">
+              <i class="fa-solid fa-network-wired"></i>
             </div>
+            <h3 class="pillar-title">Unpaired Signal Translation</h3>
+            <p class="pillar-desc">
+              Formulated movement-aware CycleGAN domain translation to reconstruct healthy-like multi-channel EEG from impaired stroke trials under an 8-term composite loss.
+            </p>
+            <span class="pillar-footnote">Accepted at RICRF 2026 & IEEE CSDE 2026</span>
           </div>
-          <div class="profile-pic-wrapper">
-            <img src="images/ahsan.jpg" alt="Ahsanur Rahaman portrait" />
+
+          <div class="pillar-card">
+            <div class="pillar-icon-wrap">
+              <i class="fa-solid fa-dna"></i>
+            </div>
+            <h3 class="pillar-title">Diffusion Biomarker Discovery</h3>
+            <p class="pillar-desc">
+              Benchmarked conditional diffusion (DDPM) against Transformers and Masked Autoencoders (MAE) on 282 clinical recordings (ds008768) for Parkinson's disease diagnosis.
+            </p>
+            <span class="pillar-footnote">Under Review at ICEEICT 2027</span>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-wrap">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3 class="pillar-title">Subject-Level Holdout Protocol</h3>
+            <p class="pillar-desc">
+              All evaluations enforce strict subject-level cross-validation withholding entire patients to prevent cross-trial data leakage and guarantee clinical honesty.
+            </p>
+            <span class="pillar-footnote">180 Held-out Pairs · Wilcoxon Tested</span>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-wrap">
+              <i class="fa-solid fa-code-branch"></i>
+            </div>
+            <h3 class="pillar-title">Applied Systems & Reproducibility</h3>
+            <p class="pillar-desc">
+              Developed 15+ interactive prototypes, real-time analytics tools, and algorithmic platforms with transparent code and reproducible experimental workflows.
+            </p>
+            <span class="pillar-footnote">Open Science & Live Web Systems</span>
           </div>
         </div>
 
@@ -475,243 +577,129 @@
         </div>
       </section>
 
-      <section id="skills">
+      <!-- Modern Research Arsenal & Technical Stack -->
+      <section id="skills" class="arsenal-section">
+        <span id="expertise" aria-hidden="true" style="display:none;"></span>
+        <span id="services" aria-hidden="true" style="display:none;"></span>
         <div class="section-head">
-          <h2 class="section-title">Technical Skills</h2>
+          <div class="section-badge"><i class="fa-solid fa-microchip"></i> Technical Arsenal</div>
+          <h2 class="section-title">Research Stack & Engineering Toolkit</h2>
+          <p class="section-kicker">
+            A specialized toolkit spanning generative probabilistic modeling, multi-channel biomedical signal processing, scientific data pipelines, and production-grade full-stack systems.
+          </p>
         </div>
-        <div class="skills-container">
-          <div class="skills-section">
-            <div class="skills-category">
-              <h3>Languages</h3>
-              <ul class="skills-list">
-                <li class="skill-item">
-                  <i class="fab fa-cuttlefish skill-icon"></i>
-                  <span class="skill-name">C</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fas fa-plus-circle skill-icon"></i>
-                  <span class="skill-name">C++</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fab fa-java skill-icon"></i>
-                  <span class="skill-name">Java</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fab fa-python skill-icon"></i>
-                  <span class="skill-name">Python</span>
-                </li>
-              </ul>
-            </div>
-            <div class="skills-category">
-              <h3>Frontend</h3>
-              <ul class="skills-list">
-                <li class="skill-item">
-                  <i class="fab fa-html5 skill-icon"></i>
-                  <span class="skill-name">HTML</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fab fa-css3-alt skill-icon"></i>
-                  <span class="skill-name">CSS</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fab fa-js skill-icon"></i>
-                  <span class="skill-name">JavaScript</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fab fa-react skill-icon"></i>
-                  <span class="skill-name">React.js</span>
-                </li>
-              </ul>
-            </div>
-            <div class="skills-category">
-              <h3>Backend</h3>
-              <ul class="skills-list">
-                <li class="skill-item">
-                  <i class="fab fa-node skill-icon"></i>
-                  <span class="skill-name">Node.js</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fas fa-database skill-icon"></i>
-                  <span class="skill-name">MongoDB</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fas fa-database skill-icon"></i>
-                  <span class="skill-name">MySQL</span>
-                </li>
-              </ul>
-            </div>
-            <div class="skills-category">
-              <h3>Tools & Design</h3>
-              <ul class="skills-list">
-                <li class="skill-item">
-                  <i class="fab fa-git-alt skill-icon"></i>
-                  <span class="skill-name">Git</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fab fa-github skill-icon"></i>
-                  <span class="skill-name">GitHub</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fas fa-drafting-compass skill-icon"></i>
-                  <span class="skill-name">Figma</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fas fa-image skill-icon"></i>
-                  <span class="skill-name">Illustrator</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fas fa-image skill-icon"></i>
-                  <span class="skill-name">Photoshop</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fas fa-palette skill-icon"></i>
-                  <span class="skill-name">Canva</span>
-                </li>
-              </ul>
-            </div>
-            <div class="skills-category">
-              <h3>Microsoft Office</h3>
-              <ul class="skills-list">
-                <li class="skill-item">
-                  <i class="fas fa-file-word skill-icon"></i>
-                  <span class="skill-name">Word</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fas fa-file-excel skill-icon"></i>
-                  <span class="skill-name">Excel</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fas fa-file-powerpoint skill-icon"></i>
-                  <span class="skill-name">PowerPoint</span>
-                </li>
-                <li class="skill-item">
-                  <i class="fas fa-file-word skill-icon"></i>
-                  <span class="skill-name">OneNote</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section id="expertise">
-        <div class="section-head">
-          <h2 class="section-title">Expertise & Stack</h2>
-        </div>
-        <div class="grid-container expertise">
-          <div class="card">
-            <div class="card-top">
-              <i class="fa-solid fa-chart-line icon"></i>
-              <span class="tag">Data</span>
+        <div class="arsenal-grid">
+          <!-- Card 1: Deep Learning & Generative Models -->
+          <div class="arsenal-card">
+            <div class="arsenal-card-head">
+              <div class="arsenal-icon-wrap"><i class="fa-solid fa-brain"></i></div>
+              <div>
+                <h3 class="arsenal-card-title">Deep Learning & Generative AI</h3>
+                <span class="arsenal-card-subtitle">Neural Architectures & Domain Translation</span>
+              </div>
             </div>
-            <h3>Data Science & Analytics</h3>
-            <p>
-              Pandas, NumPy, Scikit-learn, Matplotlib, data storytelling,
-              experiments.
+            <p class="arsenal-card-desc">
+              Formulating reference-conditioned generative models, composite loss functions, and attention networks for high-fidelity biomedical signal reconstruction and classification.
             </p>
-          </div>
-          <div class="card">
-            <div class="card-top">
-              <i class="fa-solid fa-code icon"></i>
-              <span class="tag">Backend</span>
+            <div class="arsenal-tags-group">
+              <span class="arsenal-tag">PyTorch</span>
+              <span class="arsenal-tag">TensorFlow</span>
+              <span class="arsenal-tag">Conditional DDPM</span>
+              <span class="arsenal-tag">CycleGAN</span>
+              <span class="arsenal-tag">Transformers</span>
+              <span class="arsenal-tag">Masked Autoencoders (MAE)</span>
+              <span class="arsenal-tag">Scikit-learn</span>
+              <span class="arsenal-tag">CUDA</span>
             </div>
-            <h3>Engineering</h3>
-            <p>
-              Python, C/C++, Java, Node.js fundamentals, REST patterns, SQL.
-            </p>
-          </div>
-          <div class="card">
-            <div class="card-top">
-              <i class="fa-solid fa-laptop-code icon"></i>
-              <span class="tag">Frontend</span>
+            <div class="arsenal-proof">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>8-term composite loss formulation · Dual IEEE/Springer publications</span>
             </div>
-            <h3>Product & Web</h3>
-            <p>
-              React, modern JS, semantic HTML, responsive CSS, GSAP animations.
-            </p>
           </div>
-          <div class="card">
-            <div class="card-top">
-              <i class="fa-solid fa-pen-nib icon"></i>
-              <span class="tag">Design</span>
-            </div>
-            <h3>Design & Branding</h3>
-            <p>
-              UI/UX flows, Illustrator, Figma, typography systems, brand kits.
-            </p>
-          </div>
-        </div>
-      </section>
 
+          <!-- Card 2: Biomedical Signal & Neurotech -->
+          <div class="arsenal-card">
+            <div class="arsenal-card-head">
+              <div class="arsenal-icon-wrap"><i class="fa-solid fa-wave-square"></i></div>
+              <div>
+                <h3 class="arsenal-card-title">Neurotech & Signal Processing</h3>
+                <span class="arsenal-card-subtitle">Physiological Time-Series & BCI</span>
+              </div>
+            </div>
+            <p class="arsenal-card-desc">
+              Non-stationary neural decoding, artifact rejection, spectral rhythm power quantification, and subject-level validation on clinical EEG databases.
+            </p>
+            <div class="arsenal-tags-group">
+              <span class="arsenal-tag">MNE-Python</span>
+              <span class="arsenal-tag">Motor-Imagery BCI</span>
+              <span class="arsenal-tag">Wavelet Transforms (WPD)</span>
+              <span class="arsenal-tag">Common Spatial Pattern (CSP)</span>
+              <span class="arsenal-tag">Bandpass (0.5–45Hz)</span>
+              <span class="arsenal-tag">ICA Artifact Rejection</span>
+              <span class="arsenal-tag">Topographic Mapping</span>
+            </div>
+            <div class="arsenal-proof">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Evaluated across 180 stroke pairs & 282 Parkinson's clinical recordings</span>
+            </div>
+          </div>
 
-      <section id="services">
-        <div class="section-head">
-          <h2 class="section-title">Services</h2>
-        </div>
-        <div class="grid-container services-grid">
-          <div class="card service-card">
-            <div class="card-top">
-              <i class="fa-solid fa-chart-pie icon"></i>
-              <span class="tag">Analytics</span>
+          <!-- Card 3: Scientific Computing & Data Pipeline -->
+          <div class="arsenal-card">
+            <div class="arsenal-card-head">
+              <div class="arsenal-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+              <div>
+                <h3 class="arsenal-card-title">Scientific Computing & Data</h3>
+                <span class="arsenal-card-subtitle">Empirical Validation & Pipelines</span>
+              </div>
             </div>
-            <h3>Data Narratives</h3>
-            <p>
-              Dashboards and reports that surface KPIs and actionable insights
-              for founders and student-led orgs.
+            <p class="arsenal-card-desc">
+              High-throughput data extraction, reproducible experiment logging, statistical hypothesis testing (Wilcoxon signed-rank), and multi-channel matrix operations.
             </p>
-            <ul class="list">
-              <li>Metric design & validation</li>
-              <li>Exploratory data analysis</li>
-              <li>Presentation-ready visuals</li>
-            </ul>
+            <div class="arsenal-tags-group">
+              <span class="arsenal-tag">NumPy</span>
+              <span class="arsenal-tag">SciPy</span>
+              <span class="arsenal-tag">Pandas</span>
+              <span class="arsenal-tag">Matplotlib & Seaborn</span>
+              <span class="arsenal-tag">OpenNeuro (BIDS)</span>
+              <span class="arsenal-tag">Wilcoxon Statistics</span>
+              <span class="arsenal-tag">Experiment Tracking</span>
+            </div>
+            <div class="arsenal-proof">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Zero-leakage subject-level holdout protocol enforced across all studies</span>
+            </div>
           </div>
-          <div class="card service-card">
-            <div class="card-top">
-              <i class="fa-solid fa-robot icon"></i>
-              <span class="tag">ML</span>
+
+          <!-- Card 4: Software & Systems Engineering -->
+          <div class="arsenal-card">
+            <div class="arsenal-card-head">
+              <div class="arsenal-icon-wrap"><i class="fa-solid fa-laptop-code"></i></div>
+              <div>
+                <h3 class="arsenal-card-title">Systems & Full-Stack Engineering</h3>
+                <span class="arsenal-card-subtitle">Production Architectures & UI</span>
+              </div>
             </div>
-            <h3>ML Prototypes</h3>
-            <p>
-              Lightweight models to test hypotheses fast—feature engineering,
-              baselines, and clear evaluation.
+            <p class="arsenal-card-desc">
+              End-to-end full-stack software development, responsive interactive interfaces, RESTful microservices, and modular computational pipelines.
             </p>
-            <ul class="list">
-              <li>Classification & regression</li>
-              <li>Feature pipelines</li>
-              <li>Experiments & reporting</li>
-            </ul>
-          </div>
-          <div class="card service-card">
-            <div class="card-top">
-              <i class="fa-solid fa-layer-group icon"></i>
-              <span class="tag">Product</span>
+            <div class="arsenal-tags-group">
+              <span class="arsenal-tag">Python</span>
+              <span class="arsenal-tag">C / C++</span>
+              <span class="arsenal-tag">Java</span>
+              <span class="arsenal-tag">FastAPI</span>
+              <span class="arsenal-tag">React.js</span>
+              <span class="arsenal-tag">JavaScript (ES6+)</span>
+              <span class="arsenal-tag">Node.js</span>
+              <span class="arsenal-tag">Tailwind CSS</span>
+              <span class="arsenal-tag">Git / GitHub</span>
+              <span class="arsenal-tag">Linux / Bash</span>
             </div>
-            <h3>Web & Systems</h3>
-            <p>
-              Full-stack flows with semantic HTML, clean CSS, and dependable
-              backend patterns.
-            </p>
-            <ul class="list">
-              <li>API-first architecture</li>
-              <li>Responsive UI & motion</li>
-              <li>Documentation-first handoff</li>
-            </ul>
-          </div>
-          <div class="card service-card">
-            <div class="card-top">
-              <i class="fa-solid fa-palette icon"></i>
-              <span class="tag">Design</span>
+            <div class="arsenal-proof">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>15+ shippable web systems & open-source repositories deployed</span>
             </div>
-            <h3>Brand Systems</h3>
-            <p>
-              Visual identity, typography, and component libraries that keep
-              teams shipping consistently.
-            </p>
-            <ul class="list">
-              <li>Design tokens & kits</li>
-              <li>Event & social assets</li>
-              <li>Usability reviews</li>
-            </ul>
           </div>
         </div>
       </section>
@@ -1456,7 +1444,7 @@
             <div class="edu-institution-block secondary">
               <div class="edu-card-top mini-top">
                 <div class="edu-icon-wrap mini">
-                  <i class="fa-solid fa-school icon"></i>
+                  <i class="fa-solid fa-building-columns icon"></i>
                 </div>
                 <span class="tag tag-secondary">HSC · Science</span>
               </div>
@@ -1465,6 +1453,27 @@
                 <span class="edu-degree">Higher Secondary Certificate (HSC) — Science</span>
                 <span class="edu-date"><i class="fa-regular fa-calendar"></i> 2019 — 2021 · Bogura, Bangladesh</span>
               </p>
+            </div>
+
+            <div class="edu-divider"></div>
+
+            <div class="edu-institution-block secondary">
+              <div class="edu-card-top mini-top">
+                <div class="edu-icon-wrap mini">
+                  <i class="fa-solid fa-school icon"></i>
+                </div>
+                <span class="tag tag-secondary">SSC</span>
+                <span class="tag tag-grade"><i class="fa-solid fa-award"></i> GPA 5.00 / 5.00</span>
+              </div>
+              <h3 class="edu-institution-title">Akhlas Shibpur Shampur B.L. High School</h3>
+              <p class="edu-meta">
+                <span class="edu-degree">Secondary School Certificate (SSC)</span>
+                <span class="edu-date"><i class="fa-regular fa-calendar"></i> 2017 — 2018 · Khetlal, Joypurhat, Bangladesh</span>
+              </p>
+              <div class="edu-grade-badge">
+                <i class="fa-solid fa-star"></i>
+                <span>Final Grade: <b>GPA 5.00 / 5.00</b></span>
+              </div>
             </div>
           </div>
 
@@ -2260,12 +2269,12 @@
             <h3>Quick Links</h3>
             <ul>
               <li><a href="#hero">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#skills">Skills</a></li>
-              <li><a href="#expertise">Expertise</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#education">Education</a></li>
+              <li><a href="#about">About & Philosophy</a></li>
+              <li><a href="#bciRoadmap">BCI Roadmap</a></li>
+              <li><a href="#research">Publications</a></li>
+              <li><a href="#skills">Technical Arsenal</a></li>
+              <li><a href="#projects">Projects & Systems</a></li>
+              <li><a href="#education">Education & Highlights</a></li>
               <li><a href="#profile-tabs">Deep Dive</a></li>
               <li><a href="#contact">Contact</a></li>
               <li><a href="Blogs/index.html">Blogs</a></li>
