@@ -7,6 +7,7 @@
 }
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 body {
   background:
@@ -838,13 +839,11 @@ body.nav-open {
   transform: translateX(10px);
 }
 
-/* Hero */
+/* Hero Base */
 #hero {
-  padding-top: 125px;
-  display: grid;
-  gap: 18px;
-  max-width: 920px;
-  text-align: justify;
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
 }
 .eyebrow {
   color: var(--green);
@@ -1205,8 +1204,8 @@ body.nav-open {
 
 /* Roadmap Cards */
 .roadmap-card {
-  flex: 0 0 330px;
-  width: 330px;
+  flex: 0 0 min(330px, 85vw);
+  width: min(330px, 85vw);
   scroll-snap-align: start;
   background: var(--surface-flat, rgba(14, 25, 42, 0.85));
   border: 1px solid var(--line, rgba(148, 163, 184, 0.14));
@@ -5117,6 +5116,58 @@ footer::after {
   border-color: var(--accent-a, #2dd4bf);
   color: var(--accent-a, #2dd4bf);
   transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+  .hero-split-section {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-top: 110px;
+    padding-bottom: 30px;
+  }
+  .hero-card-col {
+    order: -1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-profile-card {
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .profile-image-frame {
+    height: 280px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-headline {
+    font-size: clamp(2rem, 7vw, 2.5rem);
+  }
+  .hero-metrics-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 14px;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-cta-group a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .profile-image-frame {
+    height: 250px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-metrics-bar {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ==========================================================================
